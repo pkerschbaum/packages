@@ -1,0 +1,13 @@
+{
+  "references": [
+    {
+      "path": "./packages/commons-ecma/tsconfig.project.json"
+    },
+    {
+      "path": "./packages/commons-node/tsconfig.project.json"
+    },
+    {
+      "path": "./packages/fetch-favicon/tsconfig.project.json"
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "name": "@pkerschbaum/config-eslint",
+  "private": true,
+  "peerDependencies": {
+    "eslint-config-next": "^13"
+  },
+  "peerDependenciesMeta": {
+    "eslint-config-next": {
+      "optional": true
+    }
+  }
+}
