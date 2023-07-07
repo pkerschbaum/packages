@@ -27,7 +27,8 @@
     "dev": "pnpm run build --watch --preserveWatchOutput",
     "lint": "pnpm run lint:file .",
     "lint:file": "eslint --max-warnings 0",
-    "lint:fix": "pnpm run lint --fix"
+    "lint:fix": "pnpm run lint --fix",
+    "changeset": "changeset"
   },
   "dependencies": {
     "safe-stable-stringify": "^2.4.3",
