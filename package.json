@@ -16,7 +16,6 @@
     "@changesets/cli": "^2.26.2",
     "del-cli": "^5.0.0",
     "husky": "^8.0.3",
-    "lint-staged": "^13.2.3",
     "prettier": "^2.8.8",
     "turbo": "^1.10.7",
     "zx": "^7.2.3"

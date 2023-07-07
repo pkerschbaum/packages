@@ -1,5 +1,4 @@
 #!/bin/sh
 . "$(dirname "$0")/_/husky.sh"
 
-pnpm exec turbo build lint
-pnpm lint-staged
+pnpm exec turbo build lint && pnpm exec prettier --ignore-unknown --check .
