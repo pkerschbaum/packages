@@ -1,4 +1,5 @@
 {
   "name": "@pkerschbaum/config-typescript",
-  "private": true
+  "private": true,
+  "version": "1.0.0"
 }

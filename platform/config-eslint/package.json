@@ -1,6 +1,7 @@
 {
   "name": "@pkerschbaum/config-eslint",
   "private": true,
+  "version": "1.0.0",
   "peerDependencies": {
     "eslint-config-next": "^13"
   },
