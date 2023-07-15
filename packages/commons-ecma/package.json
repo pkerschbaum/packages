@@ -7,7 +7,7 @@
     "url": "https://github.com/pkerschbaum/packages",
     "directory": "packages/commons-ecma"
   },
-  "homepage": "https://github.com/pkerschbaum/packages/packages/commons-ecma",
+  "homepage": "https://github.com/pkerschbaum/packages/tree/main/packages/commons-ecma",
   "bugs": {
     "url": "https://github.com/pkerschbaum/packages/issues"
   },
