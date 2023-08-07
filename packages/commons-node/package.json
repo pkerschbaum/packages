@@ -15,7 +15,6 @@
     "access": "public"
   },
   "version": "1.0.1",
-  "type": "module",
   "exports": {
     ".": "./dist/index.js",
     "./*": "./dist/*.js"
@@ -35,7 +34,7 @@
     "prepare": "ts-patch install -s",
     "internal:compile": "tsc -p ./tsconfig.project.json",
     "nuke": "pnpm run nuke:artifacts && del-cli node_modules",
-    "nuke:artifacts": "del-cli dist *.tsbuildinfo",
+    "nuke:artifacts": "del-cli dist \"*.tsbuildinfo\"",
     "build": "pnpm run internal:compile",
     "dev": "pnpm run build --watch --preserveWatchOutput",
     "lint": "pnpm run lint:file .",

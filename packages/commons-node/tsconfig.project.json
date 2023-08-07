@@ -2,6 +2,7 @@
   "extends": "@pkerschbaum/config-typescript/tsconfig.json",
   "compilerOptions": {
     /* Modules */
+    "module": "CommonJS",
     "paths": {
       "#pkg/*": ["./src/*"]
     },
