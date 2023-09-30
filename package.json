@@ -14,14 +14,19 @@
   },
   "devDependencies": {
     "@changesets/cli": "^2.26.2",
-    "del-cli": "^5.0.0",
+    "del-cli": "^5.1.0",
     "husky": "^8.0.3",
-    "prettier": "^2.8.8",
-    "turbo": "^1.10.7",
+    "prettier": "^3.0.3",
+    "turbo": "^1.10.14",
     "zx": "^7.2.3"
   },
   "packageManager": "pnpm@8.1.1",
   "engines": {
     "pnpm": "8.1.1"
+  },
+  "pnpm": {
+    "patchedDependencies": {
+      "typescript@5.2.2": "patches/typescript@5.2.2.patch"
+    }
   }
 }

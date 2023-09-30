@@ -9,7 +9,11 @@
     "rootDir": "./src",
 
     /* Emit */
-    "outDir": "./dist"
+    "outDir": "./dist",
+
+    /* Interop Constraints */
+    /* disable verbatimModuleSyntax because this is a CJS package */
+    "verbatimModuleSyntax": false
   },
   "include": ["src/**/*"]
 }
