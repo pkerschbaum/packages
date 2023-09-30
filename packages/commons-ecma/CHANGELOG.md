@@ -1,5 +1,11 @@
 # @pkerschbaum/commons-ecma
 
+## 2.1.1
+
+### Patch Changes
+
+- 8aa8641: fix types of jsonUtil.safeStringify
+
 ## 2.1.0
 
 ### Minor Changes

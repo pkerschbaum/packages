@@ -1,5 +1,12 @@
 # @pkerschbaum/commons-node
 
+## 2.1.1
+
+### Patch Changes
+
+- Updated dependencies [8aa8641]
+  - @pkerschbaum/commons-ecma@2.1.1
+
 ## 2.1.0
 
 ### Minor Changes
