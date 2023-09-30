@@ -1,5 +1,16 @@
 # @pkerschbaum/commons-node
 
+## 2.1.0
+
+### Minor Changes
+
+- 2ad0473: add "fs" util with function `existsPath`
+
+### Patch Changes
+
+- Updated dependencies [98c3b5e]
+  - @pkerschbaum/commons-ecma@2.1.0
+
 ## 2.0.0
 
 ### Major Changes
