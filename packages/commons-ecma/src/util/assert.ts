@@ -20,7 +20,10 @@ function isNullish<T>(obj: T | undefined | null): obj is undefined | null {
   return obj === undefined || obj === null;
 }
 
-function isNotNullish<T>(obj: T | undefined | null): obj is T {
+function isNotNullish<T>(
+  obj: T | undefined | null,
+  // @ts-expect-error -- We don't care about the "A type predicate's type must be assignable to its parameter's type" error here for the unknown case
+): obj is unknown extends T ? { [prop: string]: unknown } : T {
   return !isNullish(obj);
 }
 
