@@ -1,10 +1,5 @@
 import type { ObjectLiteral } from '#pkg/util/types.js';
 
-export const objects = {
-  shallowCopy,
-  shallowIsEqual,
-};
-
 function shallowCopy<T>(inObject: T): T {
   return typeof inObject !== 'object' || inObject === null
     ? // Return the value if inObject is not an object
@@ -23,3 +18,10 @@ function shallowIsEqual(obj1: ObjectLiteral, objToCompareWith: ObjectLiteral) {
     )
   );
 }
+
+export = {
+  objects: {
+    shallowCopy,
+    shallowIsEqual,
+  },
+};

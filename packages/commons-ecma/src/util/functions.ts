@@ -1,10 +1,4 @@
-import invariant from 'tiny-invariant';
-
-export const functions = {
-  noop,
-  debounce,
-  throttle,
-};
+import invariant = require('#pkg/util/invariant');
 
 // eslint-disable-next-line @typescript-eslint/no-empty-function
 function noop() {}
@@ -105,3 +99,11 @@ function throttle<ThisType, Params extends unknown[]>(
 
   return [throttledFunction, finishThrottleWindowAndExecuteTrailingCall];
 }
+
+export = {
+  functions: {
+    noop,
+    debounce,
+    throttle,
+  },
+};

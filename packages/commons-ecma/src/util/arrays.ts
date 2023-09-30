@@ -1,12 +1,4 @@
-import invariant from 'tiny-invariant';
-
-export const arrays = {
-  uniqueValues,
-  shallowCopy,
-  reverse,
-  pickElementAndRemove,
-  partitionArray,
-};
+import invariant = require('#pkg/util/invariant');
 
 function uniqueValues<T, U>(array: T[], getPropToCompare?: (item: T) => U): T[] {
   const result: T[] = [];
@@ -74,3 +66,13 @@ function partitionArray<T>(
 
   return partitions;
 }
+
+export = {
+  arrays: {
+    uniqueValues,
+    shallowCopy,
+    reverse,
+    pickElementAndRemove,
+    partitionArray,
+  },
+};

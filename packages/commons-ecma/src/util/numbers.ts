@@ -1,5 +1,3 @@
-export const numbers = { convert, sequence };
-
 function convert(input: unknown): number | undefined {
   // https://stackoverflow.com/a/1421988/1700319
   // eslint-disable-next-line @typescript-eslint/no-unsafe-argument, @typescript-eslint/no-explicit-any
@@ -15,3 +13,7 @@ function sequence(options: { fromInclusive: number; toInclusive: number }): numb
     (_, i) => i + options.fromInclusive,
   );
 }
+
+export = {
+  numbers: { convert, sequence },
+};

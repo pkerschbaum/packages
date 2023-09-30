@@ -10,11 +10,7 @@
     "types": ["node"],
 
     /* Emit */
-    "outDir": "./dist",
-
-    /* Interop Constraints */
-    /* disable verbatimModuleSyntax because this is a CJS package */
-    "verbatimModuleSyntax": false
+    "outDir": "./dist"
   },
   "include": ["src/**/*"]
 }
