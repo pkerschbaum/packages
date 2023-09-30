@@ -41,6 +41,9 @@
     "lint:file": "eslint --max-warnings 0",
     "lint:fix": "pnpm run lint --fix"
   },
+  "dependencies": {
+    "@pkerschbaum/commons-ecma": "workspace:^"
+  },
   "devDependencies": {
     "@pkerschbaum/config-eslint": "workspace:^",
     "@pkerschbaum/config-typescript": "workspace:^",
