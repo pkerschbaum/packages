@@ -1,10 +1,20 @@
 import type { ObjectLiteral } from '#pkg/util/types.js';
 
 // https://www.typescriptlang.org/docs/handbook/2/narrowing.html#exhaustiveness-checking
-function assertIsUnreachable(value?: never): never {
+export function assertIsUnreachable(value?: never): never {
   // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
   throw new Error(`should be unreachable, but got here. value=${value}`);
 }
+
+export const check = {
+  isNullish,
+  isNotNullish,
+  isEmptyString,
+  isNullishOrEmptyString,
+  isNonEmptyString,
+  isEmptyObject,
+  isValueInEnum,
+};
 
 function isNullish<T>(obj: T | undefined | null): obj is undefined | null {
   return obj === undefined || obj === null;
@@ -38,24 +48,10 @@ function isEmptyObject(obj: ObjectLiteral): boolean {
   return true;
 }
 
-function isValueInEnum<T extends string, TEnumValue extends string>(
+export function isValueInEnum<T extends string, TEnumValue extends string>(
   value: string,
   enumVariable: { [key in T]: TEnumValue },
 ): value is TEnumValue {
   const enumValues = Object.values(enumVariable);
   return enumValues.includes(value);
 }
-
-export = {
-  assertIsUnreachable,
-  check: {
-    isNullish,
-    isNotNullish,
-    isEmptyString,
-    isNullishOrEmptyString,
-    isNonEmptyString,
-    isEmptyObject,
-    isValueInEnum,
-  },
-  isValueInEnum,
-};

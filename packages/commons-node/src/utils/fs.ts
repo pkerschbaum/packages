@@ -1,8 +1,10 @@
-import fs = require('node:fs');
+import fs from 'node:fs';
 
-import assertModule = require('@pkerschbaum/commons-ecma/util/assert');
+import { check } from '@pkerschbaum/commons-ecma/util/assert';
 
-const { check } = assertModule;
+export const fsUtils = {
+  existsPath,
+};
 
 async function existsPath(path: string): Promise<boolean> {
   try {
@@ -16,9 +18,3 @@ async function existsPath(path: string): Promise<boolean> {
     throw error;
   }
 }
-
-export = {
-  fsUtils: {
-    existsPath,
-  },
-};

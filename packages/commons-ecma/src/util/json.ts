@@ -1,7 +1,5 @@
-import safeStringify = require('safe-stable-stringify');
+import safeStringify from 'safe-stable-stringify';
 
-export = {
-  jsonUtil: {
-    safeStringify: safeStringify.stringify,
-  },
+export const jsonUtil = {
+  safeStringify,
 };

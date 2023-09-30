@@ -150,8 +150,7 @@ module.exports = {
         allowDeclarations: true,
       },
     ],
-    /* tsconfig "verbatimModuleSyntax: true" forces to use require in CJS modules */
-    '@typescript-eslint/no-require-imports': 'off',
+    '@typescript-eslint/no-require-imports': 'error',
     '@typescript-eslint/no-throw-literal': 'error',
     '@typescript-eslint/no-unnecessary-condition': ['error', { allowConstantLoopConditions: true }],
     '@typescript-eslint/no-unnecessary-qualifier': 'error',

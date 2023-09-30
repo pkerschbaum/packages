@@ -1,6 +1,6 @@
-import assert = require('#pkg/util/assert.js');
+import { check } from '#pkg/util/assert.js';
 
-const { check } = assert;
+export const urlUtils = { createReadableTextFromUrl, generateUrlFragmentFromText };
 
 function createReadableTextFromUrl(url: URL): string {
   let generatedText = url.host;
@@ -27,7 +27,3 @@ function generateUrlFragmentFromText(text: string): string {
     .replace(/[^\d a-z]/g, '')
     .replace(/ /g, '-');
 }
-
-export = {
-  urlUtils: { createReadableTextFromUrl, generateUrlFragmentFromText },
-};
