@@ -1,5 +1,13 @@
 # @pkerschbaum/pkg-management
 
+## 1.0.3
+
+### Patch Changes
+
+- Updated dependencies [defe2b1]
+  - @pkerschbaum/commons-ecma@2.1.2
+  - @pkerschbaum/commons-node@2.1.2
+
 ## 1.0.2
 
 ### Patch Changes

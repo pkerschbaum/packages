@@ -1,5 +1,11 @@
 # @pkerschbaum/commons-ecma
 
+## 2.1.2
+
+### Patch Changes
+
+- defe2b1: Revert "refactor: use verbatimModuleSyntax for CJS modules"
+
 ## 2.1.1
 
 ### Patch Changes
