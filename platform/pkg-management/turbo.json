@@ -6,11 +6,12 @@
       "cache": true,
       "inputs": [
         "../../platform/config-typescript/tsconfig.json",
+        "babel.config.mjs",
         "src/**",
         "package.json",
         "tsconfig.project.json"
       ],
-      "outputs": ["*.tsbuildinfo"]
+      "outputs": ["dist/**", "*.tsbuildinfo"]
     },
     "lint": {
       "cache": true,

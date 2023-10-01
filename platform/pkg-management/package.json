@@ -1,17 +1,20 @@
 {
   "name": "@pkerschbaum/pkg-management",
   "private": true,
-  "type": "module",
   "version": "1.0.3",
+  "type": "module",
   "exports": {
     ".": null,
     "./*": null
   },
+  "imports": {
+    "#pkg/*": "./src/*"
+  },
   "scripts": {
     "internal:compile": "tsc -p ./tsconfig.project.json",
     "nuke": "pnpm run nuke:artifacts && del-cli node_modules",
-    "nuke:artifacts": "del-cli *.tsbuildinfo",
-    "build": "pnpm run internal:compile",
+    "nuke:artifacts": "del-cli dist *.tsbuildinfo",
+    "build": "pnpm run internal:compile && babel src --out-dir dist --keep-file-extension",
     "dev": "pnpm run build --watch --preserveWatchOutput",
     "lint": "pnpm run lint:file .",
     "lint:file": "eslint --max-warnings 0",
@@ -23,9 +26,13 @@
     "@pnpm/find-workspace-dir": "^6.0.2",
     "@pnpm/logger": "^5.0.0",
     "@pnpm/reviewing.dependencies-hierarchy": "^2.1.0",
+    "tempy": "^3.1.0",
     "zx": "^7.2.3"
   },
   "devDependencies": {
+    "@babel/cli": "^7.23.0",
+    "@babel/core": "^7.23.0",
+    "@babel/plugin-proposal-explicit-resource-management": "^7.23.0",
     "@pkerschbaum/config-eslint": "workspace:^",
     "@pkerschbaum/config-typescript": "workspace:^",
     "@types/node": "^18",

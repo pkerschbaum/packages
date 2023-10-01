@@ -1,18 +1,18 @@
+import '#pkg/polyfill-explicit-resource-management.mjs';
+
 import { findWorkspaceDir } from '@pnpm/find-workspace-dir';
 import { buildDependenciesHierarchy } from '@pnpm/reviewing.dependencies-hierarchy';
 import assert from 'node:assert';
 import fs from 'node:fs';
 import path from 'node:path';
 import url from 'node:url';
+import { temporaryDirectory } from 'tempy';
 import { $ } from 'zx';
-
-import { fsUtils } from '@pkerschbaum/commons-node/utils/fs';
 
 const __dirname = path.dirname(url.fileURLToPath(import.meta.url));
 const monorepoRootDir = await findWorkspaceDir(__dirname);
 assert(monorepoRootDir);
 const workspaceDir = path.join(__dirname, '..');
-const tempDir = path.join(__dirname, 'temp-typescript-installation');
 
 console.log(
   'determining version of "typescript" we have currently in use by looking at the symlinked node_modules for this workspace project',
@@ -37,16 +37,20 @@ if (!typescriptVersion) {
 
 console.log(`found typescript@${typescriptVersion}`);
 
-if (await fsUtils.existsPath(tempDir)) {
-  await fs.promises.rm(tempDir, { recursive: true });
-}
 $.cwd = __dirname;
-try {
-  await $`pnpm patch --edit-dir=${tempDir} typescript@${typescriptVersion}`;
-  await $`pnpm add ts-patch@3.0.2`;
-  await $`pnpm exec ts-patch --dir=${tempDir} install`;
-  await $`pnpm rm ts-patch`;
-  await $`pnpm patch-commit ${tempDir}`;
-} finally {
-  await fs.promises.rm(tempDir, { recursive: true });
+await using typeScriptTempDir = createTempDir();
+await $`pnpm patch --edit-dir=${typeScriptTempDir.path} typescript@${typescriptVersion}`;
+await $`pnpm add ts-patch@3.0.2`;
+await $`pnpm exec ts-patch --dir=${typeScriptTempDir.path} install`;
+await $`pnpm rm ts-patch`;
+await $`pnpm patch-commit ${typeScriptTempDir.path}`;
+
+function createTempDir() {
+  const dir = temporaryDirectory();
+  return {
+    path: dir,
+    async [Symbol.asyncDispose]() {
+      await fs.promises.rm(dir, { recursive: true });
+    },
+  };
 }
