@@ -1,6 +1,19 @@
 {
   "name": "@pkerschbaum/pkg-management",
-  "private": true,
+  "license": "MIT",
+  "author": "Patrick Kerschbaum <patrick.kerschbaum@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/pkerschbaum/packages",
+    "directory": "packages/pkg-management"
+  },
+  "homepage": "https://github.com/pkerschbaum/packages/tree/main/packages/pkg-management",
+  "bugs": {
+    "url": "https://github.com/pkerschbaum/packages/issues"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
   "version": "1.0.3",
   "type": "module",
   "exports": {
@@ -10,6 +23,10 @@
   "imports": {
     "#pkg/*": "./src/*"
   },
+  "files": [
+    "dist/**",
+    "!dist/**/*.d.ts.map"
+  ],
   "scripts": {
     "internal:compile": "tsc -p ./tsconfig.project.json",
     "nuke": "pnpm run nuke:artifacts && del-cli node_modules",

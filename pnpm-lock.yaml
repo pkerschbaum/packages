@@ -205,18 +205,14 @@ importers:
         specifier: ^3.4.6
         version: 3.4.6(typescript@5.2.2)
 
-  platform/config-eslint: {}
-
-  platform/config-typescript: {}
-
-  platform/pkg-management:
+  packages/pkg-management:
     dependencies:
       '@pkerschbaum/commons-ecma':
         specifier: workspace:^
-        version: link:../../packages/commons-ecma
+        version: link:../commons-ecma
       '@pkerschbaum/commons-node':
         specifier: workspace:^
-        version: link:../../packages/commons-node
+        version: link:../commons-node
       '@pnpm/find-workspace-dir':
         specifier: ^6.0.2
         version: 6.0.2
@@ -244,10 +240,10 @@ importers:
         version: 7.23.0(@babel/core@7.23.0)
       '@pkerschbaum/config-eslint':
         specifier: workspace:^
-        version: link:../config-eslint
+        version: link:../../platform/config-eslint
       '@pkerschbaum/config-typescript':
         specifier: workspace:^
-        version: link:../config-typescript
+        version: link:../../platform/config-typescript
       '@types/node':
         specifier: ^18
         version: 18.18.1
@@ -287,6 +283,10 @@ importers:
       typescript:
         specifier: ^5.2.2
         version: 5.2.2(patch_hash=ne7pl63axb4w5i5sendwnvsoyu)
+
+  platform/config-eslint: {}
+
+  platform/config-typescript: {}
 
 packages:
 
