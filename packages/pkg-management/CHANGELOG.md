@@ -1,5 +1,11 @@
 # @pkerschbaum/pkg-management
 
+## 1.1.0
+
+### Minor Changes
+
+- e716678: expose CLI `create-pnpm-patch-via-ts-patch` as `bin`
+
 ## 1.0.3
 
 ### Patch Changes
