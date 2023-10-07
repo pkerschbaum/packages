@@ -21,7 +21,7 @@
     "./*": null
   },
   "imports": {
-    "#pkg/*": "./src/*"
+    "#pkg/*": "./dist/*"
   },
   "files": [
     "dist/**",
