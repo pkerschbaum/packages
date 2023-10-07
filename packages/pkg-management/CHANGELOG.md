@@ -1,5 +1,11 @@
 # @pkerschbaum/pkg-management
 
+## 1.1.1
+
+### Patch Changes
+
+- 80eb9d6: use dist dir in `imports` of package.json
+
 ## 1.1.0
 
 ### Minor Changes
