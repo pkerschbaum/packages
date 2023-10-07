@@ -27,6 +27,9 @@
     "dist/**",
     "!dist/**/*.d.ts.map"
   ],
+  "bin": {
+    "create-pnpm-patch-via-ts-patch": "./dist/create-pnpm-patch-via-ts-patch.mjs"
+  },
   "scripts": {
     "internal:compile": "tsc -p ./tsconfig.project.json",
     "nuke": "pnpm run nuke:artifacts && del-cli node_modules",
@@ -38,11 +41,10 @@
     "lint:fix": "pnpm run lint --fix"
   },
   "dependencies": {
+    "@commander-js/extra-typings": "^11.0.0",
     "@pkerschbaum/commons-ecma": "workspace:^",
     "@pkerschbaum/commons-node": "workspace:^",
-    "@pnpm/find-workspace-dir": "^6.0.2",
-    "@pnpm/logger": "^5.0.0",
-    "@pnpm/reviewing.dependencies-hierarchy": "^2.1.0",
+    "commander": "^11.0.0",
     "tempy": "^3.1.0",
     "zx": "^7.2.3"
   },
