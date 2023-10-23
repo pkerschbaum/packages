@@ -9,17 +9,18 @@
 
 ### Prerequisites
 
-- **Install Node.js:** For the version to use, please refer to the file [.nvmrc](./.nvmrc) of this repository.  
-  It is recommended to use [nvm](https://github.com/nvm-sh/nvm) and run `nvm use`, this will automatically switch to the Node.js version mentioned in `.nvmrc`.
-- **Install pnpm:** This monorepo uses [`pnpm`](https://pnpm.io/) as package manager.  
-  For the version to use, look at the field `"packageManager"` of the [package.json](./package.json).  
-  For installation instructions see [pnpm.io/installation](https://pnpm.io/installation); it should boil down to this command:
+- **Node.js:** It is recommended to use [nvm](https://github.com/nvm-sh/nvm) and run `nvm use`, this will automatically switch to the Node.js version mentioned in the file [`.nvmrc`](./.nvmrc).  
+   Alternatively you can install Node.js directly, please refer to `.nvmrc` of this project to determine the Node.js version to use.
+- **pnpm:** This monorepo ("workspace") uses [`pnpm`](https://pnpm.io/) as package manager.  
+  It is recommended to use `corepack` of Node.js, just run:
 
   ```sh
-  npm i -g pnpm@8.1.1 # <-- look up the version in package.json "packageManager"
+  corepack enable
   ```
 
-- **Make sure you can compile native npm dependencies:** If you need guidance for that, follow the sections "Python" and "C/C++ compiler tool chain for your platform" of the "Prerequisites" installation guide of [microsoft/vscode/wiki/How-to-Contribute#prerequisites](https://github.com/microsoft/vscode/wiki/How-to-Contribute#prerequisites).
+  `pnpm` commands should now be available (and the `pnpm` version specified in `package.json#packageManager` will be automatically used).
+
+- **Toolchain for native Node.js modules:** Run the installation instructions "A C/C++ compiler tool chain for your platform" of [microsoft/vscode/wiki/How-to-Contribute#prerequisites](https://github.com/microsoft/vscode/wiki/How-to-Contribute#prerequisites).
 
 ### Build & Run
 
