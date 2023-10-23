@@ -8,6 +8,12 @@
     },
     {
       "path": "./packages/fetch-favicon/tsconfig.project.json"
+    },
+    {
+      "path": "./packages/pkg-management/tsconfig.project.json"
+    },
+    {
+      "path": "./packages/typescript-eslint-rules-requiring-type-info/tsconfig.project.json"
     }
   ]
 }

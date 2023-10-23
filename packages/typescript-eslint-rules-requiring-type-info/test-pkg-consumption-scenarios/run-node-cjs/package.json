@@ -1,0 +1,10 @@
+{
+  "name": "run-node-cjs",
+  "scripts": {
+    "postinstall": "node --input-type=module -e 'import { fetchAndStoreRules } from \"@pkerschbaum/typescript-eslint-rules-requiring-type-info\"; void fetchAndStoreRules();'",
+    "execute-scenario": "node ./src/test.cjs"
+  },
+  "dependencies": {
+    "@pkerschbaum/typescript-eslint-rules-requiring-type-info": "*"
+  }
+}

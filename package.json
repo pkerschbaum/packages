@@ -10,7 +10,8 @@
     "lint": "turbo lint",
     "lint:fix": "turbo lint:fix",
     "format": "prettier --write --ignore-unknown .",
-    "build": "turbo build"
+    "build": "turbo build",
+    "changeset": "changeset"
   },
   "devDependencies": {
     "@changesets/cli": "^2.26.2",

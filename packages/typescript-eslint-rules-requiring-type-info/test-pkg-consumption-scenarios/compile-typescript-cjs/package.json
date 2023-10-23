@@ -1,0 +1,13 @@
+{
+  "name": "compile-typescript-cjs",
+  "private": true,
+  "scripts": {
+    "execute-scenario": "del-cli --dot=true dist && tsc"
+  },
+  "dependencies": {
+    "@pkerschbaum/typescript-eslint-rules-requiring-type-info": "*"
+  },
+  "devDependencies": {
+    "typescript": "4.9.5"
+  }
+}

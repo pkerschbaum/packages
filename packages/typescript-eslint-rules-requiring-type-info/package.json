@@ -1,36 +1,39 @@
 {
-  "name": "@pkerschbaum/commons-ecma",
+  "name": "@pkerschbaum/typescript-eslint-rules-requiring-type-info",
+  "version": "1.0.0",
   "license": "MIT",
+  "keywords": [
+    "typescript-eslint"
+  ],
   "author": "Patrick Kerschbaum <patrick.kerschbaum@gmail.com>",
   "repository": {
     "type": "git",
     "url": "https://github.com/pkerschbaum/packages",
-    "directory": "packages/commons-ecma"
+    "directory": "packages/typescript-eslint-rules-requiring-type-info"
   },
-  "homepage": "https://github.com/pkerschbaum/packages/tree/main/packages/commons-ecma",
+  "homepage": "https://github.com/pkerschbaum/packages/tree/main/packages/typescript-eslint-rules-requiring-type-info",
   "bugs": {
-    "url": "https://github.com/pkerschbaum/packages/issues"
+    "url": "https://github.com/pkerschbaum/typescript-eslint-rules-requiring-type-info/issues"
   },
   "publishConfig": {
     "access": "public"
   },
-  "version": "2.1.2",
+  "files": [
+    "dist/**/*",
+    "src/**/*",
+    "LICENSE",
+    "README.md"
+  ],
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "exports": {
-    ".": "./dist/index.js",
-    "./*": "./dist/*.js"
-  },
-  "typesVersions": {
-    "*": {
-      "*": [
-        "./dist/*"
-      ]
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
     }
   },
-  "files": [
-    "dist/**",
-    "!dist/**/*.d.ts.map"
-  ],
   "scripts": {
+    "prepack": "pnpm run nuke:artifacts && pnpm run build",
     "internal:compile": "tsc -p ./tsconfig.project.json",
     "nuke": "pnpm run nuke:artifacts && del-cli node_modules",
     "nuke:artifacts": "del-cli dist \"*.tsbuildinfo\"",
@@ -38,15 +41,21 @@
     "dev": "pnpm run build --watch --preserveWatchOutput",
     "lint": "pnpm run lint:file .",
     "lint:file": "eslint --max-warnings 0",
-    "lint:fix": "pnpm run lint --fix"
+    "lint:fix": "pnpm run lint --fix",
+    "test": "pnpm run test:pkg-consumption",
+    "test:pkg-consumption": "pkg-consumption-test --packageName=\"@pkerschbaum/typescript-eslint-rules-requiring-type-info\" --pathToScenariosDirectory=\"./test-pkg-consumption-scenarios\""
   },
   "dependencies": {
-    "safe-stable-stringify": "^2.4.3",
-    "tiny-invariant": "^1.3.1"
+    "axios": "^1.3.2",
+    "jsdom": "^21.1.0"
   },
   "devDependencies": {
     "@pkerschbaum/config-eslint": "workspace:^",
     "@pkerschbaum/config-typescript": "workspace:^",
+    "@pkerschbaum/pkg-consumption-test": "^1.0.2",
+    "@types/eslint": "^8.21.0",
+    "@types/jsdom": "^20.0.1",
+    "@types/node": "^18.11.19",
     "@typescript-eslint/eslint-plugin": "^6.7.3",
     "@typescript-eslint/parser": "^6.7.3",
     "eslint": "^8.50.0",

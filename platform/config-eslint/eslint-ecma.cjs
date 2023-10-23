@@ -102,6 +102,7 @@ module.exports = {
     'n/no-missing-import': 'off',
     'n/no-process-env': 'error',
     'n/no-sync': 'error',
+    'n/no-unpublished-import': ['error', { ignoreTypeImport: true }],
     // disable "n/no-unsupported-features/es-syntax" --> covered by TypeScript
     'n/no-unsupported-features/es-syntax': 'off',
     // disable "n/no-unsupported-features/es-builtins" --> covered by TypeScript
