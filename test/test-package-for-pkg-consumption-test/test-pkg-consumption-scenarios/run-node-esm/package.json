@@ -1,0 +1,11 @@
+{
+  "name": "run-node-esm",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "execute-scenario": "node ./src/test.js"
+  },
+  "dependencies": {
+    "@pkerschbaum/test-package-for-pkg-consumption-test": "*"
+  }
+}

@@ -10,10 +10,16 @@
       "path": "./packages/fetch-favicon/tsconfig.project.json"
     },
     {
+      "path": "./packages/pkg-consumption-test/tsconfig.project.json"
+    },
+    {
       "path": "./packages/pkg-management/tsconfig.project.json"
     },
     {
       "path": "./packages/typescript-eslint-rules-requiring-type-info/tsconfig.project.json"
+    },
+    {
+      "path": "./test/test-package-for-pkg-consumption-test/tsconfig.project.json"
     }
   ]
 }
