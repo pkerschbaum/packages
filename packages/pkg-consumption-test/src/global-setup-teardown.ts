@@ -1,4 +1,5 @@
 import type { Config } from '@verdaccio/types';
+import fs from 'node:fs';
 import * as verdaccio from 'verdaccio';
 import { $ } from 'zx';
 
@@ -32,8 +33,12 @@ export async function setup(options: SetupOptions) {
    * will fetch the dependencies from Verdaccio.
    */
   /* eslint-disable n/no-process-env */
-  process.env['npm_config_registry'] = `http://localhost:${verdaccioPort}/`;
-  process.env['npm_config__auth'] = `fake-auth-token`;
+  let npmrcContent = '';
+  npmrcContent += `registry=http://localhost:${verdaccioPort}/\n`;
+  npmrcContent += `//localhost:${verdaccioPort}/:_authToken=fake-auth-token\n`;
+  process.env['npm_config_registry'] = `http://localhost:${verdaccioPort}/\n`;
+  await fs.promises.mkdir(PATHS.TEMP_FOLDER, { recursive: true });
+  await fs.promises.writeFile(PATHS.TEMP_NPMRC, npmrcContent, 'utf8');
   /* eslint-enable n/no-process-env */
   await publishToVerdaccio(options.absolutePathToPackageRoot);
 }
@@ -117,5 +122,5 @@ async function startVerdaccioServer(
 
 async function publishToVerdaccio(absolutePathToPackageRoot: string) {
   $.cwd = absolutePathToPackageRoot;
-  await $`npm publish`;
+  await $`npm --userconfig ${PATHS.TEMP_NPMRC} publish`;
 }

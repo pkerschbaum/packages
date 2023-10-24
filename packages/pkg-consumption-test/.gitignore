@@ -1,2 +1,5 @@
 # temporary verdaccio folder
 .verdaccio
+
+# temporary folder for npmrc
+.temp
