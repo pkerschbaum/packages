@@ -19,6 +19,9 @@
       "path": "./packages/typescript-eslint-rules-requiring-type-info/tsconfig.project.json"
     },
     {
+      "path": "./platform/superturbo/tsconfig.project.json"
+    },
+    {
       "path": "./test/test-package-for-pkg-consumption-test/tsconfig.project.json"
     }
   ]

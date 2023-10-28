@@ -50,8 +50,6 @@
     "jsdom": "^21.1.0"
   },
   "devDependencies": {
-    "@pkerschbaum/config-eslint": "workspace:^",
-    "@pkerschbaum/config-typescript": "workspace:^",
     "@pkerschbaum/pkg-consumption-test": "^1.0.2",
     "@types/eslint": "^8.21.0",
     "@types/jsdom": "^20.0.1",

@@ -45,8 +45,6 @@
     "tiny-invariant": "^1.3.1"
   },
   "devDependencies": {
-    "@pkerschbaum/config-eslint": "workspace:^",
-    "@pkerschbaum/config-typescript": "workspace:^",
     "@typescript-eslint/eslint-plugin": "^6.7.3",
     "@typescript-eslint/parser": "^6.7.3",
     "eslint": "^8.50.0",
