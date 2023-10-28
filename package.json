@@ -2,25 +2,26 @@
   "name": "pkerschbaum-oss",
   "private": true,
   "scripts": {
-    "prepare": "husky install",
+    "build": "superturbo build",
+    "changeset": "changeset",
+    "format": "prettier --write --ignore-unknown .",
+    "lint": "superturbo lint",
+    "lint:fix": "superturbo lint:fix",
     "nuke": "pnpm --parallel run nuke && pnpm run nuke:artifacts && pnpm run nuke:compute-cache && pnpm run nuke:node-modules",
     "nuke:artifacts": "pnpm --parallel run nuke:artifacts",
     "nuke:compute-cache": "del-cli \"*/**/.turbo\"",
     "nuke:node-modules": "del-cli \"**/node_modules\"",
-    "lint": "superturbo lint",
-    "lint:fix": "superturbo lint:fix",
-    "format": "prettier --write --ignore-unknown .",
-    "build": "superturbo build",
-    "changeset": "changeset"
+    "prepare": "husky install"
   },
   "devDependencies": {
+    "@changesets/cli": "^2.26.2",
     "@pkerschbaum/config-eslint": "workspace:*",
     "@pkerschbaum/config-typescript": "workspace:*",
     "@pkerschbaum/superturbo": "workspace:*",
-    "@changesets/cli": "^2.26.2",
     "del-cli": "^5.1.0",
     "husky": "^8.0.3",
     "prettier": "^3.0.3",
+    "prettier-plugin-packagejson": "^2.4.6",
     "turbo": "^1.10.14",
     "zx": "^7.2.3"
   },

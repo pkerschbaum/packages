@@ -1,47 +1,44 @@
 {
   "name": "@pkerschbaum/typescript-eslint-rules-requiring-type-info",
   "version": "1.0.0",
-  "license": "MIT",
   "keywords": [
     "typescript-eslint"
   ],
-  "author": "Patrick Kerschbaum <patrick.kerschbaum@gmail.com>",
+  "homepage": "https://github.com/pkerschbaum/packages/tree/main/packages/typescript-eslint-rules-requiring-type-info",
+  "bugs": {
+    "url": "https://github.com/pkerschbaum/typescript-eslint-rules-requiring-type-info/issues"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/pkerschbaum/packages",
     "directory": "packages/typescript-eslint-rules-requiring-type-info"
   },
-  "homepage": "https://github.com/pkerschbaum/packages/tree/main/packages/typescript-eslint-rules-requiring-type-info",
-  "bugs": {
-    "url": "https://github.com/pkerschbaum/typescript-eslint-rules-requiring-type-info/issues"
-  },
-  "publishConfig": {
-    "access": "public"
-  },
-  "files": [
-    "dist/**/*",
-    "src/**/*",
-    "LICENSE",
-    "README.md"
-  ],
-  "main": "./dist/index.js",
-  "types": "./dist/index.d.ts",
+  "license": "MIT",
+  "author": "Patrick Kerschbaum <patrick.kerschbaum@gmail.com>",
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
       "default": "./dist/index.js"
     }
   },
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist/**/*",
+    "src/**/*",
+    "LICENSE",
+    "README.md"
+  ],
   "scripts": {
-    "prepack": "pnpm run nuke:artifacts && pnpm run build",
-    "internal:compile": "tsc -p ./tsconfig.project.json",
-    "nuke": "pnpm run nuke:artifacts && del-cli node_modules",
-    "nuke:artifacts": "del-cli dist \"*.tsbuildinfo\"",
     "build": "pnpm run internal:compile",
     "dev": "pnpm run build --watch --preserveWatchOutput",
+    "internal:compile": "tsc -p ./tsconfig.project.json",
     "lint": "pnpm run lint:file .",
     "lint:file": "eslint --max-warnings 0",
     "lint:fix": "pnpm run lint --fix",
+    "nuke": "pnpm run nuke:artifacts && del-cli node_modules",
+    "nuke:artifacts": "del-cli dist \"*.tsbuildinfo\"",
+    "prepack": "pnpm run nuke:artifacts && pnpm run build",
     "test": "pnpm run test:pkg-consumption",
     "test:pkg-consumption": "pkg-consumption-test --packageName=\"@pkerschbaum/typescript-eslint-rules-requiring-type-info\" --pathToScenariosDirectory=\"./test-pkg-consumption-scenarios\""
   },
@@ -67,5 +64,8 @@
     "eslint-plugin-unicorn": "^48.0.1",
     "typescript": "^5.2.2",
     "typescript-transform-paths": "^3.4.6"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }

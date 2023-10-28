@@ -12,17 +12,17 @@
     "/src"
   ],
   "scripts": {
-    "prepublishOnly": "pnpm run build",
-    "internal:compile": "tsc -p ./tsconfig.project.json",
-    "nuke": "pnpm run nuke:artifacts && del-cli node_modules",
-    "nuke:artifacts": "del-cli dist \"*.tsbuildinfo\"",
     "build": "pnpm run internal:compile",
     "dev": "pnpm run build --watch --preserveWatchOutput",
+    "internal:compile": "tsc -p ./tsconfig.project.json",
+    "internal:test:pkg-consumption": "pkg-consumption-test --packageName=\"@pkerschbaum/test-package-for-pkg-consumption-test\" --pathToScenariosDirectory=\"./test-pkg-consumption-scenarios\"",
     "lint": "pnpm run lint:file .",
     "lint:file": "eslint --max-warnings 0",
     "lint:fix": "pnpm run lint --fix",
-    "test": "pnpm run internal:test:pkg-consumption",
-    "internal:test:pkg-consumption": "pkg-consumption-test --packageName=\"@pkerschbaum/test-package-for-pkg-consumption-test\" --pathToScenariosDirectory=\"./test-pkg-consumption-scenarios\""
+    "nuke": "pnpm run nuke:artifacts && del-cli node_modules",
+    "nuke:artifacts": "del-cli dist \"*.tsbuildinfo\"",
+    "prepublishOnly": "pnpm run build",
+    "test": "pnpm run internal:test:pkg-consumption"
   },
   "devDependencies": {
     "@pkerschbaum/pkg-consumption-test": "workspace:*",

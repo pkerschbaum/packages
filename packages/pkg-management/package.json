@@ -1,44 +1,41 @@
 {
   "name": "@pkerschbaum/pkg-management",
-  "license": "MIT",
-  "author": "Patrick Kerschbaum <patrick.kerschbaum@gmail.com>",
+  "version": "1.1.1",
+  "homepage": "https://github.com/pkerschbaum/packages/tree/main/packages/pkg-management",
+  "bugs": {
+    "url": "https://github.com/pkerschbaum/packages/issues"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/pkerschbaum/packages",
     "directory": "packages/pkg-management"
   },
-  "homepage": "https://github.com/pkerschbaum/packages/tree/main/packages/pkg-management",
-  "bugs": {
-    "url": "https://github.com/pkerschbaum/packages/issues"
-  },
-  "publishConfig": {
-    "access": "public"
-  },
-  "version": "1.1.1",
+  "license": "MIT",
+  "author": "Patrick Kerschbaum <patrick.kerschbaum@gmail.com>",
   "type": "module",
+  "imports": {
+    "#pkg/*": "./dist/*"
+  },
   "exports": {
     ".": null,
     "./*": null
   },
-  "imports": {
-    "#pkg/*": "./dist/*"
+  "bin": {
+    "create-pnpm-patch-via-ts-patch": "./dist/create-pnpm-patch-via-ts-patch.mjs"
   },
   "files": [
     "dist/**",
     "!dist/**/*.d.ts.map"
   ],
-  "bin": {
-    "create-pnpm-patch-via-ts-patch": "./dist/create-pnpm-patch-via-ts-patch.mjs"
-  },
   "scripts": {
-    "internal:compile": "tsc -p ./tsconfig.project.json",
-    "nuke": "pnpm run nuke:artifacts && del-cli node_modules",
-    "nuke:artifacts": "del-cli dist *.tsbuildinfo",
     "build": "pnpm run internal:compile && babel src --out-dir dist --keep-file-extension",
     "dev": "pnpm run build --watch --preserveWatchOutput",
+    "internal:compile": "tsc -p ./tsconfig.project.json",
     "lint": "pnpm run lint:file .",
     "lint:file": "eslint --max-warnings 0",
-    "lint:fix": "pnpm run lint --fix"
+    "lint:fix": "pnpm run lint --fix",
+    "nuke": "pnpm run nuke:artifacts && del-cli node_modules",
+    "nuke:artifacts": "del-cli dist *.tsbuildinfo"
   },
   "dependencies": {
     "@commander-js/extra-typings": "^11.0.0",
@@ -65,5 +62,8 @@
     "eslint-plugin-regexp": "^1.15.0",
     "eslint-plugin-unicorn": "^48.0.1",
     "typescript": "^5.2.2"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }
