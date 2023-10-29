@@ -1,5 +1,5 @@
 {
-  "name": "pkerschbaum-oss",
+  "name": "pkerschbaum",
   "private": true,
   "scripts": {
     "build": "superturbo build",

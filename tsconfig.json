@@ -10,6 +10,9 @@
       "path": "./packages/fetch-favicon/tsconfig.project.json"
     },
     {
+      "path": "./packages/pk-web-stack-codemods/tsconfig.project.json"
+    },
+    {
       "path": "./packages/pkg-consumption-test/tsconfig.project.json"
     },
     {
