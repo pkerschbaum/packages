@@ -1,5 +1,11 @@
 # @pkerschbaum/pkg-management
 
+## 1.2.0
+
+### Minor Changes
+
+- f11b1ef: feat(pkg-management): implement "add-all-tsconfigs-as-project-references"
+
 ## 1.1.1
 
 ### Patch Changes
