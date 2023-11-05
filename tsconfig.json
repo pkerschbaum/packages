@@ -7,6 +7,9 @@
       "path": "./packages/commons-node/tsconfig.project.json"
     },
     {
+      "path": "./packages/eslint-plugin-code-import-patterns/tsconfig.project.json"
+    },
+    {
       "path": "./packages/fetch-favicon/tsconfig.project.json"
     },
     {

@@ -1,32 +1,40 @@
 {
-  "name": "@pkerschbaum/pkg-consumption-test",
-  "version": "1.0.2",
-  "homepage": "https://github.com/pkerschbaum/packages/tree/main/packages/pkg-consumption-test",
+  "name": "eslint-plugin-code-import-patterns",
+  "version": "3.0.0",
+  "private": false,
+  "keywords": [
+    "eslint",
+    "eslint-plugin",
+    "eslintplugin",
+    "import",
+    "code-import-patterns",
+    "modules"
+  ],
+  "homepage": "https://github.com/pkerschbaum/packages/tree/main/packages/eslint-plugin-code-import-patterns",
   "bugs": {
     "url": "https://github.com/pkerschbaum/packages/issues"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/pkerschbaum/packages",
-    "directory": "packages/pkg-consumption-test"
+    "directory": "packages/eslint-plugin-code-import-patterns"
   },
   "license": "MIT",
   "author": "Patrick Kerschbaum <patrick.kerschbaum@gmail.com>",
-  "type": "module",
-  "imports": {
-    "#pkg/*": "./dist/*"
-  },
   "exports": {
-    ".": "./dist/start-test.js"
+    ".": "./dist/index.js",
+    "./*": "./dist/*.js"
   },
-  "bin": {
-    "pkg-consumption-test": "./pkg-consumption-test.js"
+  "typesVersions": {
+    "*": {
+      "*": [
+        "./dist/*"
+      ]
+    }
   },
   "files": [
-    "/dist",
-    "/src",
-    "/pkg-consumption-test.js",
-    "/README.md"
+    "dist/**",
+    "!dist/**/*.d.ts.map"
   ],
   "scripts": {
     "build": "pnpm run internal:compile",
@@ -36,25 +44,18 @@
     "lint:file": "eslint --max-warnings 0",
     "lint:fix": "pnpm run lint --fix",
     "nuke": "pnpm run nuke:artifacts && del-cli node_modules",
-    "nuke:artifacts": "del-cli dist \"*.tsbuildinfo\"",
-    "prepublishOnly": "pnpm run build"
+    "nuke:artifacts": "del-cli dist \"*.tsbuildinfo\""
   },
   "dependencies": {
-    "@commander-js/extra-typings": "^10.0.2",
-    "@pkerschbaum/commons-ecma": "workspace:^",
-    "commander": "^10.0.0",
-    "pathe": "^1.1.0",
-    "verdaccio": "^5.19.1",
-    "zx": "^7.1.1"
+    "@typescript-eslint/experimental-utils": "^5.5.0"
   },
   "devDependencies": {
-    "@types/node": "^18",
+    "@types/eslint": "^8.2.1",
+    "@types/node": "^16",
     "@typescript-eslint/eslint-plugin": "^6.7.3",
     "@typescript-eslint/parser": "^6.7.3",
-    "@verdaccio/types": "10.7.0",
     "eslint": "^8.50.0",
     "eslint-config-prettier": "^9.0.0",
-    "eslint-plugin-code-import-patterns": "workspace:*",
     "eslint-plugin-eslint-comments": "^3.2.0",
     "eslint-plugin-import": "^2.28.1",
     "eslint-plugin-n": "^16.2.0",
