@@ -17,8 +17,10 @@ type EnumerateInternal<A extends Array<unknown>, N extends number> = {
 export type Enumerate<N extends number> = EnumerateInternal<[], N> extends (infer E)[] ? E : never;
 export type Range<FROM extends number, TO extends number> = Exclude<Enumerate<TO>, Enumerate<FROM>>;
 
-// discriminate unions
-// https://stackoverflow.com/a/50499316/1700319
+/*
+ * discriminate unions
+ * https://stackoverflow.com/a/50499316/1700319
+ */
 export type NarrowUnion<
   Union,
   DiscriminatorProperty extends keyof Union,
@@ -29,8 +31,10 @@ export type NarrowUnion<
   ? Union
   : never;
 
-// merge and flatten unions
-// https://www.roryba.in/programming/2019/10/12/flattening-typescript-union-types.html#flattenunion
+/*
+ * merge and flatten unions
+ * https://www.roryba.in/programming/2019/10/12/flattening-typescript-union-types.html#flattenunion
+ */
 /**
  * Converts a union of two types into an intersection
  * i.e. A | B -> A & B
@@ -51,8 +55,10 @@ export type RemoveIndexSignature<T> = {
   [K in KnownKeys<T>]: T[K];
 };
 
-// identity function to show computed types
-// https://github.com/microsoft/vscode/issues/94679#issuecomment-611320155
+/*
+ * identity function to show computed types
+ * https://github.com/microsoft/vscode/issues/94679#issuecomment-611320155
+ */
 export type Id<T> = {} & { [P in keyof T]: T[P] };
 
 // https://stackoverflow.com/a/58993872/1700319

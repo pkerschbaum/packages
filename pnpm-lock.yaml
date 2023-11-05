@@ -22,9 +22,6 @@ importers:
       '@pkerschbaum/config-typescript':
         specifier: workspace:*
         version: link:platform/config-typescript
-      '@pkerschbaum/pkg-management':
-        specifier: workspace:*
-        version: link:packages/pkg-management
       '@pkerschbaum/superturbo':
         specifier: workspace:*
         version: link:platform/superturbo
