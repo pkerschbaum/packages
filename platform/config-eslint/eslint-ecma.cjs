@@ -110,6 +110,8 @@ module.exports = {
     // disable "n/no-unsupported-features/node-builtins" --> covered by TypeScript
     'n/no-unsupported-features/node-builtins': 'off',
     'unicorn/filename-case': 'off',
+    'unicorn/no-array-callback-reference': 'off',
+    'unicorn/no-await-expression-member': 'off',
     'unicorn/no-negated-condition': 'off',
     'unicorn/no-null': 'off',
     'unicorn/no-useless-undefined': 'off',

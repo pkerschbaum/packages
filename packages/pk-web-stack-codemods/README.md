@@ -19,7 +19,7 @@ This package is a CLI which accompishes that.
 
 ## Codemod ideas
 
-- introduce `@pkerschbaum/typescript-eslint-rules-requiring-type-info` everywhere
 - move `@<scope>/config-*` to root package.json
 - add all workspace projects which have a `tsconfig.project.json` to the root `tsconfig.json#references`
 - `README`'s adjusted via AST transform
+- introduce `@pkerschbaum/typescript-eslint-rules-requiring-type-info` everywhere

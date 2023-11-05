@@ -1,34 +1,14 @@
 {
   "references": [
-    {
-      "path": "./packages/commons-ecma/tsconfig.project.json"
-    },
-    {
-      "path": "./packages/commons-node/tsconfig.project.json"
-    },
-    {
-      "path": "./packages/eslint-plugin-code-import-patterns/tsconfig.project.json"
-    },
-    {
-      "path": "./packages/fetch-favicon/tsconfig.project.json"
-    },
-    {
-      "path": "./packages/pk-web-stack-codemods/tsconfig.project.json"
-    },
-    {
-      "path": "./packages/pkg-consumption-test/tsconfig.project.json"
-    },
-    {
-      "path": "./packages/pkg-management/tsconfig.project.json"
-    },
-    {
-      "path": "./packages/typescript-eslint-rules-requiring-type-info/tsconfig.project.json"
-    },
-    {
-      "path": "./platform/superturbo/tsconfig.project.json"
-    },
-    {
-      "path": "./test/test-package-for-pkg-consumption-test/tsconfig.project.json"
-    }
+    { "path": "./packages/commons-ecma/tsconfig.project.json" },
+    { "path": "./packages/commons-node/tsconfig.project.json" },
+    { "path": "./packages/eslint-plugin-code-import-patterns/tsconfig.project.json" },
+    { "path": "./packages/fetch-favicon/tsconfig.project.json" },
+    { "path": "./packages/pk-web-stack-codemods/tsconfig.project.json" },
+    { "path": "./packages/pkg-consumption-test/tsconfig.project.json" },
+    { "path": "./packages/pkg-management/tsconfig.project.json" },
+    { "path": "./packages/typescript-eslint-rules-requiring-type-info/tsconfig.project.json" },
+    { "path": "./platform/superturbo/tsconfig.project.json" },
+    { "path": "./test/test-package-for-pkg-consumption-test/tsconfig.project.json" }
   ]
 }
