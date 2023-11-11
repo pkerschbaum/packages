@@ -257,6 +257,12 @@ importers:
       '@pkerschbaum/commons-ecma':
         specifier: workspace:*
         version: link:../commons-ecma
+      '@pnpm/find-workspace-packages':
+        specifier: ^6.0.9
+        version: 6.0.9(@pnpm/logger@5.0.0)
+      '@pnpm/logger':
+        specifier: ^5.0.0
+        version: 5.0.0
       deepmerge:
         specifier: ^4.3.1
         version: 4.3.1

@@ -18,6 +18,8 @@
   },
   "dependencies": {
     "@pkerschbaum/commons-ecma": "workspace:*",
+    "@pnpm/find-workspace-packages": "^6.0.9",
+    "@pnpm/logger": "^5.0.0",
     "deepmerge": "^4.3.1",
     "fast-glob": "^3.3.1",
     "zx": "^7.2.3"

@@ -37,7 +37,7 @@ const paths = {
 };
 
 /**
- * @param {import("#pkg/types.js").CodemodRunOptions} param0
+ * @param {import("#pkg/types.js").CodemodRunOptions} options
  */
 export async function run({ monorepoPath }) {
   const destPaths = {
