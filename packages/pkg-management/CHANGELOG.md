@@ -1,5 +1,11 @@
 # @pkerschbaum/pkg-management
 
+## 1.2.1
+
+### Patch Changes
+
+- a5c0ebb: docs(pkg-management): add README
+
 ## 1.2.0
 
 ### Minor Changes
