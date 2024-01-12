@@ -47,10 +47,10 @@
     "nuke:artifacts": "del-cli dist \"*.tsbuildinfo\""
   },
   "dependencies": {
-    "@typescript-eslint/experimental-utils": "^5.5.0"
+    "@typescript-eslint/experimental-utils": "^5.62.0"
   },
   "devDependencies": {
-    "@types/eslint": "^8.2.1",
+    "@types/eslint": "^8.56.2",
     "@types/node": "^16"
   },
   "publishConfig": {
