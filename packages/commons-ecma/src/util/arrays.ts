@@ -6,6 +6,7 @@ export const arrays = {
   reverse,
   pickElementAndRemove,
   partitionArray,
+  includesValue,
 };
 
 function uniqueValues<T, U>(array: T[], getPropToCompare?: (item: T) => U): T[] {
@@ -73,4 +74,9 @@ function partitionArray<T>(
   }
 
   return partitions;
+}
+
+function includesValue<T>(array: T[], elem: unknown): elem is T {
+  // eslint-disable-next-line unicorn/prefer-includes -- <es2016 tsconfig "lib" currently
+  return array.some((arrayElem) => arrayElem === elem);
 }
