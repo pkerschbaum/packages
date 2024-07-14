@@ -1,5 +1,11 @@
 # @pkerschbaum/commons-ecma
 
+## 2.2.0
+
+### Minor Changes
+
+- 052386f: feat(commons-ecma): implement `arrays.includesValue`
+
 ## 2.1.2
 
 ### Patch Changes
