@@ -1,5 +1,12 @@
 # @pkerschbaum/commons-ecma
 
+## 2.3.0
+
+### Minor Changes
+
+- 7927c50: feat(commons-ecma): new type to increment a number
+- a88cb22: feat(commons-ecma): narrower type for return value of `numbers.sequence`
+
 ## 2.2.0
 
 ### Minor Changes
