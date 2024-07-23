@@ -17,6 +17,12 @@ type EnumerateInternal<A extends Array<unknown>, N extends number> = {
 export type Enumerate<N extends number> = EnumerateInternal<[], N> extends (infer E)[] ? E : never;
 export type Range<FROM extends number, TO extends number> = Exclude<Enumerate<TO>, Enumerate<FROM>>;
 
+// https://stackoverflow.com/a/73555039/1700319
+type Arr<N extends number, T extends unknown[] = []> = T['length'] extends N
+  ? T
+  : Arr<N, [...T, unknown]>;
+export type Increment<N extends number> = [...Arr<N>, unknown]['length'] & number;
+
 /*
  * discriminate unions
  * https://stackoverflow.com/a/50499316/1700319
