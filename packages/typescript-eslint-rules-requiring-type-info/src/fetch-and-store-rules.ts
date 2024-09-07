@@ -9,13 +9,12 @@ export async function fetchAndStoreRules() {
   const html = response.data;
 
   const dom = new JSDOM(html);
-  const supportedRulesTable = dom.window.document.querySelector('h2#supported-rules ~ table tbody');
-  const extensionRulesTable = dom.window.document.querySelector('h2#extension-rules ~ table tbody');
-  if (!supportedRulesTable || !extensionRulesTable) {
+  const rulesTable = dom.window.document.querySelector('h2#rules ~ table tbody');
+  if (!rulesTable) {
     throw new Error(`could not fetch rules`);
   }
 
-  const allRules = [...supportedRulesTable.children, ...extensionRulesTable.children];
+  const allRules = [...rulesTable.children];
   const rulesRequiringTypeInfo = [];
   for (const tr of allRules) {
     const ruleRequiresTypeInfo = tr.querySelector('td[title="requires type information"]');
@@ -24,7 +23,10 @@ export async function fetchAndStoreRules() {
       if (!ruleAnchor) {
         throw new Error(`found a rule but could not extract rule anchor`);
       }
-      const nameOfRule = ruleAnchor.textContent;
+      const nameOfRule = ruleAnchor.textContent?.trim();
+      if (!nameOfRule) {
+        throw new Error(`found a rule but could not extract name of the rule`);
+      }
       rulesRequiringTypeInfo.push(nameOfRule);
     }
   }
