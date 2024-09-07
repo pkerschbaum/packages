@@ -2,19 +2,20 @@ export type ObjectLiteral = { [key: string]: unknown };
 
 export type EmptyObject = { [prop: string]: never };
 
-export type ArrayElement<A> = A extends readonly (infer T)[] ? T : never;
+export type ArrayElement<A> = A extends ReadonlyArray<infer T> ? T : never;
 
 // https://github.com/Microsoft/TypeScript/issues/15480#issuecomment-601714262
-type PrependNextNum<A extends Array<unknown>> = A['length'] extends infer T
+type PrependNextNum<A extends unknown[]> = A['length'] extends infer T
   ? ((t: T, ...a: A) => void) extends (...x: infer X) => void
     ? X
     : never
   : never;
-type EnumerateInternal<A extends Array<unknown>, N extends number> = {
+type EnumerateInternal<A extends unknown[], N extends number> = {
   0: A;
   1: EnumerateInternal<PrependNextNum<A>, N>;
 }[N extends A['length'] ? 0 : 1];
-export type Enumerate<N extends number> = EnumerateInternal<[], N> extends (infer E)[] ? E : never;
+export type Enumerate<N extends number> =
+  EnumerateInternal<[], N> extends Array<infer E> ? E : never;
 export type Range<FROM extends number, TO extends number> = Exclude<Enumerate<TO>, Enumerate<FROM>>;
 
 // https://stackoverflow.com/a/73555039/1700319
@@ -68,7 +69,7 @@ export type RemoveIndexSignature<T> = {
 export type Id<T> = {} & { [P in keyof T]: T[P] };
 
 // https://stackoverflow.com/a/58993872/1700319
-// eslint-disable-next-line @typescript-eslint/ban-types
+// eslint-disable-next-line @typescript-eslint/no-unsafe-function-type
 type ImmutablePrimitive = undefined | null | boolean | string | number | Function;
 type ImmutableArray<T> = ReadonlyArray<Immutable<T>>;
 type ImmutableMap<K, V> = ReadonlyMap<Immutable<K>, Immutable<V>>;
@@ -78,12 +79,12 @@ type ImmutableObject<T> = { readonly [K in keyof T]: Immutable<T[K]> };
 export type Immutable<T> = T extends ImmutablePrimitive
   ? T
   : T extends Array<infer U>
-  ? ImmutableArray<U>
-  : T extends Map<infer K, infer V>
-  ? ImmutableMap<K, V>
-  : T extends Set<infer M>
-  ? ImmutableSet<M>
-  : ImmutableObject<T>;
+    ? ImmutableArray<U>
+    : T extends Map<infer K, infer V>
+      ? ImmutableMap<K, V>
+      : T extends Set<infer M>
+        ? ImmutableSet<M>
+        : ImmutableObject<T>;
 
 export type FunctionType<Args extends unknown[], ReturnType> = (...args: Args) => ReturnType;
 

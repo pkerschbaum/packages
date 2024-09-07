@@ -4,7 +4,7 @@
   "scripts": {
     "build": "superturbo build",
     "changeset": "changeset",
-    "create-pnpm-patch-via-ts-patch": "pnpm --filter=\"@pkerschbaum/pkg-management\" exec node ./dist/create-pnpm-patch-via-ts-patch.mjs --typescript-version=5.3.3",
+    "create-pnpm-patch-via-ts-patch": "pnpm --filter=\"@pkerschbaum/pkg-management\" exec node ./dist/create-pnpm-patch-via-ts-patch.mjs --typescript-version=5.5.4 --ts-patch-version=3.2.1",
     "format": "prettier --write --ignore-unknown .",
     "lint": "superturbo lint",
     "lint:fix": "superturbo lint:fix",
@@ -15,38 +15,44 @@
     "prepare": "node --eval \"process.exit(process.env.CI === 'true' ? 0 : -1)\" || husky install"
   },
   "devDependencies": {
-    "@changesets/cli": "^2.26.2",
+    "@changesets/cli": "^2.27.8",
     "@pkerschbaum/config-eslint": "workspace:*",
     "@pkerschbaum/config-typescript": "workspace:*",
     "@pkerschbaum/superturbo": "workspace:*",
-    "@typescript-eslint/eslint-plugin": "^6.18.1",
-    "@typescript-eslint/parser": "^6.18.1",
+    "@typescript-eslint/eslint-plugin": "^8.4.0",
+    "@typescript-eslint/parser": "^8.4.0",
     "del-cli": "^5.1.0",
-    "eslint": "^8.56.0",
+    "eslint": "^8.57.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-code-import-patterns": "workspace:*",
     "eslint-plugin-eslint-comments": "^3.2.0",
-    "eslint-plugin-import": "^2.29.1",
-    "eslint-plugin-jsdoc": "^48.0.2",
-    "eslint-plugin-n": "^16.6.2",
+    "eslint-plugin-import": "^2.30.0",
+    "eslint-plugin-jsdoc": "^50.2.2",
+    "eslint-plugin-n": "^17.10.2",
     "eslint-plugin-only-warn": "^1.1.0",
-    "eslint-plugin-regexp": "^2.2.0",
-    "eslint-plugin-unicorn": "^50.0.1",
-    "husky": "^8.0.3",
-    "prettier": "^3.0.3",
-    "prettier-plugin-packagejson": "^2.4.6",
-    "turbo": "^1.10.14",
-    "typescript": "^5.3.3",
-    "typescript-transform-paths": "^3.4.6",
-    "zx": "^7.2.3"
+    "eslint-plugin-regexp": "^2.6.0",
+    "eslint-plugin-unicorn": "^55.0.0",
+    "husky": "^9.1.5",
+    "prettier": "^3.3.3",
+    "prettier-plugin-packagejson": "^2.5.2",
+    "turbo": "^2.1.1",
+    "typescript": "^5.5.4",
+    "typescript-transform-paths": "^3.5.0",
+    "zx": "^8.1.5"
   },
   "packageManager": "pnpm@9.9.0",
   "engines": {
     "pnpm": "9.9.0"
   },
   "pnpm": {
+    "updateConfig": {
+      "ignoreDependencies": [
+        "eslint",
+        "@types/eslint"
+      ]
+    },
     "patchedDependencies": {
-      "typescript@5.3.3": "patches/typescript@5.3.3.patch"
+      "typescript@5.5.4": "patches/typescript@5.5.4.patch"
     }
   }
 }

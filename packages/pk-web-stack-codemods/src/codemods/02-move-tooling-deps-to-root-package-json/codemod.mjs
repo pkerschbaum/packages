@@ -27,7 +27,11 @@ export async function run({ monorepoPath }) {
         depName === 'husky'
       ) {
         allToolingDeps[depName] = version;
-        delete project.manifest.devDependencies[depName];
+        project.manifest.devDependencies = Object.fromEntries(
+          Object.entries(project.manifest.devDependencies).filter(
+            ([devDepName]) => devDepName !== depName,
+          ),
+        );
       }
     }
 

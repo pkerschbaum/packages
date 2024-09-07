@@ -16,7 +16,7 @@ export const check = {
   isValueInEnum,
 };
 
-function isNullish<T>(obj: T | undefined | null): obj is undefined | null {
+function isNullish(obj: unknown): obj is undefined | null {
   return obj === undefined || obj === null;
 }
 
@@ -48,10 +48,10 @@ function isEmptyObject(obj: ObjectLiteral): boolean {
   return true;
 }
 
-export function isValueInEnum<T extends string, TEnumValue extends string>(
+export function isValueInEnum<TEnumValue extends string>(
   value: string,
-  enumVariable: { [key in T]: TEnumValue },
+  enumVariable: { [key in string]: TEnumValue },
 ): value is TEnumValue {
   const enumValues = Object.values(enumVariable);
-  return enumValues.includes(value);
+  return enumValues.includes(value as TEnumValue);
 }

@@ -40,17 +40,17 @@
     "prepublishOnly": "pnpm run build"
   },
   "dependencies": {
-    "@commander-js/extra-typings": "^10.0.2",
+    "@commander-js/extra-typings": "^12.1.0",
     "@pkerschbaum/commons-ecma": "workspace:^",
     "@pkerschbaum/commons-node": "workspace:^",
-    "commander": "^10.0.0",
-    "pathe": "^1.1.0",
-    "verdaccio": "^5.19.1",
-    "zx": "^7.1.1"
+    "commander": "^12.1.0",
+    "pathe": "^1.1.2",
+    "verdaccio": "^5.32.1",
+    "zx": "^8.1.5"
   },
   "devDependencies": {
-    "@types/node": "^18",
-    "@verdaccio/types": "10.7.0"
+    "@types/node": "^20",
+    "@verdaccio/types": "10.8.0"
   },
   "publishConfig": {
     "access": "public"

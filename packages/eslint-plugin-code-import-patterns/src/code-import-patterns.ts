@@ -23,8 +23,8 @@ export class CodeImportPatternsRule implements eslint.Rule.RuleModule {
   };
 
   public create(context: eslint.Rule.RuleContext): eslint.Rule.RuleListener {
-    const ruleOption = <ImportPatternsConfig>context.options[0];
-    const lintedFilename = ensurePathUsesPosixSeparator(context.getFilename());
+    const ruleOption = context.options[0] as ImportPatternsConfig;
+    const lintedFilename = ensurePathUsesPosixSeparator(context.filename);
     const patterns = collectAllowedAndForbiddenPatterns(lintedFilename, ruleOption.zones);
 
     if (patterns.allowedPatterns.length > 0 || patterns.forbiddenPatterns.length > 0) {
@@ -48,7 +48,7 @@ function checkImport(
 ) {
   // resolve relative paths if "matchAgainstAbsolutePaths" is configured
   if (matchAgainstAbsolutePaths && pathOfFile.startsWith('.')) {
-    pathOfFile = path.join(context.getFilename(), pathOfFile);
+    pathOfFile = path.join(context.filename, pathOfFile);
   }
 
   let someAllowedPatternDidMatch = false;

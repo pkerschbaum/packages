@@ -34,10 +34,10 @@ const program = new Command()
   );
 
 program.parse();
-const options = program.opts(); // smart type
+const options = program.opts();
 
 await startTest({
-  packageName: options['packageName'],
-  pathToPackageRoot: options['pathToPackageRoot'],
-  pathToScenariosDirectory: options['pathToScenariosDirectory'],
+  packageName: options.packageName,
+  pathToPackageRoot: options.pathToPackageRoot,
+  pathToScenariosDirectory: options.pathToScenariosDirectory,
 });

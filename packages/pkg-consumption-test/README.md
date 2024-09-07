@@ -45,8 +45,8 @@ Add a package.json script to run the package consumption scenarios:
 {
   /* ... */
   "scripts": {
-    "test:pkg-consumption": "pkg-consumption-test --packageName=\"tiny-invariant\" --pathToScenariosDirectory=\"./test-pkg-consumption-scenarios\""
-  }
+    "test:pkg-consumption": "pkg-consumption-test --packageName=\"tiny-invariant\" --pathToScenariosDirectory=\"./test-pkg-consumption-scenarios\"",
+  },
 }
 ```
 
@@ -84,8 +84,8 @@ For example, imagine you want to create a scenario which imports and runs the pa
    {
      /* ... */
      "scripts": {
-       "execute-scenario": "node ./src/test.mjs"
-     }
+       "execute-scenario": "node ./src/test.mjs",
+     },
    }
    ```
 

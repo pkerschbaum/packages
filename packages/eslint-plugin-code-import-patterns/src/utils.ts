@@ -7,7 +7,7 @@ export function createImportRuleListener(
   validateImport: (node: TSESTree.Literal, value: string) => unknown,
 ): eslint.Rule.RuleListener {
   function _checkImport(node: unknown) {
-    if (isTSESTreeLiteral(node) && typeof node['value'] === 'string') {
+    if (isTSESTreeLiteral(node) && typeof node.value === 'string') {
       validateImport(node, node.value);
     }
   }
@@ -40,7 +40,7 @@ function isTSESTreeLiteral(node: unknown): node is TSESTree.Literal {
   return isNotNullish(node) && node['type'] === AST_NODE_TYPES.Literal;
 }
 
-export function isNullish<T>(obj: T | undefined | null): obj is undefined | null {
+export function isNullish(obj: unknown): obj is undefined | null {
   return obj === undefined || obj === null;
 }
 

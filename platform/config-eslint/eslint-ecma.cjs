@@ -22,8 +22,8 @@ module.exports = {
   extends: [
     'eslint:recommended',
     'plugin:@typescript-eslint/eslint-recommended',
-    'plugin:@typescript-eslint/recommended',
-    'plugin:@typescript-eslint/recommended-requiring-type-checking',
+    'plugin:@typescript-eslint/strict-type-checked',
+    'plugin:@typescript-eslint/stylistic-type-checked',
     'plugin:regexp/recommended',
     'plugin:import/recommended',
     'plugin:import/typescript',
@@ -39,6 +39,28 @@ module.exports = {
     'no-console': 'error',
     'no-constant-condition': ['error', { checkLoops: false }],
     'no-promise-executor-return': 'error',
+    'no-restricted-syntax': [
+      'error',
+      {
+        selector:
+          "MemberExpression[object.name='it'][property.name='only'], MemberExpression[object.name='test'][property.name='only'], MemberExpression[object.name='apiTest'][property.name='only']",
+        message:
+          'Do not check in spec files with tests using ".only" - the other tests of that spec file would be skipped!',
+      },
+      {
+        selector:
+          "MemberExpression[object.name='it'][property.name='skip'], MemberExpression[object.name='test'][property.name='skip'], MemberExpression[object.name='apiTest'][property.name='skip']",
+        message: 'Do not check in dead tests. Either fix or delete them.',
+      },
+      {
+        selector: "[property.name='toBe']",
+        message:
+          'Prefer `expect(...).toEqual()` over `expect(...).toBe()`. This does not make any difference ' +
+          'for primitive types, but in case of objects/arrays `toEqual()` will perform a deep comparison ' +
+          '(compared to `toBe()` which checks for referential equality).',
+      },
+    ],
+    'no-undef': 'off',
     'no-unneeded-ternary': 'error',
     'no-useless-computed-key': 'error',
     'object-shorthand': 'error',
@@ -129,17 +151,9 @@ module.exports = {
     'unicorn/prefer-string-replace-all': 'off',
     'unicorn/prefer-top-level-await': 'off',
     'unicorn/prevent-abbreviations': 'off',
-    '@typescript-eslint/ban-types': [
-      'error',
-      {
-        types: {
-          // empty objects can be useful for Conditional Types
-          '{}': false,
-        },
-        extendDefaults: true,
-      },
-    ],
+    '@typescript-eslint/array-type': ['error', { default: 'array-simple' }],
     '@typescript-eslint/class-literal-property-style': 'error',
+    '@typescript-eslint/consistent-indexed-object-style': 'off',
     '@typescript-eslint/consistent-type-definitions': ['error', 'type'],
     '@typescript-eslint/explicit-member-accessibility': [
       'error',
@@ -152,8 +166,11 @@ module.exports = {
     '@typescript-eslint/no-explicit-any': 'error',
     '@typescript-eslint/no-base-to-string': ['error', { ignoredTypeNames: ['Error', 'Moment'] }],
     '@typescript-eslint/no-confusing-non-null-assertion': 'error',
+    '@typescript-eslint/no-confusing-void-expression': 'off',
     '@typescript-eslint/no-duplicate-enum-values': 'error',
+    '@typescript-eslint/no-extraneous-class': 'off',
     '@typescript-eslint/no-floating-promises': 'error',
+    '@typescript-eslint/no-invalid-void-type': 'off',
     '@typescript-eslint/no-meaningless-void-operator': 'error',
     '@typescript-eslint/no-misused-promises': [
       'error',
@@ -168,7 +185,6 @@ module.exports = {
     ],
     '@typescript-eslint/no-redundant-type-constituents': 'off',
     '@typescript-eslint/no-require-imports': 'error',
-    '@typescript-eslint/no-throw-literal': 'error',
     '@typescript-eslint/no-unnecessary-condition': ['error', { allowConstantLoopConditions: true }],
     '@typescript-eslint/no-unnecessary-qualifier': 'error',
     '@typescript-eslint/no-unnecessary-type-arguments': 'error',

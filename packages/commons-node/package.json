@@ -41,7 +41,7 @@
     "@pkerschbaum/commons-ecma": "workspace:^"
   },
   "devDependencies": {
-    "@types/node": "^18"
+    "@types/node": "^20"
   },
   "publishConfig": {
     "access": "public"

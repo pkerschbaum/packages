@@ -50,8 +50,8 @@
     "@typescript-eslint/experimental-utils": "^5.62.0"
   },
   "devDependencies": {
-    "@types/eslint": "^8.56.2",
-    "@types/node": "^16"
+    "@types/eslint": "^8.56.12",
+    "@types/node": "^20"
   },
   "publishConfig": {
     "access": "public"

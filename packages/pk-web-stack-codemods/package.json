@@ -19,16 +19,16 @@
   "dependencies": {
     "@pkerschbaum/commons-ecma": "workspace:*",
     "@pnpm/find-workspace-packages": "^6.0.9",
-    "@pnpm/logger": "^5.0.0",
+    "@pnpm/logger": "^5.2.0",
     "deepmerge": "^4.3.1",
-    "fast-glob": "^3.3.1",
-    "zx": "^7.2.3"
+    "fast-glob": "^3.3.2",
+    "zx": "^8.1.5"
   },
   "devDependencies": {
-    "@commander-js/extra-typings": "^11.1.0",
+    "@commander-js/extra-typings": "^12.1.0",
     "@types/deepmerge": "^2.2.0",
-    "@types/node": "^18",
-    "commander": "^11.1.0"
+    "@types/node": "^20",
+    "commander": "^12.1.0"
   },
   "peerDependencies": {
     "turbo": "^1.10.16"

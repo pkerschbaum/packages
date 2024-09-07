@@ -9,7 +9,7 @@ export const arrays = {
   includesValue,
 };
 
-function uniqueValues<T, U>(array: T[], getPropToCompare?: (item: T) => U): T[] {
+function uniqueValues<T>(array: T[], getPropToCompare?: (item: T) => unknown): T[] {
   const result: T[] = [];
   const getThingToCompare = getPropToCompare ?? ((item) => item);
 
