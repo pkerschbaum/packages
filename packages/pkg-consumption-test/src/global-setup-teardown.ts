@@ -35,7 +35,7 @@ export async function setup(options: SetupOptions) {
   /* eslint-disable n/no-process-env */
   let npmrcContent = '';
   npmrcContent += `registry=http://localhost:${verdaccioPort}/\n`;
-  npmrcContent += `//localhost:${verdaccioPort}/:_authToken=fake-auth-token\n`;
+  npmrcContent += `//localhost:${verdaccioPort}/:_auth=fake-auth-token\n`;
   process.env['npm_config_registry'] = `http://localhost:${verdaccioPort}/\n`;
   await fs.promises.mkdir(PATHS.TEMP_FOLDER, { recursive: true });
   await fs.promises.writeFile(PATHS.TEMP_NPMRC, npmrcContent, 'utf8');
