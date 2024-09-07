@@ -1,10 +1,11 @@
 import path from 'node:path';
-import url from 'node:url';
 
-const __dirname = url.fileURLToPath(new URL('.', import.meta.url));
+import { fsUtils } from '@pkerschbaum/commons-node/utils/fs';
 
-const VERDACCIO_TEMP_FOLDER = path.join(__dirname, '..', '..', '.verdaccio');
-const TEMP_FOLDER = path.join(__dirname, '..', '..', '.temp');
+const [VERDACCIO_TEMP_FOLDER, TEMP_FOLDER] = await Promise.all([
+  fsUtils.createTemporaryDirectory(),
+  fsUtils.createTemporaryDirectory(),
+]);
 
 export const PATHS = {
   VERDACCIO_TEMP_FOLDER,

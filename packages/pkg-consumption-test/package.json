@@ -42,6 +42,7 @@
   "dependencies": {
     "@commander-js/extra-typings": "^10.0.2",
     "@pkerschbaum/commons-ecma": "workspace:^",
+    "@pkerschbaum/commons-node": "workspace:^",
     "commander": "^10.0.0",
     "pathe": "^1.1.0",
     "verdaccio": "^5.19.1",
