@@ -1,5 +1,17 @@
 # @pkerschbaum/commons-node
 
+## 2.2.0
+
+### Minor Changes
+
+- aff99e2: feat(commons-node): implement `fsUtils.createTemporaryDirectory`
+
+### Patch Changes
+
+- f43b99b: chore(deps): bump all deps to latest and apply ESLint fixes
+- Updated dependencies [f43b99b]
+  - @pkerschbaum/commons-ecma@2.4.1
+
 ## 2.1.2
 
 ### Patch Changes

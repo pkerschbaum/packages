@@ -1,5 +1,11 @@
 # @pkerschbaum/commons-ecma
 
+## 2.4.1
+
+### Patch Changes
+
+- f43b99b: chore(deps): bump all deps to latest and apply ESLint fixes
+
 ## 2.4.0
 
 ### Minor Changes
