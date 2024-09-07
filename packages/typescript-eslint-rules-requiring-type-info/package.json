@@ -47,7 +47,7 @@
     "jsdom": "^21.1.0"
   },
   "devDependencies": {
-    "@pkerschbaum/pkg-consumption-test": "^1.0.2",
+    "@pkerschbaum/pkg-consumption-test": "workspace:*",
     "@types/eslint": "^8.56.2",
     "@types/jsdom": "^20.0.1",
     "@types/node": "^18.11.19"
