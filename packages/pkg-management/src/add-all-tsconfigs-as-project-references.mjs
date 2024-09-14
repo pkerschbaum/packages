@@ -7,9 +7,14 @@ import { $ } from 'zx';
 import { check } from '@pkerschbaum/commons-ecma/util/assert';
 import { fsUtils } from '@pkerschbaum/commons-node/utils/fs';
 
-const program = new commander.Command().addOption(
-  new commander.Option('--monorepo-path <path>').makeOptionMandatory(),
-);
+const program = new commander.Command()
+  .addOption(new commander.Option('--monorepo-path <path>').makeOptionMandatory())
+  .addOption(
+    new commander.Option(
+      '--tsconfig-filename <name>',
+      'e.g. "tsconfig.json"',
+    ).makeOptionMandatory(),
+  );
 program.parse();
 const opts = program.opts();
 
@@ -22,7 +27,7 @@ const [_rootProject, ...workspaceProjects] =
 const tsconfigPaths = (
   await Promise.all(
     workspaceProjects.map(async (project) => {
-      const tsconfigPath = path.join(project.dir, 'tsconfig.project.json');
+      const tsconfigPath = path.join(project.dir, opts.tsconfigFilename);
       if (await fsUtils.existsPath(tsconfigPath)) {
         return tsconfigPath;
       }
