@@ -1,5 +1,11 @@
 # @pkerschbaum/pkg-management
 
+## 2.1.0
+
+### Minor Changes
+
+- 3049733: feat(pkg-management): option `--tsconfig-filename <name>` for `add-all-tsconfigs-as-project-references`
+
 ## 2.0.1
 
 ### Patch Changes
