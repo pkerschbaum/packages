@@ -143,8 +143,19 @@ export function resolveToExactModuleSpecifier(
         matchingDestinationPattern.fullPrefix.length,
       );
 
-      // e.g. "internal/transformer" and "internal/transformer.ts" --> ".ts"
-      const slugToAdd = resolvedModuleName.slice(origModuleNameWithoutPattern.length);
+      // e.g. "internal/transformer.ts" --> "internal/transformer.js"
+      let resolvedModuleNameMappedExt;
+      for (const [fromExtname, toExtname] of Object.entries(tsExtensionToJsExtensionMap)) {
+        if (resolvedModuleName.endsWith(fromExtname)) {
+          resolvedModuleNameMappedExt =
+            resolvedModuleName.slice(0, -fromExtname.length) + toExtname;
+          break;
+        }
+      }
+      invariant(resolvedModuleNameMappedExt);
+
+      // e.g. origModuleNameWithoutPattern="internal/transformer" and resolvedModuleNameMappedExt="internal/transformer.js" --> ".js"
+      const slugToAdd = resolvedModuleNameMappedExt.slice(origModuleNameWithoutPattern.length);
 
       // e.g. "#pkg/", "internal/transformer", "ts" --> "#pkg/internal/transformer.ts"
       newModuleSpecifier = `${matchedPathsPattern.prefix}${origModuleNameWithoutPattern}${slugToAdd}`;
@@ -160,25 +171,23 @@ export function resolveToExactModuleSpecifier(
     const moduleSpecifierAbsolutePath = opts.originalModuleSpecifier.startsWith('/')
       ? opts.originalModuleSpecifier
       : path.join(path.dirname(opts.absolutePathSourceFile), opts.originalModuleSpecifier);
-    const slugToAdd = resolvedModule.resolvedFileName.slice(moduleSpecifierAbsolutePath.length);
+
+    // e.g. "internal/transformer.ts" --> "internal/transformer.js"
+    let resolvedFileNameMappedExt;
+    for (const [fromExtname, toExtname] of Object.entries(tsExtensionToJsExtensionMap)) {
+      if (resolvedModule.resolvedFileName.endsWith(fromExtname)) {
+        resolvedFileNameMappedExt =
+          resolvedModule.resolvedFileName.slice(0, -fromExtname.length) + toExtname;
+        break;
+      }
+    }
+    invariant(resolvedFileNameMappedExt);
+
+    const slugToAdd = resolvedFileNameMappedExt.slice(moduleSpecifierAbsolutePath.length);
     newModuleSpecifier = `${opts.originalModuleSpecifier}${slugToAdd}`;
   }
 
-  // map "ts" to "js", "tsx" to "jsx", "mts" to "mjs", etc.
-  let newExtName;
-  let moduleNameWithoutExt;
-  for (const [fromExtname, toExtname] of Object.entries(tsExtensionToJsExtensionMap)) {
-    if (newModuleSpecifier.endsWith(fromExtname)) {
-      newExtName = toExtname;
-      moduleNameWithoutExt = newModuleSpecifier.slice(0, -fromExtname.length);
-      break;
-    }
-  }
-  invariant(newExtName, `could not map extension! moduleSpecifier=${newModuleSpecifier}`);
-
-  const finalNewModuleName = `${moduleNameWithoutExt}${newExtName}`;
-
-  return finalNewModuleName;
+  return newModuleSpecifier;
 }
 
 function isAbsolutePathModuleSpecifier(moduleSpecifier: string) {
