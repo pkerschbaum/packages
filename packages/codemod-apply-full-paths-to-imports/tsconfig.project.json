@@ -10,5 +10,5 @@
     "rootDirs": ["./src", "./test"]
   },
   "include": ["src/**/*", "test/**/*"],
-  "exclude": ["**/node_modules"]
+  "exclude": ["**/node_modules", "test/**/transformer-inputs/**", "test/**/transformer-outputs/**"]
 }

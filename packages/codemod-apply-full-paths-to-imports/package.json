@@ -36,8 +36,7 @@
     "lint:fix": "pnpm run lint --fix",
     "nuke": "pnpm run nuke:artifacts && del-cli node_modules",
     "nuke:artifacts": "del-cli dist \"*.tsbuildinfo\"",
-    "test": "nyc --nycrc-path ./test/nyc.config.cjs node --enable-source-maps ./node_modules/@playwright/test/cli.js test --config=test/playwright.config.ts --tsconfig=./tsconfig.project.json",
-    "test:watch": "PWTEST_WATCH=1 pnpm run test"
+    "test": "vitest run --config=\"./test/vitest.config.mts\""
   },
   "dependencies": {
     "@commander-js/extra-typings": "^12.1.0",
@@ -46,11 +45,11 @@
     "typescript": "^5.5.4"
   },
   "devDependencies": {
-    "@pkerschbaum/playwright-utils": "workspace:*",
-    "@playwright/test": "^1.47.0",
     "@types/node": "^20",
-    "nyc": "^15.1.0",
-    "ts-expose-internals": "^5.5.4"
+    "@vitest/coverage-v8": "^2.0.5",
+    "ts-expose-internals": "^5.5.4",
+    "vite-tsconfig-paths": "^5.0.1",
+    "vitest": "^2.0.5"
   },
   "publishConfig": {
     "access": "public"

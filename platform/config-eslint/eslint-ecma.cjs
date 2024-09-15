@@ -37,7 +37,8 @@ module.exports = {
     'babel.config.mjs',
     'dist/**/*',
     'nyc.config.cjs',
-    '**/test-fixtures/**',
+    '**/transformer-inputs/**',
+    '**/transformer-outputs/**',
   ],
   rules: {
     curly: 'error',

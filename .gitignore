@@ -38,6 +38,3 @@
 /.turbo/cache
 /.turbo/cookies
 /.turbo/daemon
-
-# playwright test results
-**/test-results/**
