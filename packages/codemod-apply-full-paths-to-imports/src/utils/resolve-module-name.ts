@@ -4,16 +4,8 @@ import ts from 'typescript';
 
 import { VisitorContext } from '#pkg/types';
 
-export type ResolvedModule = {
-  /**  New module name */
-  newModuleName: string;
-};
-
 /** Resolve a module name */
-export function resolveModuleName(
-  context: VisitorContext,
-  origModuleName: string,
-): ResolvedModule | undefined {
+export function resolveModuleName(context: VisitorContext, origModuleName: string) {
   const { resolvedModule } = ts.resolveModuleName(
     origModuleName,
     context.sourceFile.fileName,
@@ -84,5 +76,10 @@ export function resolveModuleName(
     newModuleName = `${origModuleName}${slugToAdd}`;
   }
 
-  return { newModuleName };
+  const extname = path.extname(newModuleName);
+  const moduleNameWithoutExt = newModuleName.slice(0, newModuleName.length - extname.length);
+  const mappedExtname = extname.replace('t', 'j');
+  const finalNewModuleName = `${moduleNameWithoutExt}${mappedExtname}`;
+
+  return finalNewModuleName;
 }

@@ -19,12 +19,10 @@ export function resolvePathAndUpdateNode(
     return node;
   }
 
-  const res = resolveModuleName(context, moduleName);
-  if (!res) {
+  const newModuleName = resolveModuleName(context, moduleName);
+  if (!newModuleName) {
     return node;
   }
-
-  const { newModuleName } = res;
 
   return updaterFn(ts.factory.createStringLiteral(newModuleName));
 }
