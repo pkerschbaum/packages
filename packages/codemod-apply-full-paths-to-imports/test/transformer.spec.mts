@@ -1,7 +1,11 @@
 import path from 'node:path';
+// eslint-disable-next-line import/default -- false positive
+import prettier from 'prettier';
 import { test, expect } from 'vitest';
 
-import { transform } from '#pkg/transformer';
+import { transform } from '#pkg/transformer.js';
+
+const prettierConfig = await prettier.resolveConfig(__dirname);
 
 const PATH_TO_TRANSFORMER_INPUTS = path.join(__dirname, 'transformer-inputs');
 const PROJECTS = {
@@ -22,7 +26,11 @@ test('fixture-1', async () => {
 
   for (const collectedFile of collectedFiles) {
     const relativePathFromRootDir = path.relative(basepath, collectedFile.fileAbsolutePath);
-    await expect(collectedFile.text).toMatchFileSnapshot(
+    const formatted = await prettier.format(collectedFile.text, {
+      ...prettierConfig,
+      parser: 'typescript',
+    });
+    await expect(formatted).toMatchFileSnapshot(
       `./transformer-outputs/project-1/${relativePathFromRootDir}`,
     );
   }

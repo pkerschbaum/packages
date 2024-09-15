@@ -1,1 +1,1 @@
-export * from "#pkg/some-module.js";
+export * from '#pkg/some-module.js';
