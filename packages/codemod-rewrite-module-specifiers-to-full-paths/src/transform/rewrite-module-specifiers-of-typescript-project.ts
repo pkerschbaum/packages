@@ -10,7 +10,7 @@ export function rewriteModuleSpecifiersOfTypeScriptProject(
   const visitorContext: VisitorContext = {
     absolutePathSourceFile,
     compilerOptions: typeScriptProgram.compilerOptions,
-    paths: typeScriptProgram.pathsContext,
+    paths: typeScriptProgram.paths,
   };
 
   const newText = rewriteModuleSpecifiersOfFileVisitor({ ...visitorContext, text });
