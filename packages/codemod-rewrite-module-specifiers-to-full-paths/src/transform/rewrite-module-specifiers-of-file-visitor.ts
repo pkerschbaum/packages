@@ -9,7 +9,7 @@ type QuoteToUseRef = {
   value: NonNullable<Parameters<jscodeshift.Collection['toSource']>[0]>['quote'];
 };
 
-export function rewriteModuleSpecifiersOfFile(
+export function rewriteModuleSpecifiersOfFileVisitor(
   opts: VisitorContext & {
     text: string;
   },
