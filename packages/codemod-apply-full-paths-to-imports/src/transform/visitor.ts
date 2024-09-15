@@ -1,8 +1,8 @@
 // taken and adapted from https://github.com/LeDDGroup/typescript-transform-paths/blob/2c96be2ec8dcce5732184743dfbb4f5bb3e7956e/src/visitor.ts
 import ts from 'typescript';
 
-import { resolveModuleSpecifierAndUpdateNode } from '#pkg/resolve-module-specifier-and-update-node';
-import { VisitorContext } from '#pkg/types';
+import { resolveModuleSpecifierAndUpdateNode } from '#pkg/transform/resolve-module-specifier-and-update-node';
+import { VisitorContext } from '#pkg/transform/types';
 
 export function createNodeVisitor(visitorContext: VisitorContext) {
   /** Visit and replace nodes with module specifiers */

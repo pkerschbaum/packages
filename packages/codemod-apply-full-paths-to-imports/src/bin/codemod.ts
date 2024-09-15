@@ -1,7 +1,7 @@
 import * as commander from '@commander-js/extra-typings';
 import fs from 'node:fs';
 
-import { transform } from '#pkg/transformer';
+import { transform } from '#pkg/transform/transformer';
 
 const commanderProgram = new commander.Command()
   .addOption(
@@ -19,14 +19,9 @@ const commanderProgram = new commander.Command()
 commanderProgram.parse();
 const options = commanderProgram.opts();
 
-const filesToWrite: Array<{ absolutePath: string; text: string }> = [];
-
-transform({
+const filesToWrite = transform({
   project: options.project,
   basepath: options.basepath,
-  writeFile(absolutePath, text) {
-    filesToWrite.push({ absolutePath, text });
-  },
 });
 
 async function run() {

@@ -4,14 +4,13 @@ import ts from 'typescript';
 
 import { functions } from '@pkerschbaum/commons-ecma/util/functions';
 
-import type { VisitorContext } from '#pkg/types';
-import { createNodeVisitor } from '#pkg/visitor';
+import type { VisitorContext } from '#pkg/transform/types';
+import { createNodeVisitor } from '#pkg/transform/visitor';
 
 export function transform(opts: {
   project: string;
   basepath?: string | undefined;
-  writeFile: (absolutePath: string, text: string) => void;
-}) {
+}): Array<{ absolutePath: string; text: string }> {
   const projectAbsolutePath = path.resolve(opts.project);
   const basepath = opts.basepath ?? path.dirname(projectAbsolutePath);
 
@@ -27,6 +26,8 @@ export function transform(opts: {
   );
 
   const pathsContext = computePathsContext(compilerOptions);
+
+  const result: Array<{ absolutePath: string; text: string }> = [];
 
   const program = ts.createProgram(fileNames, compilerOptions, {
     ...ts.sys,
@@ -48,10 +49,10 @@ export function transform(opts: {
       invariant(newSourceFile);
       invariant(ts.isSourceFile(newSourceFile));
 
-      opts.writeFile(
-        fileName,
-        ts.createPrinter().printNode(ts.EmitHint.SourceFile, newSourceFile, newSourceFile),
-      );
+      result.push({
+        absolutePath: fileName,
+        text: ts.createPrinter().printNode(ts.EmitHint.SourceFile, newSourceFile, newSourceFile),
+      });
 
       return sourceFile;
     },
@@ -72,6 +73,8 @@ export function transform(opts: {
     !emitResult.emitSkipped,
     'The TypeScript Compiler API skipped emitting some files, which means some error occured. Please ensure the TypeScript project can be compiled successfully.',
   );
+
+  return result;
 }
 
 function computePathsContext(compilerOptions: ts.CompilerOptions) {

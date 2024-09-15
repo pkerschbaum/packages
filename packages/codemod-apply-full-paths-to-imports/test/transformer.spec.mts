@@ -3,7 +3,7 @@ import path from 'node:path';
 import prettier from 'prettier';
 import { test, expect } from 'vitest';
 
-import { transform } from '#pkg/transformer.js';
+import { transform } from '#pkg/transform/transformer.js';
 
 const prettierConfig = await prettier.resolveConfig(__dirname);
 
@@ -16,16 +16,12 @@ test('fixture-1', async () => {
   const projectAbsolutePath = path.join(PROJECTS.PROJECT_1_DIRECTORY, 'tsconfig.json');
   const basepath = path.dirname(projectAbsolutePath);
 
-  const collectedFiles: Array<{ fileAbsolutePath: string; text: string }> = [];
-  transform({
+  const collectedFiles = transform({
     project: projectAbsolutePath,
-    writeFile(fileAbsolutePath, text) {
-      collectedFiles.push({ fileAbsolutePath, text });
-    },
   });
 
   for (const collectedFile of collectedFiles) {
-    const relativePathFromRootDir = path.relative(basepath, collectedFile.fileAbsolutePath);
+    const relativePathFromRootDir = path.relative(basepath, collectedFile.absolutePath);
     const formatted = await prettier.format(collectedFile.text, {
       ...prettierConfig,
       parser: 'typescript',
