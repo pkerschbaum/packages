@@ -1,14 +1,14 @@
 {
-  "name": "@pkerschbaum/codemod-apply-full-paths-to-imports",
+  "name": "@pkerschbaum/codemod-rewrite-module-specifiers-to-full-paths",
   "version": "0.0.1",
-  "homepage": "https://github.com/pkerschbaum/packages/tree/main/packages/codemod-apply-full-paths-to-imports",
+  "homepage": "https://github.com/pkerschbaum/packages/tree/main/packages/codemod-rewrite-module-specifiers-to-full-paths",
   "bugs": {
     "url": "https://github.com/pkerschbaum/packages/issues"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/pkerschbaum/packages",
-    "directory": "packages/codemod-apply-full-paths-to-imports"
+    "directory": "packages/codemod-rewrite-module-specifiers-to-full-paths"
   },
   "license": "MIT",
   "author": "Patrick Kerschbaum <patrick.kerschbaum@gmail.com>",

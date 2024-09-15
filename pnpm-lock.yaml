@@ -89,7 +89,7 @@ importers:
         specifier: ^8.1.5
         version: 8.1.5
 
-  packages/codemod-apply-full-paths-to-imports:
+  packages/codemod-rewrite-module-specifiers-to-full-paths:
     dependencies:
       '@commander-js/extra-typings':
         specifier: ^12.1.0
