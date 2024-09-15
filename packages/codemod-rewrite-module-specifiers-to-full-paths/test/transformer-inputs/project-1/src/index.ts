@@ -17,3 +17,12 @@ type Type = import('#pkg/some-module').Type;
 declare module '#pkg/some-module' {
   export type Type2 = {};
 }
+
+''.startsWith('/');
+
+export function isAbsolutePathModuleSpecifier(moduleSpecifier: string) {
+  return moduleSpecifier.startsWith('/');
+}
+
+const blah = '';
+const moduleSpecifierAbsolutePath = blah.startsWith('/');

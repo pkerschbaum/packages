@@ -1,3 +1,4 @@
+/* eslint-disable unicorn/no-array-method-this-argument -- false positives for `jscodeshift` `find` method */
 import jscodeshift from 'jscodeshift';
 import invariant from 'tiny-invariant';
 
@@ -30,7 +31,11 @@ export function rewriteModuleSpecifiersOfFile(
      * import { noop } from '#pkg/some-module.js';
      * ```
      */
-    root.find(jscodeshift.ImportDeclaration),
+    root.find(jscodeshift.ImportDeclaration, {
+      source: {
+        type: 'StringLiteral',
+      },
+    }),
 
     /**
      * @example
@@ -38,7 +43,11 @@ export function rewriteModuleSpecifiersOfFile(
      * export * from '#pkg/some-module.js';
      * ```
      */
-    root.find(jscodeshift.ExportAllDeclaration),
+    root.find(jscodeshift.ExportAllDeclaration, {
+      source: {
+        type: 'StringLiteral',
+      },
+    }),
 
     /**
      * @example
@@ -46,7 +55,11 @@ export function rewriteModuleSpecifiersOfFile(
      * export { noop } from '#pkg/some-module.js';
      * ```
      */
-    root.find(jscodeshift.ExportNamedDeclaration),
+    root.find(jscodeshift.ExportNamedDeclaration, {
+      source: {
+        type: 'StringLiteral',
+      },
+    }),
 
     /**
      * @example
@@ -55,16 +68,16 @@ export function rewriteModuleSpecifiersOfFile(
      * typeof import('#pkg/some-module.js');
      * ```
      */
-    root.find(jscodeshift.ImportExpression),
-    root.find(
-      jscodeshift.CallExpression,
-      // eslint-disable-next-line unicorn/no-array-method-this-argument -- false positive
-      {
-        callee: {
-          type: 'Import',
-        },
+    root.find(jscodeshift.ImportExpression, {
+      source: {
+        type: 'StringLiteral',
       },
-    ),
+    }),
+    root.find(jscodeshift.CallExpression, {
+      callee: {
+        type: 'Import',
+      },
+    }),
 
     /**
      * @example
@@ -72,16 +85,12 @@ export function rewriteModuleSpecifiersOfFile(
      * require('#pkg/some-module.js');
      * ```
      */
-    root.find(
-      jscodeshift.CallExpression,
-      // eslint-disable-next-line unicorn/no-array-method-this-argument -- false positive
-      {
-        callee: {
-          type: 'Identifier',
-          name: 'require',
-        },
+    root.find(jscodeshift.CallExpression, {
+      callee: {
+        type: 'Identifier',
+        name: 'require',
       },
-    ),
+    }),
 
     /**
      * @example
@@ -89,7 +98,11 @@ export function rewriteModuleSpecifiersOfFile(
      * import foo = require('#pkg/some-module.js');
      * ```
      */
-    root.find(jscodeshift.TSExternalModuleReference),
+    root.find(jscodeshift.TSExternalModuleReference, {
+      expression: {
+        type: 'StringLiteral',
+      },
+    }),
 
     /**
      * @example
@@ -97,7 +110,11 @@ export function rewriteModuleSpecifiersOfFile(
      * type Type = import('#pkg/some-module.js').Type;
      * ```
      */
-    root.find(jscodeshift.TSImportType),
+    root.find(jscodeshift.TSImportType, {
+      argument: {
+        type: 'StringLiteral',
+      },
+    }),
 
     /**
      * @example
@@ -105,7 +122,11 @@ export function rewriteModuleSpecifiersOfFile(
      * declare module '#pkg/some-module.js' { }
      * ```
      */
-    root.find(jscodeshift.TSModuleDeclaration),
+    root.find(jscodeshift.TSModuleDeclaration, {
+      id: {
+        type: 'StringLiteral',
+      },
+    }),
   ];
   for (const astNodes of astNodesWithModuleSpecifiers) {
     rewriteModuleSpecifiersOfASTNodes({ ...opts, astNodes, quoteToUseRef });
