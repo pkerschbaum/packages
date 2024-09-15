@@ -64,10 +64,10 @@ export function resolveToExactModuleSpecifier(
     ts.sys,
   );
 
-  invariant(
-    resolvedModule,
-    `Could not resolve module specifier! moduleSpecifier=${opts.originalModuleSpecifier}, absolutePathSourceFile=${opts.absolutePathSourceFile}`,
-  );
+  if (!resolvedModule) {
+    // could be e.g. a ".png" modules specifier which is resolved by a bundler
+    return opts.originalModuleSpecifier;
+  }
 
   /*
    * We have 1 of 3 cases here:
