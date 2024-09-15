@@ -23,6 +23,7 @@
       ]
     }
   },
+  "bin": "./dist/bin/codemod.js",
   "files": [
     "dist/**",
     "!dist/**/*.d.ts.map"
