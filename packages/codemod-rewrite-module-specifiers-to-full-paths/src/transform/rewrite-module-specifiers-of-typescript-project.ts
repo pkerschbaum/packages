@@ -1,8 +1,6 @@
 import fs from 'node:fs';
-import path from 'node:path';
-import invariant from 'tiny-invariant';
-import ts from 'typescript';
 
+import { loadTypeScriptProgram } from '#pkg/load-typescript-program';
 import { rewriteModuleSpecifiersOfFile } from '#pkg/transform/rewrite-module-specifiers-of-file';
 import type { VisitorContext } from '#pkg/transform/types';
 
@@ -15,29 +13,15 @@ export async function rewriteModuleSpecifiersOfTypeScriptProject(opts: {
   project: string;
   basepath?: string | undefined;
 }): Promise<RewriteModuleSpecifiersOfTypeScriptProjectResult> {
-  const projectAbsolutePath = path.resolve(opts.project);
-  const basepath = opts.basepath ?? path.dirname(projectAbsolutePath);
-
-  const configFile = ts.readConfigFile(projectAbsolutePath, ts.sys.readFile.bind(ts.sys));
-  invariant(
-    configFile.config,
-    `expected to find config, but couldn't! projectAbsolutePath=${projectAbsolutePath}`,
-  );
-  const { options: compilerOptions, fileNames } = ts.parseJsonConfigFileContent(
-    configFile.config,
-    ts.sys,
-    basepath,
-  );
-
-  const pathsContext = computePathsContext(compilerOptions);
+  const typeScriptProgram = loadTypeScriptProgram(opts);
 
   return await Promise.all(
-    fileNames.map(async (fileName) => {
+    typeScriptProgram.fileNames.map(async (fileName) => {
       console.log(fileName);
       const visitorContext: VisitorContext = {
         absolutePathSourceFile: fileName,
-        compilerOptions,
-        paths: pathsContext,
+        compilerOptions: typeScriptProgram.compilerOptions,
+        paths: typeScriptProgram.pathsContext,
       };
 
       const text = await fs.promises.readFile(fileName, 'utf8');
@@ -50,21 +34,4 @@ export async function rewriteModuleSpecifiersOfTypeScriptProject(opts: {
       };
     }),
   );
-}
-
-function computePathsContext(compilerOptions: ts.CompilerOptions) {
-  let pathsPatterns = compilerOptions.configFile?.configFileSpecs?.pathPatterns;
-  let absoluteBasePath = undefined;
-  if (!compilerOptions.paths) {
-    return undefined;
-  }
-
-  pathsPatterns = ts.tryParsePatterns(compilerOptions.paths);
-
-  invariant(compilerOptions.pathsBasePath);
-  absoluteBasePath = !compilerOptions.baseUrl
-    ? compilerOptions.pathsBasePath
-    : path.join(compilerOptions.pathsBasePath, compilerOptions.baseUrl);
-
-  return { absoluteBasePath, patterns: pathsPatterns };
 }
