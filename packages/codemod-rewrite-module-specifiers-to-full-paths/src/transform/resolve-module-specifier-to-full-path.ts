@@ -127,7 +127,7 @@ export function resolveToExactModuleSpecifier(
     );
     const moduleSpecifierAbsolutePath = opts.originalModuleSpecifier.startsWith('/')
       ? opts.originalModuleSpecifier
-      : path.join(opts.absolutePathSourceFile, opts.originalModuleSpecifier);
+      : path.join(path.dirname(opts.absolutePathSourceFile), opts.originalModuleSpecifier);
     const slugToAdd = resolvedModule.resolvedFileName.slice(moduleSpecifierAbsolutePath.length);
     newModuleSpecifier = `${opts.originalModuleSpecifier}${slugToAdd}`;
   }

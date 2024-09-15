@@ -26,3 +26,8 @@ export function isAbsolutePathModuleSpecifier(moduleSpecifier: string) {
 
 const blah = '';
 const moduleSpecifierAbsolutePath = blah.startsWith('/');
+
+import { constant } from '#pkg/some-directory';
+
+import { constant as constant2 } from './some-directory';
+import { constant as constant3 } from './some-directory/index';
