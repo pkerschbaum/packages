@@ -1,6 +1,8 @@
+import fs from 'node:fs';
 import path from 'node:path';
 import { test, expect } from 'vitest';
 
+import { loadTypeScriptProgram } from '#pkg/load-typescript-program.js';
 import { rewriteModuleSpecifiersOfTypeScriptProject } from '#pkg/transform/index.js';
 
 const PATH_TO_TRANSFORMER_INPUTS = path.join(__dirname, 'transformer-inputs');
@@ -12,14 +14,20 @@ test('fixture-1', async () => {
   const projectAbsolutePath = path.join(PROJECTS.PROJECT_1_DIRECTORY, 'tsconfig.json');
   const basepath = path.dirname(projectAbsolutePath);
 
-  const filesWithModuleSpecifierMaps = await rewriteModuleSpecifiersOfTypeScriptProject({
-    project: projectAbsolutePath,
-  });
+  const typeScriptProgram = loadTypeScriptProgram({ project: projectAbsolutePath, basepath });
 
-  for (const entry of Object.values(filesWithModuleSpecifierMaps)) {
-    const relativePathFromRootDir = path.relative(basepath, entry.absolutePathSourceFile);
-    await expect(entry.newText).toMatchFileSnapshot(
-      `./transformer-outputs/project-1/${relativePathFromRootDir}`,
-    );
-  }
+  await Promise.all(
+    typeScriptProgram.fileNames.map(async (absolutePathSourceFile) => {
+      const text = await fs.promises.readFile(absolutePathSourceFile, 'utf8');
+      const newText = rewriteModuleSpecifiersOfTypeScriptProject(
+        typeScriptProgram,
+        absolutePathSourceFile,
+        text,
+      );
+      const relativePathFromRootDir = path.relative(basepath, absolutePathSourceFile);
+      await expect(newText).toMatchFileSnapshot(
+        `./transformer-outputs/project-1/${relativePathFromRootDir}`,
+      );
+    }),
+  );
 });

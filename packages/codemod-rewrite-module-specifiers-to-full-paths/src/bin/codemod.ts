@@ -1,6 +1,7 @@
 import * as commander from '@commander-js/extra-typings';
 import fs from 'node:fs';
 
+import { loadTypeScriptProgram } from '#pkg/load-typescript-program';
 import { rewriteModuleSpecifiersOfTypeScriptProject } from '#pkg/transform/index';
 
 const commanderProgram = new commander.Command()
@@ -22,19 +23,21 @@ const options = commanderProgram.opts();
 async function run() {
   const { default: pLimit } = await import('p-limit');
 
-  const filesWithModuleSpecifierMaps = await rewriteModuleSpecifiersOfTypeScriptProject({
-    project: options.project,
-    basepath: options.basepath,
-  });
+  const typeScriptProgram = loadTypeScriptProgram(options);
 
   const limit = pLimit(10);
-  const input = filesWithModuleSpecifierMaps.map((entry) =>
+  const operations = typeScriptProgram.fileNames.map((absolutePathSourceFile) =>
     limit(async () => {
-      return await fs.promises.writeFile(entry.absolutePathSourceFile, entry.newText);
+      const text = await fs.promises.readFile(absolutePathSourceFile, 'utf8');
+      const newText = rewriteModuleSpecifiersOfTypeScriptProject(
+        typeScriptProgram,
+        absolutePathSourceFile,
+        text,
+      );
+      await fs.promises.writeFile(absolutePathSourceFile, newText);
     }),
   );
-
-  await Promise.all(input);
+  await Promise.all(operations);
 }
 
 void run();

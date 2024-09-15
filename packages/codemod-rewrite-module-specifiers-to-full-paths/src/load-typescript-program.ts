@@ -2,7 +2,21 @@ import path from 'node:path';
 import invariant from 'tiny-invariant';
 import ts from 'typescript';
 
-export function loadTypeScriptProgram(opts: { project: string; basepath?: string | undefined }) {
+export type TypeScriptProgram = {
+  compilerOptions: ts.CompilerOptions;
+  pathsContext:
+    | {
+        absoluteBasePath: string;
+        patterns: ReadonlyArray<string | ts.Pattern>;
+      }
+    | undefined;
+  fileNames: string[];
+};
+
+export function loadTypeScriptProgram(opts: {
+  project: string;
+  basepath?: string | undefined;
+}): TypeScriptProgram {
   const projectAbsolutePath = path.resolve(opts.project);
   const basepath = opts.basepath ?? path.dirname(projectAbsolutePath);
 
