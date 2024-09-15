@@ -8,11 +8,12 @@
     "format": "prettier --write --ignore-unknown .",
     "lint": "superturbo lint",
     "lint:fix": "superturbo lint:fix",
-    "nuke": "pnpm --parallel run nuke && pnpm run nuke:artifacts && pnpm run nuke:compute-cache && pnpm run nuke:node-modules",
+    "nuke": "pnpm --parallel run nuke && pnpm run nuke:artifacts && pnpm run nuke:compute-cache && pnpm run nuke:temp && pnpm run nuke:node-modules",
     "nuke:artifacts": "pnpm --parallel run nuke:artifacts",
     "nuke:compute-cache": "del-cli \"*/**/.turbo\"",
     "nuke:node-modules": "del-cli \"**/node_modules\"",
-    "prepare": "node --eval \"process.exit(process.env.CI === 'true' ? 0 : -1)\" || husky install"
+    "nuke:temp": "del-cli \"**/coverage\"",
+    "prepare": "node --eval \"process.exit(process.env.CI === 'true' ? 0 : -1)\" || (husky install && node ./packages/pkg-management/src/add-all-tsconfigs-as-project-references.mjs --monorepo-path=. --tsconfig-filename=tsconfig.project.json)"
   },
   "devDependencies": {
     "@changesets/cli": "^2.27.8",

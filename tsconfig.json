@@ -8,6 +8,10 @@
     { "path": "./packages/pk-web-stack-codemods/tsconfig.project.json" },
     { "path": "./packages/pkg-consumption-test/tsconfig.project.json" },
     { "path": "./packages/pkg-management/tsconfig.project.json" },
+    { "path": "./packages/runtime-extensions-node/tsconfig.project.json" },
+    {
+      "path": "./packages/static-analysis-module-specifiers-resolving-to-directories/tsconfig.project.json"
+    },
     { "path": "./packages/typescript-eslint-rules-requiring-type-info/tsconfig.project.json" },
     { "path": "./platform/superturbo/tsconfig.project.json" },
     { "path": "./test/test-package-for-pkg-consumption-test/tsconfig.project.json" }
