@@ -1,9 +1,7 @@
 import * as commander from '@commander-js/extra-typings';
 import fs from 'node:fs';
-import invariant from 'tiny-invariant';
 
-import { determineModuleSpecifierMapsForFiles } from '#pkg/transform/transformer';
-import { transformer2 } from '#pkg/transform2/transformer2';
+import { rewriteModuleSpecifiersOfTypeScriptProject } from '#pkg/transform/index';
 
 const commanderProgram = new commander.Command()
   .addOption(
@@ -24,33 +22,15 @@ const options = commanderProgram.opts();
 async function run() {
   const { default: pLimit } = await import('p-limit');
 
-  const filesWithModuleSpecifierMaps = determineModuleSpecifierMapsForFiles({
+  const filesWithModuleSpecifierMaps = await rewriteModuleSpecifiersOfTypeScriptProject({
     project: options.project,
     basepath: options.basepath,
   });
 
-  const texts = await Promise.all(
-    filesWithModuleSpecifierMaps.map((entry) =>
-      fs.promises.readFile(entry.absolutePathSourceFile, 'utf8'),
-    ),
-  );
-  const newTexts = transformer2(
-    filesWithModuleSpecifierMaps.map((entry, index) => {
-      const correspondingText = texts[index];
-      invariant(correspondingText);
-      return {
-        text: correspondingText,
-        moduleSpecifierMap: entry.moduleSpecifierMap,
-      };
-    }),
-  );
-
   const limit = pLimit(10);
-  const input = filesWithModuleSpecifierMaps.map((entry, idx) =>
+  const input = filesWithModuleSpecifierMaps.map((entry) =>
     limit(async () => {
-      const correspondingNewText = newTexts[idx];
-      invariant(correspondingNewText);
-      return await fs.promises.writeFile(entry.absolutePathSourceFile, correspondingNewText);
+      return await fs.promises.writeFile(entry.absolutePathSourceFile, entry.newText);
     }),
   );
 

@@ -1,6 +1,7 @@
 import ts from 'typescript';
 
 export type VisitorContext = {
+  absolutePathSourceFile: string;
   compilerOptions: ts.CompilerOptions;
   paths?:
     | undefined
@@ -8,11 +9,4 @@ export type VisitorContext = {
         absoluteBasePath: string;
         patterns: ReadonlyArray<string | ts.Pattern>;
       };
-  sourceFile: ts.SourceFile;
-  moduleSpecifierMap: Map<
-    /* original module specifier */
-    string,
-    /* new module specifier*/
-    string
-  >;
 };
