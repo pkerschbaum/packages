@@ -1,10 +1,14 @@
 {
   "compilerOptions": {
+    /* Language and Environment */
+    "target": "ES2018",
+
     /* Modules */
+    "module": "commonjs",
     "paths": {
       "#pkg/*": ["./src/*"]
     },
-    "types": []
+    "types": ["node"]
   },
   "include": ["src/**/*"]
 }
