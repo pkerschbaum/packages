@@ -31,3 +31,7 @@ import { constant } from '#pkg/some-directory';
 
 import { constant as constant2 } from './some-directory';
 import { constant as constant3 } from './some-directory/index';
+
+import './test.png';
+
+import { someConstant } from './lib/some-js';

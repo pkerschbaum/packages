@@ -4,9 +4,10 @@
     "target": "ES2018",
 
     /* Modules */
+    "baseUrl": "./src",
     "module": "commonjs",
     "paths": {
-      "#pkg/*": ["./src/*"]
+      "#pkg/*": ["./*"]
     },
     "types": ["node"]
   },
