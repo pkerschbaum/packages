@@ -14,7 +14,7 @@ test('fixture-1', async () => {
   const projectAbsolutePath = path.join(PROJECTS.PROJECT_1_DIRECTORY, 'tsconfig.json');
   const basepath = path.dirname(projectAbsolutePath);
 
-  const typeScriptProgram = loadTypeScriptProgram({ project: projectAbsolutePath, basepath });
+  const typeScriptProgram = await loadTypeScriptProgram({ project: projectAbsolutePath, basepath });
 
   await Promise.all(
     typeScriptProgram.fileNames.map(async (absolutePathSourceFile) => {

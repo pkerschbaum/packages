@@ -2,6 +2,8 @@ import path from 'node:path';
 import invariant from 'tiny-invariant';
 import ts from 'typescript';
 
+import { fsUtils } from '@pkerschbaum/commons-node/utils/fs';
+
 export type TypeScriptProgram = {
   compilerOptions: ts.CompilerOptions;
   pathsContext:
@@ -13,11 +15,16 @@ export type TypeScriptProgram = {
   fileNames: string[];
 };
 
-export function loadTypeScriptProgram(opts: {
+export async function loadTypeScriptProgram(opts: {
   project: string;
   basepath?: string | undefined;
-}): TypeScriptProgram {
+}): Promise<TypeScriptProgram> {
   const projectAbsolutePath = path.resolve(opts.project);
+  invariant(
+    await fsUtils.existsPath(projectAbsolutePath),
+    `expected to find project, but did not! projectAbsolutePath=${projectAbsolutePath}`,
+  );
+
   const basepath = opts.basepath ?? path.dirname(projectAbsolutePath);
 
   const configFile = ts.readConfigFile(projectAbsolutePath, ts.sys.readFile.bind(ts.sys));

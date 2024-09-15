@@ -23,7 +23,7 @@ const options = commanderProgram.opts();
 async function run() {
   const { default: pLimit } = await import('p-limit');
 
-  const typeScriptProgram = loadTypeScriptProgram(options);
+  const typeScriptProgram = await loadTypeScriptProgram(options);
 
   const limit = pLimit(10);
   const operations = typeScriptProgram.fileNames.map((absolutePathSourceFile) =>
