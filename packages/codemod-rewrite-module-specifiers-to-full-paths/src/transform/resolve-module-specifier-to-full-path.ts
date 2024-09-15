@@ -9,8 +9,14 @@ const tsExtensionToJsExtensionMap = new Map([
   ['.tsx', '.js'],
   ['.mts', '.mjs'],
   ['.mtsx', '.mjs'],
+  ['.cts', '.cjs'],
+  ['.ctsx', '.cjs'],
+  ['.js', '.js'],
+  ['.jsx', '.jsx'],
+  ['.mjs', '.mjs'],
+  ['.mjsx', '.mjsx'],
   ['.cjs', '.cjs'],
-  ['.cjsx', '.cjs'],
+  ['.cjsx', '.cjsx'],
 ]);
 
 export function resolveModuleSpecifierToFullPath(
@@ -149,7 +155,7 @@ export function resolveToExactModuleSpecifier(
 
   // map "ts" to "js", "tsx" to "jsx", "mts" to "mjs", etc.
   const mappedExtname = tsExtensionToJsExtensionMap.get(extname);
-  invariant(mappedExtname);
+  invariant(mappedExtname, `could not map extension! extname=${extname}`);
 
   const finalNewModuleName = `${moduleNameWithoutExt}${mappedExtname}`;
 
