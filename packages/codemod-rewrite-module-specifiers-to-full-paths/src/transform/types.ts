@@ -1,12 +1,7 @@
-import ts from 'typescript';
+import type { TypeScriptProgram } from '#pkg/load-typescript-program';
 
 export type VisitorContext = {
   absolutePathSourceFile: string;
-  compilerOptions: ts.CompilerOptions;
-  paths?:
-    | undefined
-    | {
-        absoluteBasePath: string;
-        patterns: ReadonlyArray<string | ts.Pattern>;
-      };
+  compilerOptions: TypeScriptProgram['compilerOptions'];
+  paths?: TypeScriptProgram['paths'];
 };

@@ -6,7 +6,7 @@ import { fsUtils } from '@pkerschbaum/commons-node/utils/fs';
 
 export type TypeScriptProgram = {
   compilerOptions: ts.CompilerOptions;
-  pathsContext:
+  paths:
     | {
         absoluteBasePath: string;
         patterns: ReadonlyArray<string | ts.Pattern>;
@@ -38,11 +38,11 @@ export async function loadTypeScriptProgram(opts: {
     basepath,
   );
 
-  const pathsContext = computePathsContext(compilerOptions);
+  const paths = computePathsContext(compilerOptions);
 
   return {
     compilerOptions,
-    pathsContext,
+    paths,
     fileNames,
   };
 }
@@ -57,9 +57,7 @@ function computePathsContext(compilerOptions: ts.CompilerOptions) {
   pathsPatterns = ts.tryParsePatterns(compilerOptions.paths);
 
   invariant(compilerOptions.pathsBasePath);
-  absoluteBasePath = !compilerOptions.baseUrl
-    ? compilerOptions.pathsBasePath
-    : path.join(compilerOptions.pathsBasePath, compilerOptions.baseUrl);
+  absoluteBasePath = compilerOptions.baseUrl ?? compilerOptions.pathsBasePath;
 
   return { absoluteBasePath, patterns: pathsPatterns };
 }
