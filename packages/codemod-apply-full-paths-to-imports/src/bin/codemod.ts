@@ -1,4 +1,5 @@
 import * as commander from '@commander-js/extra-typings';
+import fs from 'node:fs';
 
 import { transform } from '#pkg/transformer';
 
@@ -18,10 +19,24 @@ const commanderProgram = new commander.Command()
 commanderProgram.parse();
 const options = commanderProgram.opts();
 
+const filesToWrite: Array<{ absolutePath: string; text: string }> = [];
+
 transform({
   project: options.project,
   basepath: options.basepath,
   writeFile(absolutePath, text) {
-    console.dir({ absolutePath, text });
+    filesToWrite.push({ absolutePath, text });
   },
 });
+
+async function run() {
+  const { default: pLimit } = await import('p-limit');
+  const limit = pLimit(10);
+  const input = filesToWrite.map(({ absolutePath, text }) =>
+    limit(() => fs.promises.writeFile(absolutePath, text)),
+  );
+
+  await Promise.all(input);
+}
+
+void run();

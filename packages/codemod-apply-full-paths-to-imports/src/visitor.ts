@@ -1,7 +1,8 @@
+// taken and adapted from https://github.com/LeDDGroup/typescript-transform-paths/blob/2c96be2ec8dcce5732184743dfbb4f5bb3e7956e/src/visitor.ts
 import ts from 'typescript';
 
+import { resolveModuleSpecifierAndUpdateNode } from '#pkg/resolve-module-specifier-and-update-node';
 import { VisitorContext } from '#pkg/types';
-import { resolvePathAndUpdateNode } from '#pkg/utils/resolve-path-update-node';
 
 export function createNodeVisitor(visitorContext: VisitorContext) {
   /** Visit and replace nodes with module specifiers */
@@ -13,7 +14,7 @@ export function createNodeVisitor(visitorContext: VisitorContext) {
      *   import("module");
      */
     if (isRequire(visitorContext, node) || isAsyncImport(visitorContext, node)) {
-      return resolvePathAndUpdateNode(
+      return resolveModuleSpecifierAndUpdateNode(
         visitorContext,
         node,
         (node.arguments[0] as ts.StringLiteral).text,
@@ -34,7 +35,7 @@ export function createNodeVisitor(visitorContext: VisitorContext) {
 
             const caption = textNode
               .getFullText()
-              .substring(pos, end)
+              .slice(pos, end)
               .replace(
                 /* searchValue */ kind === ts.SyntaxKind.MultiLineCommentTrivia
                   ? // Comment range in a multi-line comment with more than one line erroneously
@@ -60,7 +61,7 @@ export function createNodeVisitor(visitorContext: VisitorContext) {
      *   import foo = require("foo");
      */
     if (ts.isExternalModuleReference(node) && ts.isStringLiteral(node.expression)) {
-      return resolvePathAndUpdateNode(visitorContext, node, node.expression.text, (p) =>
+      return resolveModuleSpecifierAndUpdateNode(visitorContext, node, node.expression.text, (p) =>
         ts.factory.updateExternalModuleReference(node, p),
       );
     }
@@ -82,7 +83,7 @@ export function createNodeVisitor(visitorContext: VisitorContext) {
         return node;
       }
 
-      const res = resolvePathAndUpdateNode(visitorContext, node, text, (p) =>
+      const res = resolveModuleSpecifierAndUpdateNode(visitorContext, node, text, (p) =>
         ts.factory.updateImportTypeNode(
           node,
           ts.factory.updateLiteralTypeNode(argument, p),
@@ -101,20 +102,21 @@ export function createNodeVisitor(visitorContext: VisitorContext) {
      * @example
      *   import ... 'module';
      */
-    if (
-      ts.isImportDeclaration(node) &&
-      node.moduleSpecifier &&
-      ts.isStringLiteral(node.moduleSpecifier)
-    ) {
-      return resolvePathAndUpdateNode(visitorContext, node, node.moduleSpecifier.text, (p) => {
-        return ts.factory.updateImportDeclaration(
-          node,
-          node.modifiers,
-          node.importClause,
-          p,
-          node.attributes,
-        );
-      });
+    if (ts.isImportDeclaration(node) && ts.isStringLiteral(node.moduleSpecifier)) {
+      return resolveModuleSpecifierAndUpdateNode(
+        visitorContext,
+        node,
+        node.moduleSpecifier.text,
+        (p) => {
+          return ts.factory.updateImportDeclaration(
+            node,
+            node.modifiers,
+            node.importClause,
+            p,
+            node.attributes,
+          );
+        },
+      );
     }
 
     /**
@@ -127,21 +129,26 @@ export function createNodeVisitor(visitorContext: VisitorContext) {
       node.moduleSpecifier &&
       ts.isStringLiteral(node.moduleSpecifier)
     ) {
-      return resolvePathAndUpdateNode(visitorContext, node, node.moduleSpecifier.text, (p) => {
-        return ts.factory.updateExportDeclaration(
-          node,
-          node.modifiers,
-          node.isTypeOnly,
-          node.exportClause,
-          p,
-          node.attributes,
-        );
-      });
+      return resolveModuleSpecifierAndUpdateNode(
+        visitorContext,
+        node,
+        node.moduleSpecifier.text,
+        (p) => {
+          return ts.factory.updateExportDeclaration(
+            node,
+            node.modifiers,
+            node.isTypeOnly,
+            node.exportClause,
+            p,
+            node.attributes,
+          );
+        },
+      );
     }
 
     /** Update module augmentation */
     if (ts.isModuleDeclaration(node) && ts.isStringLiteral(node.name)) {
-      return resolvePathAndUpdateNode(visitorContext, node, node.name.text, (p) =>
+      return resolveModuleSpecifierAndUpdateNode(visitorContext, node, node.name.text, (p) =>
         ts.factory.updateModuleDeclaration(node, node.modifiers, p, node.body),
       );
     }

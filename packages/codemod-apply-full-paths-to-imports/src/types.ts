@@ -1,15 +1,12 @@
-import ts, { CompilerOptions, Pattern } from 'typescript';
+import ts from 'typescript';
 
-export type TsTransformPathsContext = {
-  readonly compilerOptions: CompilerOptions;
+export type VisitorContext = {
+  readonly compilerOptions: ts.CompilerOptions;
   readonly paths?:
     | undefined
     | {
         readonly absoluteBasePath: string;
-        readonly patterns: ReadonlyArray<string | Pattern>;
+        readonly patterns: ReadonlyArray<string | ts.Pattern>;
       };
-};
-
-export type VisitorContext = {
   readonly sourceFile: ts.SourceFile;
-} & TsTransformPathsContext;
+};
