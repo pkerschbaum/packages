@@ -1,12 +1,18 @@
 import ts from 'typescript';
 
 export type VisitorContext = {
-  readonly compilerOptions: ts.CompilerOptions;
-  readonly paths?:
+  compilerOptions: ts.CompilerOptions;
+  paths?:
     | undefined
     | {
-        readonly absoluteBasePath: string;
-        readonly patterns: ReadonlyArray<string | ts.Pattern>;
+        absoluteBasePath: string;
+        patterns: ReadonlyArray<string | ts.Pattern>;
       };
-  readonly sourceFile: ts.SourceFile;
+  sourceFile: ts.SourceFile;
+  moduleSpecifierMap: Map<
+    /* original module specifier */
+    string,
+    /* new module specifier*/
+    string
+  >;
 };

@@ -4,12 +4,11 @@ import ts from 'typescript';
 
 import { VisitorContext } from '#pkg/transform/types';
 
-export function resolveModuleSpecifierAndUpdateNode(
+export function createModuleSpecifierMap(
   context: VisitorContext,
   node: ts.Node,
   originalModuleSpecifier: string,
-  updaterFn: (newPath: ts.StringLiteral) => ts.Node | undefined,
-): ts.Node | undefined {
+): void {
   let pathsPatternMatched = false;
   if (context.paths) {
     pathsPatternMatched = !!ts.matchPatternOrExact(context.paths.patterns, originalModuleSpecifier);
@@ -21,15 +20,15 @@ export function resolveModuleSpecifierAndUpdateNode(
     !isRelativePathModuleSpecifier(originalModuleSpecifier) &&
     !pathsPatternMatched
   ) {
-    return node;
+    return;
   }
 
   const newModuleSpecifier = mapToExactModuleSpecifier(context, originalModuleSpecifier);
   if (!newModuleSpecifier) {
-    return node;
+    return;
   }
 
-  return updaterFn(ts.factory.createStringLiteral(newModuleSpecifier));
+  context.moduleSpecifierMap.set(originalModuleSpecifier, newModuleSpecifier);
 }
 
 function isAbsolutePathModuleSpecifier(moduleSpecifier: string) {

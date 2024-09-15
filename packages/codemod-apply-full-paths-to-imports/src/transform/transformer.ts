@@ -7,10 +7,17 @@ import { functions } from '@pkerschbaum/commons-ecma/util/functions';
 import type { VisitorContext } from '#pkg/transform/types';
 import { createNodeVisitor } from '#pkg/transform/visitor';
 
-export function transform(opts: {
+export type ModuleSpecifierMap = VisitorContext['moduleSpecifierMap'];
+
+export type DetermineModuleSpecifierMapsForFilesResult = Array<{
+  absolutePathSourceFile: string;
+  moduleSpecifierMap: ModuleSpecifierMap;
+}>;
+
+export function determineModuleSpecifierMapsForFiles(opts: {
   project: string;
   basepath?: string | undefined;
-}): Array<{ absolutePath: string; text: string }> {
+}): DetermineModuleSpecifierMapsForFilesResult {
   const projectAbsolutePath = path.resolve(opts.project);
   const basepath = opts.basepath ?? path.dirname(projectAbsolutePath);
 
@@ -27,7 +34,7 @@ export function transform(opts: {
 
   const pathsContext = computePathsContext(compilerOptions);
 
-  const result: Array<{ absolutePath: string; text: string }> = [];
+  const result: DetermineModuleSpecifierMapsForFilesResult = [];
 
   const program = ts.createProgram(fileNames, compilerOptions, {
     ...ts.sys,
@@ -39,10 +46,15 @@ export function transform(opts: {
 
       const sourceFile = ts.createSourceFile(fileName, sourceText, languageVersion);
 
+      if (!fileNames.includes(fileName)) {
+        return sourceFile;
+      }
+
       const visitorContext: VisitorContext = {
         compilerOptions,
         paths: pathsContext,
         sourceFile,
+        moduleSpecifierMap: new Map(),
       };
 
       const newSourceFile = ts.visitNode(sourceFile, createNodeVisitor(visitorContext));
@@ -50,8 +62,8 @@ export function transform(opts: {
       invariant(ts.isSourceFile(newSourceFile));
 
       result.push({
-        absolutePath: fileName,
-        text: ts.createPrinter().printNode(ts.EmitHint.SourceFile, newSourceFile, newSourceFile),
+        absolutePathSourceFile: fileName,
+        moduleSpecifierMap: visitorContext.moduleSpecifierMap,
       });
 
       return sourceFile;

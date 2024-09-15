@@ -1,11 +1,11 @@
+import fs from 'node:fs';
 import path from 'node:path';
 // eslint-disable-next-line import/default -- false positive
-import prettier from 'prettier';
+import invariant from 'tiny-invariant';
 import { test, expect } from 'vitest';
 
-import { transform } from '#pkg/transform/transformer.js';
-
-const prettierConfig = await prettier.resolveConfig(__dirname);
+import { determineModuleSpecifierMapsForFiles } from '#pkg/transform/transformer.js';
+import { transformer2 } from '#pkg/transform2/transformer2.js';
 
 const PATH_TO_TRANSFORMER_INPUTS = path.join(__dirname, 'transformer-inputs');
 const PROJECTS = {
@@ -16,17 +16,31 @@ test('fixture-1', async () => {
   const projectAbsolutePath = path.join(PROJECTS.PROJECT_1_DIRECTORY, 'tsconfig.json');
   const basepath = path.dirname(projectAbsolutePath);
 
-  const collectedFiles = transform({
+  const filesWithModuleSpecifierMaps = determineModuleSpecifierMapsForFiles({
     project: projectAbsolutePath,
   });
 
-  for (const collectedFile of collectedFiles) {
-    const relativePathFromRootDir = path.relative(basepath, collectedFile.absolutePath);
-    const formatted = await prettier.format(collectedFile.text, {
-      ...prettierConfig,
-      parser: 'typescript',
-    });
-    await expect(formatted).toMatchFileSnapshot(
+  const texts = await Promise.all(
+    filesWithModuleSpecifierMaps.map((entry) =>
+      fs.promises.readFile(entry.absolutePathSourceFile, 'utf8'),
+    ),
+  );
+  const result2 = transformer2(
+    filesWithModuleSpecifierMaps.map((entry, index) => {
+      const correspondingText = texts[index];
+      invariant(correspondingText);
+      return {
+        text: correspondingText,
+        moduleSpecifierMap: entry.moduleSpecifierMap,
+      };
+    }),
+  );
+
+  let idx = -1;
+  for (const entry of Object.values(filesWithModuleSpecifierMaps)) {
+    idx += 1;
+    const relativePathFromRootDir = path.relative(basepath, entry.absolutePathSourceFile);
+    await expect(result2[idx]).toMatchFileSnapshot(
       `./transformer-outputs/project-1/${relativePathFromRootDir}`,
     );
   }
