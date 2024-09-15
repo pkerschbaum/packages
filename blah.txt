@@ -1,0 +1,1955 @@
+{ patterns: [ { prefix: '#pkg/', suffix: '' } ] }
+{
+  moduleNames: [
+    'react/jsx-runtime',
+    '#pkg/domain/business-rules',
+    '#pkg/domain/formatter',
+    '#pkg/domain/http',
+    '#pkg/domain/i18n',
+    '#pkg/domain/jwt',
+    '#pkg/domain/routes',
+    '#pkg/domain/constants',
+    '#pkg/domain/game-events-helper',
+    '#pkg/domain/translations',
+    '#pkg/util/arrays.util',
+    '#pkg/util/errors.util',
+    '#pkg/util/http.util',
+    '#pkg/util/numbers.util',
+    '#pkg/util/objects.util',
+    '#pkg/util/strings.util',
+    '#pkg/util/regex.util',
+    '#pkg/util/axios.util',
+    '#pkg/util/boolean.util',
+    '#pkg/util/custom-error',
+    '#pkg/util/env.util',
+    '#pkg/util/functions.util',
+    '#pkg/util/id-generator.util',
+    '#pkg/util/json.util',
+    '#pkg/util/promises.util',
+    '#pkg/util/pubsub.util',
+    '#pkg/util/types.util',
+    '#pkg/util/datastructure/blocking-queue'
+  ],
+  containingFile: '/home/pkerschbaum/workspace/mfm-online/libs/commons/src/index.ts'
+}
+{
+  moduleName: 'react/jsx-runtime',
+  patternStuff: undefined,
+  resolvedModule: {
+    resolvedFileName: '/home/pkerschbaum/workspace/mfm-online/libs/commons/node_modules/@types/react/jsx-runtime.d.ts',
+    originalPath: undefined,
+    extension: '.d.ts',
+    isExternalLibraryImport: true,
+    packageId: {
+      name: '@types/react',
+      subModuleName: 'jsx-runtime.d.ts',
+      version: '18.3.5',
+      peerDependencies: undefined
+    },
+    resolvedUsingTsExtension: false
+  }
+}
+{
+  moduleName: '#pkg/domain/business-rules',
+  patternStuff: {
+    patternMatched: { prefix: '#pkg/', suffix: '' },
+    patternText: '#pkg/*'
+  },
+  resolvedModule: {
+    resolvedFileName: '/home/pkerschbaum/workspace/mfm-online/libs/commons/src/domain/business-rules.ts',
+    originalPath: undefined,
+    extension: '.ts',
+    isExternalLibraryImport: false,
+    packageId: undefined,
+    resolvedUsingTsExtension: false
+  }
+}
+{
+  moduleName: '#pkg/domain/formatter',
+  patternStuff: {
+    patternMatched: { prefix: '#pkg/', suffix: '' },
+    patternText: '#pkg/*'
+  },
+  resolvedModule: {
+    resolvedFileName: '/home/pkerschbaum/workspace/mfm-online/libs/commons/src/domain/formatter.ts',
+    originalPath: undefined,
+    extension: '.ts',
+    isExternalLibraryImport: false,
+    packageId: undefined,
+    resolvedUsingTsExtension: false
+  }
+}
+{
+  moduleName: '#pkg/domain/http',
+  patternStuff: {
+    patternMatched: { prefix: '#pkg/', suffix: '' },
+    patternText: '#pkg/*'
+  },
+  resolvedModule: {
+    resolvedFileName: '/home/pkerschbaum/workspace/mfm-online/libs/commons/src/domain/http.ts',
+    originalPath: undefined,
+    extension: '.ts',
+    isExternalLibraryImport: false,
+    packageId: undefined,
+    resolvedUsingTsExtension: false
+  }
+}
+{
+  moduleName: '#pkg/domain/i18n',
+  patternStuff: {
+    patternMatched: { prefix: '#pkg/', suffix: '' },
+    patternText: '#pkg/*'
+  },
+  resolvedModule: {
+    resolvedFileName: '/home/pkerschbaum/workspace/mfm-online/libs/commons/src/domain/i18n.ts',
+    originalPath: undefined,
+    extension: '.ts',
+    isExternalLibraryImport: false,
+    packageId: undefined,
+    resolvedUsingTsExtension: false
+  }
+}
+{
+  moduleName: '#pkg/domain/jwt',
+  patternStuff: {
+    patternMatched: { prefix: '#pkg/', suffix: '' },
+    patternText: '#pkg/*'
+  },
+  resolvedModule: {
+    resolvedFileName: '/home/pkerschbaum/workspace/mfm-online/libs/commons/src/domain/jwt.ts',
+    originalPath: undefined,
+    extension: '.ts',
+    isExternalLibraryImport: false,
+    packageId: undefined,
+    resolvedUsingTsExtension: false
+  }
+}
+{
+  moduleName: '#pkg/domain/routes',
+  patternStuff: {
+    patternMatched: { prefix: '#pkg/', suffix: '' },
+    patternText: '#pkg/*'
+  },
+  resolvedModule: {
+    resolvedFileName: '/home/pkerschbaum/workspace/mfm-online/libs/commons/src/domain/routes.ts',
+    originalPath: undefined,
+    extension: '.ts',
+    isExternalLibraryImport: false,
+    packageId: undefined,
+    resolvedUsingTsExtension: false
+  }
+}
+{
+  moduleName: '#pkg/domain/constants',
+  patternStuff: {
+    patternMatched: { prefix: '#pkg/', suffix: '' },
+    patternText: '#pkg/*'
+  },
+  resolvedModule: {
+    resolvedFileName: '/home/pkerschbaum/workspace/mfm-online/libs/commons/src/domain/constants.ts',
+    originalPath: undefined,
+    extension: '.ts',
+    isExternalLibraryImport: false,
+    packageId: undefined,
+    resolvedUsingTsExtension: false
+  }
+}
+{
+  moduleName: '#pkg/domain/game-events-helper',
+  patternStuff: {
+    patternMatched: { prefix: '#pkg/', suffix: '' },
+    patternText: '#pkg/*'
+  },
+  resolvedModule: {
+    resolvedFileName: '/home/pkerschbaum/workspace/mfm-online/libs/commons/src/domain/game-events-helper.ts',
+    originalPath: undefined,
+    extension: '.ts',
+    isExternalLibraryImport: false,
+    packageId: undefined,
+    resolvedUsingTsExtension: false
+  }
+}
+{
+  moduleName: '#pkg/domain/translations',
+  patternStuff: {
+    patternMatched: { prefix: '#pkg/', suffix: '' },
+    patternText: '#pkg/*'
+  },
+  resolvedModule: {
+    resolvedFileName: '/home/pkerschbaum/workspace/mfm-online/libs/commons/src/domain/translations.tsx',
+    originalPath: undefined,
+    extension: '.tsx',
+    isExternalLibraryImport: false,
+    packageId: undefined,
+    resolvedUsingTsExtension: false
+  }
+}
+{
+  moduleName: '#pkg/util/arrays.util',
+  patternStuff: {
+    patternMatched: { prefix: '#pkg/', suffix: '' },
+    patternText: '#pkg/*'
+  },
+  resolvedModule: {
+    resolvedFileName: '/home/pkerschbaum/workspace/mfm-online/libs/commons/src/util/arrays.util.ts',
+    originalPath: undefined,
+    extension: '.ts',
+    isExternalLibraryImport: false,
+    packageId: undefined,
+    resolvedUsingTsExtension: false
+  }
+}
+{
+  moduleName: '#pkg/util/errors.util',
+  patternStuff: {
+    patternMatched: { prefix: '#pkg/', suffix: '' },
+    patternText: '#pkg/*'
+  },
+  resolvedModule: {
+    resolvedFileName: '/home/pkerschbaum/workspace/mfm-online/libs/commons/src/util/errors.util.ts',
+    originalPath: undefined,
+    extension: '.ts',
+    isExternalLibraryImport: false,
+    packageId: undefined,
+    resolvedUsingTsExtension: false
+  }
+}
+{
+  moduleName: '#pkg/util/http.util',
+  patternStuff: {
+    patternMatched: { prefix: '#pkg/', suffix: '' },
+    patternText: '#pkg/*'
+  },
+  resolvedModule: {
+    resolvedFileName: '/home/pkerschbaum/workspace/mfm-online/libs/commons/src/util/http.util.ts',
+    originalPath: undefined,
+    extension: '.ts',
+    isExternalLibraryImport: false,
+    packageId: undefined,
+    resolvedUsingTsExtension: false
+  }
+}
+{
+  moduleName: '#pkg/util/numbers.util',
+  patternStuff: {
+    patternMatched: { prefix: '#pkg/', suffix: '' },
+    patternText: '#pkg/*'
+  },
+  resolvedModule: {
+    resolvedFileName: '/home/pkerschbaum/workspace/mfm-online/libs/commons/src/util/numbers.util.ts',
+    originalPath: undefined,
+    extension: '.ts',
+    isExternalLibraryImport: false,
+    packageId: undefined,
+    resolvedUsingTsExtension: false
+  }
+}
+{
+  moduleName: '#pkg/util/objects.util',
+  patternStuff: {
+    patternMatched: { prefix: '#pkg/', suffix: '' },
+    patternText: '#pkg/*'
+  },
+  resolvedModule: {
+    resolvedFileName: '/home/pkerschbaum/workspace/mfm-online/libs/commons/src/util/objects.util.ts',
+    originalPath: undefined,
+    extension: '.ts',
+    isExternalLibraryImport: false,
+    packageId: undefined,
+    resolvedUsingTsExtension: false
+  }
+}
+{
+  moduleName: '#pkg/util/strings.util',
+  patternStuff: {
+    patternMatched: { prefix: '#pkg/', suffix: '' },
+    patternText: '#pkg/*'
+  },
+  resolvedModule: {
+    resolvedFileName: '/home/pkerschbaum/workspace/mfm-online/libs/commons/src/util/strings.util.ts',
+    originalPath: undefined,
+    extension: '.ts',
+    isExternalLibraryImport: false,
+    packageId: undefined,
+    resolvedUsingTsExtension: false
+  }
+}
+{
+  moduleName: '#pkg/util/regex.util',
+  patternStuff: {
+    patternMatched: { prefix: '#pkg/', suffix: '' },
+    patternText: '#pkg/*'
+  },
+  resolvedModule: {
+    resolvedFileName: '/home/pkerschbaum/workspace/mfm-online/libs/commons/src/util/regex.util.ts',
+    originalPath: undefined,
+    extension: '.ts',
+    isExternalLibraryImport: false,
+    packageId: undefined,
+    resolvedUsingTsExtension: false
+  }
+}
+{
+  moduleName: '#pkg/util/axios.util',
+  patternStuff: {
+    patternMatched: { prefix: '#pkg/', suffix: '' },
+    patternText: '#pkg/*'
+  },
+  resolvedModule: {
+    resolvedFileName: '/home/pkerschbaum/workspace/mfm-online/libs/commons/src/util/axios.util.ts',
+    originalPath: undefined,
+    extension: '.ts',
+    isExternalLibraryImport: false,
+    packageId: undefined,
+    resolvedUsingTsExtension: false
+  }
+}
+{
+  moduleName: '#pkg/util/boolean.util',
+  patternStuff: {
+    patternMatched: { prefix: '#pkg/', suffix: '' },
+    patternText: '#pkg/*'
+  },
+  resolvedModule: {
+    resolvedFileName: '/home/pkerschbaum/workspace/mfm-online/libs/commons/src/util/boolean.util.ts',
+    originalPath: undefined,
+    extension: '.ts',
+    isExternalLibraryImport: false,
+    packageId: undefined,
+    resolvedUsingTsExtension: false
+  }
+}
+{
+  moduleName: '#pkg/util/custom-error',
+  patternStuff: {
+    patternMatched: { prefix: '#pkg/', suffix: '' },
+    patternText: '#pkg/*'
+  },
+  resolvedModule: {
+    resolvedFileName: '/home/pkerschbaum/workspace/mfm-online/libs/commons/src/util/custom-error.ts',
+    originalPath: undefined,
+    extension: '.ts',
+    isExternalLibraryImport: false,
+    packageId: undefined,
+    resolvedUsingTsExtension: false
+  }
+}
+{
+  moduleName: '#pkg/util/env.util',
+  patternStuff: {
+    patternMatched: { prefix: '#pkg/', suffix: '' },
+    patternText: '#pkg/*'
+  },
+  resolvedModule: {
+    resolvedFileName: '/home/pkerschbaum/workspace/mfm-online/libs/commons/src/util/env.util.ts',
+    originalPath: undefined,
+    extension: '.ts',
+    isExternalLibraryImport: false,
+    packageId: undefined,
+    resolvedUsingTsExtension: false
+  }
+}
+{
+  moduleName: '#pkg/util/functions.util',
+  patternStuff: {
+    patternMatched: { prefix: '#pkg/', suffix: '' },
+    patternText: '#pkg/*'
+  },
+  resolvedModule: {
+    resolvedFileName: '/home/pkerschbaum/workspace/mfm-online/libs/commons/src/util/functions.util.ts',
+    originalPath: undefined,
+    extension: '.ts',
+    isExternalLibraryImport: false,
+    packageId: undefined,
+    resolvedUsingTsExtension: false
+  }
+}
+{
+  moduleName: '#pkg/util/id-generator.util',
+  patternStuff: {
+    patternMatched: { prefix: '#pkg/', suffix: '' },
+    patternText: '#pkg/*'
+  },
+  resolvedModule: {
+    resolvedFileName: '/home/pkerschbaum/workspace/mfm-online/libs/commons/src/util/id-generator.util.ts',
+    originalPath: undefined,
+    extension: '.ts',
+    isExternalLibraryImport: false,
+    packageId: undefined,
+    resolvedUsingTsExtension: false
+  }
+}
+{
+  moduleName: '#pkg/util/json.util',
+  patternStuff: {
+    patternMatched: { prefix: '#pkg/', suffix: '' },
+    patternText: '#pkg/*'
+  },
+  resolvedModule: {
+    resolvedFileName: '/home/pkerschbaum/workspace/mfm-online/libs/commons/src/util/json.util.ts',
+    originalPath: undefined,
+    extension: '.ts',
+    isExternalLibraryImport: false,
+    packageId: undefined,
+    resolvedUsingTsExtension: false
+  }
+}
+{
+  moduleName: '#pkg/util/promises.util',
+  patternStuff: {
+    patternMatched: { prefix: '#pkg/', suffix: '' },
+    patternText: '#pkg/*'
+  },
+  resolvedModule: {
+    resolvedFileName: '/home/pkerschbaum/workspace/mfm-online/libs/commons/src/util/promises.util.ts',
+    originalPath: undefined,
+    extension: '.ts',
+    isExternalLibraryImport: false,
+    packageId: undefined,
+    resolvedUsingTsExtension: false
+  }
+}
+{
+  moduleName: '#pkg/util/pubsub.util',
+  patternStuff: {
+    patternMatched: { prefix: '#pkg/', suffix: '' },
+    patternText: '#pkg/*'
+  },
+  resolvedModule: {
+    resolvedFileName: '/home/pkerschbaum/workspace/mfm-online/libs/commons/src/util/pubsub.util.ts',
+    originalPath: undefined,
+    extension: '.ts',
+    isExternalLibraryImport: false,
+    packageId: undefined,
+    resolvedUsingTsExtension: false
+  }
+}
+{
+  moduleName: '#pkg/util/types.util',
+  patternStuff: {
+    patternMatched: { prefix: '#pkg/', suffix: '' },
+    patternText: '#pkg/*'
+  },
+  resolvedModule: {
+    resolvedFileName: '/home/pkerschbaum/workspace/mfm-online/libs/commons/src/util/types.util.ts',
+    originalPath: undefined,
+    extension: '.ts',
+    isExternalLibraryImport: false,
+    packageId: undefined,
+    resolvedUsingTsExtension: false
+  }
+}
+{
+  moduleName: '#pkg/util/datastructure/blocking-queue',
+  patternStuff: {
+    patternMatched: { prefix: '#pkg/', suffix: '' },
+    patternText: '#pkg/*'
+  },
+  resolvedModule: {
+    resolvedFileName: '/home/pkerschbaum/workspace/mfm-online/libs/commons/src/util/datastructure/blocking-queue.ts',
+    originalPath: undefined,
+    extension: '.ts',
+    isExternalLibraryImport: false,
+    packageId: undefined,
+    resolvedUsingTsExtension: false
+  }
+}
+{
+  moduleNames: [ './', './' ],
+  containingFile: '/home/pkerschbaum/workspace/mfm-online/libs/commons/node_modules/@types/react/jsx-runtime.d.ts'
+}
+{
+  moduleName: './',
+  patternStuff: undefined,
+  resolvedModule: {
+    resolvedFileName: '/home/pkerschbaum/workspace/mfm-online/libs/commons/node_modules/@types/react/index.d.ts',
+    originalPath: undefined,
+    extension: '.d.ts',
+    isExternalLibraryImport: true,
+    packageId: {
+      name: '@types/react',
+      subModuleName: 'ndex.d.ts',
+      version: '18.3.5',
+      peerDependencies: undefined
+    },
+    resolvedUsingTsExtension: false
+  }
+}
+{
+  moduleName: './',
+  patternStuff: undefined,
+  resolvedModule: {
+    resolvedFileName: '/home/pkerschbaum/workspace/mfm-online/libs/commons/node_modules/@types/react/index.d.ts',
+    originalPath: undefined,
+    extension: '.d.ts',
+    isExternalLibraryImport: true,
+    packageId: {
+      name: '@types/react',
+      subModuleName: 'ndex.d.ts',
+      version: '18.3.5',
+      peerDependencies: undefined
+    },
+    resolvedUsingTsExtension: false
+  }
+}
+{
+  moduleNames: [ 'csstype', 'prop-types' ],
+  containingFile: '/home/pkerschbaum/workspace/mfm-online/libs/commons/node_modules/@types/react/index.d.ts'
+}
+{
+  moduleName: 'csstype',
+  patternStuff: undefined,
+  resolvedModule: undefined
+}
+{
+  moduleName: 'prop-types',
+  patternStuff: undefined,
+  resolvedModule: undefined
+}
+{
+  moduleNames: [ 'react/jsx-runtime' ],
+  containingFile: '/home/pkerschbaum/workspace/mfm-online/libs/commons/src/domain/business-rules.ts'
+}
+{
+  moduleName: 'react/jsx-runtime',
+  patternStuff: undefined,
+  resolvedModule: {
+    resolvedFileName: '/home/pkerschbaum/workspace/mfm-online/libs/commons/node_modules/@types/react/jsx-runtime.d.ts',
+    originalPath: undefined,
+    extension: '.d.ts',
+    isExternalLibraryImport: true,
+    packageId: {
+      name: '@types/react',
+      subModuleName: 'jsx-runtime.d.ts',
+      version: '18.3.5',
+      peerDependencies: undefined
+    },
+    resolvedUsingTsExtension: false
+  }
+}
+{
+  moduleNames: [
+    'react/jsx-runtime',
+    'moment',
+    '#pkg/domain/i18n',
+    '#pkg/domain/translations',
+    '#pkg/util/types.util'
+  ],
+  containingFile: '/home/pkerschbaum/workspace/mfm-online/libs/commons/src/domain/formatter.ts'
+}
+{
+  moduleName: 'react/jsx-runtime',
+  patternStuff: undefined,
+  resolvedModule: {
+    resolvedFileName: '/home/pkerschbaum/workspace/mfm-online/libs/commons/node_modules/@types/react/jsx-runtime.d.ts',
+    originalPath: undefined,
+    extension: '.d.ts',
+    isExternalLibraryImport: true,
+    packageId: {
+      name: '@types/react',
+      subModuleName: 'jsx-runtime.d.ts',
+      version: '18.3.5',
+      peerDependencies: undefined
+    },
+    resolvedUsingTsExtension: false
+  }
+}
+{
+  moduleName: 'moment',
+  patternStuff: undefined,
+  resolvedModule: {
+    resolvedFileName: '/home/pkerschbaum/workspace/mfm-online/libs/commons/node_modules/moment/ts3.1-typings/moment.d.ts',
+    originalPath: undefined,
+    extension: '.d.ts',
+    isExternalLibraryImport: true,
+    packageId: {
+      name: 'moment',
+      subModuleName: 'ts3.1-typings/moment.d.ts',
+      version: '2.30.1',
+      peerDependencies: undefined
+    },
+    resolvedUsingTsExtension: false
+  }
+}
+{
+  moduleName: '#pkg/domain/i18n',
+  patternStuff: {
+    patternMatched: { prefix: '#pkg/', suffix: '' },
+    patternText: '#pkg/*'
+  },
+  resolvedModule: {
+    resolvedFileName: '/home/pkerschbaum/workspace/mfm-online/libs/commons/src/domain/i18n.ts',
+    originalPath: undefined,
+    extension: '.ts',
+    isExternalLibraryImport: false,
+    packageId: undefined,
+    resolvedUsingTsExtension: false
+  }
+}
+{
+  moduleName: '#pkg/domain/translations',
+  patternStuff: {
+    patternMatched: { prefix: '#pkg/', suffix: '' },
+    patternText: '#pkg/*'
+  },
+  resolvedModule: {
+    resolvedFileName: '/home/pkerschbaum/workspace/mfm-online/libs/commons/src/domain/translations.tsx',
+    originalPath: undefined,
+    extension: '.tsx',
+    isExternalLibraryImport: false,
+    packageId: undefined,
+    resolvedUsingTsExtension: false
+  }
+}
+{
+  moduleName: '#pkg/util/types.util',
+  patternStuff: {
+    patternMatched: { prefix: '#pkg/', suffix: '' },
+    patternText: '#pkg/*'
+  },
+  resolvedModule: {
+    resolvedFileName: '/home/pkerschbaum/workspace/mfm-online/libs/commons/src/util/types.util.ts',
+    originalPath: undefined,
+    extension: '.ts',
+    isExternalLibraryImport: false,
+    packageId: undefined,
+    resolvedUsingTsExtension: false
+  }
+}
+{
+  moduleNames: [ 'react/jsx-runtime', 'zod' ],
+  containingFile: '/home/pkerschbaum/workspace/mfm-online/libs/commons/src/domain/i18n.ts'
+}
+{
+  moduleName: 'react/jsx-runtime',
+  patternStuff: undefined,
+  resolvedModule: {
+    resolvedFileName: '/home/pkerschbaum/workspace/mfm-online/libs/commons/node_modules/@types/react/jsx-runtime.d.ts',
+    originalPath: undefined,
+    extension: '.d.ts',
+    isExternalLibraryImport: true,
+    packageId: {
+      name: '@types/react',
+      subModuleName: 'jsx-runtime.d.ts',
+      version: '18.3.5',
+      peerDependencies: undefined
+    },
+    resolvedUsingTsExtension: false
+  }
+}
+{
+  moduleName: 'zod',
+  patternStuff: undefined,
+  resolvedModule: {
+    resolvedFileName: '/home/pkerschbaum/workspace/mfm-online/libs/commons/node_modules/zod/index.d.ts',
+    originalPath: undefined,
+    extension: '.d.ts',
+    isExternalLibraryImport: true,
+    packageId: {
+      name: 'zod',
+      subModuleName: 'index.d.ts',
+      version: '3.23.8',
+      peerDependencies: undefined
+    },
+    resolvedUsingTsExtension: false
+  }
+}
+{
+  moduleNames: [ './lib' ],
+  containingFile: '/home/pkerschbaum/workspace/mfm-online/libs/commons/node_modules/zod/index.d.ts'
+}
+{
+  moduleName: './lib',
+  patternStuff: undefined,
+  resolvedModule: {
+    resolvedFileName: '/home/pkerschbaum/workspace/mfm-online/libs/commons/node_modules/zod/lib/index.d.ts',
+    originalPath: undefined,
+    extension: '.d.ts',
+    isExternalLibraryImport: true,
+    packageId: undefined,
+    resolvedUsingTsExtension: false
+  }
+}
+{
+  moduleNames: [ './external', './external' ],
+  containingFile: '/home/pkerschbaum/workspace/mfm-online/libs/commons/node_modules/zod/lib/index.d.ts'
+}
+{
+  moduleName: './external',
+  patternStuff: undefined,
+  resolvedModule: {
+    resolvedFileName: '/home/pkerschbaum/workspace/mfm-online/libs/commons/node_modules/zod/lib/external.d.ts',
+    originalPath: undefined,
+    extension: '.d.ts',
+    isExternalLibraryImport: true,
+    packageId: {
+      name: 'zod',
+      subModuleName: 'lib/external.d.ts',
+      version: '3.23.8',
+      peerDependencies: undefined
+    },
+    resolvedUsingTsExtension: false
+  }
+}
+{
+  moduleName: './external',
+  patternStuff: undefined,
+  resolvedModule: {
+    resolvedFileName: '/home/pkerschbaum/workspace/mfm-online/libs/commons/node_modules/zod/lib/external.d.ts',
+    originalPath: undefined,
+    extension: '.d.ts',
+    isExternalLibraryImport: true,
+    packageId: {
+      name: 'zod',
+      subModuleName: 'lib/external.d.ts',
+      version: '3.23.8',
+      peerDependencies: undefined
+    },
+    resolvedUsingTsExtension: false
+  }
+}
+{
+  moduleNames: [
+    './errors',
+    './helpers/parseUtil',
+    './helpers/typeAliases',
+    './helpers/util',
+    './types',
+    './ZodError'
+  ],
+  containingFile: '/home/pkerschbaum/workspace/mfm-online/libs/commons/node_modules/zod/lib/external.d.ts'
+}
+{
+  moduleName: './errors',
+  patternStuff: undefined,
+  resolvedModule: {
+    resolvedFileName: '/home/pkerschbaum/workspace/mfm-online/libs/commons/node_modules/zod/lib/errors.d.ts',
+    originalPath: undefined,
+    extension: '.d.ts',
+    isExternalLibraryImport: true,
+    packageId: {
+      name: 'zod',
+      subModuleName: 'lib/errors.d.ts',
+      version: '3.23.8',
+      peerDependencies: undefined
+    },
+    resolvedUsingTsExtension: false
+  }
+}
+{
+  moduleName: './helpers/parseUtil',
+  patternStuff: undefined,
+  resolvedModule: {
+    resolvedFileName: '/home/pkerschbaum/workspace/mfm-online/libs/commons/node_modules/zod/lib/helpers/parseUtil.d.ts',
+    originalPath: undefined,
+    extension: '.d.ts',
+    isExternalLibraryImport: true,
+    packageId: {
+      name: 'zod',
+      subModuleName: 'lib/helpers/parseUtil.d.ts',
+      version: '3.23.8',
+      peerDependencies: undefined
+    },
+    resolvedUsingTsExtension: false
+  }
+}
+{
+  moduleName: './helpers/typeAliases',
+  patternStuff: undefined,
+  resolvedModule: {
+    resolvedFileName: '/home/pkerschbaum/workspace/mfm-online/libs/commons/node_modules/zod/lib/helpers/typeAliases.d.ts',
+    originalPath: undefined,
+    extension: '.d.ts',
+    isExternalLibraryImport: true,
+    packageId: {
+      name: 'zod',
+      subModuleName: 'lib/helpers/typeAliases.d.ts',
+      version: '3.23.8',
+      peerDependencies: undefined
+    },
+    resolvedUsingTsExtension: false
+  }
+}
+{
+  moduleName: './helpers/util',
+  patternStuff: undefined,
+  resolvedModule: {
+    resolvedFileName: '/home/pkerschbaum/workspace/mfm-online/libs/commons/node_modules/zod/lib/helpers/util.d.ts',
+    originalPath: undefined,
+    extension: '.d.ts',
+    isExternalLibraryImport: true,
+    packageId: {
+      name: 'zod',
+      subModuleName: 'lib/helpers/util.d.ts',
+      version: '3.23.8',
+      peerDependencies: undefined
+    },
+    resolvedUsingTsExtension: false
+  }
+}
+{
+  moduleName: './types',
+  patternStuff: undefined,
+  resolvedModule: {
+    resolvedFileName: '/home/pkerschbaum/workspace/mfm-online/libs/commons/node_modules/zod/lib/types.d.ts',
+    originalPath: undefined,
+    extension: '.d.ts',
+    isExternalLibraryImport: true,
+    packageId: {
+      name: 'zod',
+      subModuleName: 'lib/types.d.ts',
+      version: '3.23.8',
+      peerDependencies: undefined
+    },
+    resolvedUsingTsExtension: false
+  }
+}
+{
+  moduleName: './ZodError',
+  patternStuff: undefined,
+  resolvedModule: {
+    resolvedFileName: '/home/pkerschbaum/workspace/mfm-online/libs/commons/node_modules/zod/lib/ZodError.d.ts',
+    originalPath: undefined,
+    extension: '.d.ts',
+    isExternalLibraryImport: true,
+    packageId: {
+      name: 'zod',
+      subModuleName: 'lib/ZodError.d.ts',
+      version: '3.23.8',
+      peerDependencies: undefined
+    },
+    resolvedUsingTsExtension: false
+  }
+}
+{
+  moduleNames: [ './locales/en', './ZodError' ],
+  containingFile: '/home/pkerschbaum/workspace/mfm-online/libs/commons/node_modules/zod/lib/errors.d.ts'
+}
+{
+  moduleName: './locales/en',
+  patternStuff: undefined,
+  resolvedModule: {
+    resolvedFileName: '/home/pkerschbaum/workspace/mfm-online/libs/commons/node_modules/zod/lib/locales/en.d.ts',
+    originalPath: undefined,
+    extension: '.d.ts',
+    isExternalLibraryImport: true,
+    packageId: {
+      name: 'zod',
+      subModuleName: 'lib/locales/en.d.ts',
+      version: '3.23.8',
+      peerDependencies: undefined
+    },
+    resolvedUsingTsExtension: false
+  }
+}
+{
+  moduleName: './ZodError',
+  patternStuff: undefined,
+  resolvedModule: {
+    resolvedFileName: '/home/pkerschbaum/workspace/mfm-online/libs/commons/node_modules/zod/lib/ZodError.d.ts',
+    originalPath: undefined,
+    extension: '.d.ts',
+    isExternalLibraryImport: true,
+    packageId: {
+      name: 'zod',
+      subModuleName: 'lib/ZodError.d.ts',
+      version: '3.23.8',
+      peerDependencies: undefined
+    },
+    resolvedUsingTsExtension: false
+  }
+}
+{
+  moduleNames: [ '../ZodError' ],
+  containingFile: '/home/pkerschbaum/workspace/mfm-online/libs/commons/node_modules/zod/lib/locales/en.d.ts'
+}
+{
+  moduleName: '../ZodError',
+  patternStuff: undefined,
+  resolvedModule: {
+    resolvedFileName: '/home/pkerschbaum/workspace/mfm-online/libs/commons/node_modules/zod/lib/ZodError.d.ts',
+    originalPath: undefined,
+    extension: '.d.ts',
+    isExternalLibraryImport: true,
+    packageId: {
+      name: 'zod',
+      subModuleName: 'lib/ZodError.d.ts',
+      version: '3.23.8',
+      peerDependencies: undefined
+    },
+    resolvedUsingTsExtension: false
+  }
+}
+{
+  moduleNames: [ '.', './helpers/typeAliases', './helpers/util' ],
+  containingFile: '/home/pkerschbaum/workspace/mfm-online/libs/commons/node_modules/zod/lib/ZodError.d.ts'
+}
+{
+  moduleName: '.',
+  patternStuff: undefined,
+  resolvedModule: {
+    resolvedFileName: '/home/pkerschbaum/workspace/mfm-online/libs/commons/node_modules/zod/lib/index.d.ts',
+    originalPath: undefined,
+    extension: '.d.ts',
+    isExternalLibraryImport: true,
+    packageId: undefined,
+    resolvedUsingTsExtension: false
+  }
+}
+{
+  moduleName: './helpers/typeAliases',
+  patternStuff: undefined,
+  resolvedModule: {
+    resolvedFileName: '/home/pkerschbaum/workspace/mfm-online/libs/commons/node_modules/zod/lib/helpers/typeAliases.d.ts',
+    originalPath: undefined,
+    extension: '.d.ts',
+    isExternalLibraryImport: true,
+    packageId: {
+      name: 'zod',
+      subModuleName: 'lib/helpers/typeAliases.d.ts',
+      version: '3.23.8',
+      peerDependencies: undefined
+    },
+    resolvedUsingTsExtension: false
+  }
+}
+{
+  moduleName: './helpers/util',
+  patternStuff: undefined,
+  resolvedModule: {
+    resolvedFileName: '/home/pkerschbaum/workspace/mfm-online/libs/commons/node_modules/zod/lib/helpers/util.d.ts',
+    originalPath: undefined,
+    extension: '.d.ts',
+    isExternalLibraryImport: true,
+    packageId: {
+      name: 'zod',
+      subModuleName: 'lib/helpers/util.d.ts',
+      version: '3.23.8',
+      peerDependencies: undefined
+    },
+    resolvedUsingTsExtension: false
+  }
+}
+{
+  moduleNames: [ '../ZodError', './util' ],
+  containingFile: '/home/pkerschbaum/workspace/mfm-online/libs/commons/node_modules/zod/lib/helpers/parseUtil.d.ts'
+}
+{
+  moduleName: '../ZodError',
+  patternStuff: undefined,
+  resolvedModule: {
+    resolvedFileName: '/home/pkerschbaum/workspace/mfm-online/libs/commons/node_modules/zod/lib/ZodError.d.ts',
+    originalPath: undefined,
+    extension: '.d.ts',
+    isExternalLibraryImport: true,
+    packageId: {
+      name: 'zod',
+      subModuleName: 'lib/ZodError.d.ts',
+      version: '3.23.8',
+      peerDependencies: undefined
+    },
+    resolvedUsingTsExtension: false
+  }
+}
+{
+  moduleName: './util',
+  patternStuff: undefined,
+  resolvedModule: {
+    resolvedFileName: '/home/pkerschbaum/workspace/mfm-online/libs/commons/node_modules/zod/lib/helpers/util.d.ts',
+    originalPath: undefined,
+    extension: '.d.ts',
+    isExternalLibraryImport: true,
+    packageId: {
+      name: 'zod',
+      subModuleName: 'lib/helpers/util.d.ts',
+      version: '3.23.8',
+      peerDependencies: undefined
+    },
+    resolvedUsingTsExtension: false
+  }
+}
+{
+  moduleNames: [
+    './helpers/enumUtil',
+    './helpers/errorUtil',
+    './helpers/parseUtil',
+    './helpers/partialUtil',
+    './helpers/typeAliases',
+    './helpers/util',
+    './ZodError'
+  ],
+  containingFile: '/home/pkerschbaum/workspace/mfm-online/libs/commons/node_modules/zod/lib/types.d.ts'
+}
+{
+  moduleName: './helpers/enumUtil',
+  patternStuff: undefined,
+  resolvedModule: {
+    resolvedFileName: '/home/pkerschbaum/workspace/mfm-online/libs/commons/node_modules/zod/lib/helpers/enumUtil.d.ts',
+    originalPath: undefined,
+    extension: '.d.ts',
+    isExternalLibraryImport: true,
+    packageId: {
+      name: 'zod',
+      subModuleName: 'lib/helpers/enumUtil.d.ts',
+      version: '3.23.8',
+      peerDependencies: undefined
+    },
+    resolvedUsingTsExtension: false
+  }
+}
+{
+  moduleName: './helpers/errorUtil',
+  patternStuff: undefined,
+  resolvedModule: {
+    resolvedFileName: '/home/pkerschbaum/workspace/mfm-online/libs/commons/node_modules/zod/lib/helpers/errorUtil.d.ts',
+    originalPath: undefined,
+    extension: '.d.ts',
+    isExternalLibraryImport: true,
+    packageId: {
+      name: 'zod',
+      subModuleName: 'lib/helpers/errorUtil.d.ts',
+      version: '3.23.8',
+      peerDependencies: undefined
+    },
+    resolvedUsingTsExtension: false
+  }
+}
+{
+  moduleName: './helpers/parseUtil',
+  patternStuff: undefined,
+  resolvedModule: {
+    resolvedFileName: '/home/pkerschbaum/workspace/mfm-online/libs/commons/node_modules/zod/lib/helpers/parseUtil.d.ts',
+    originalPath: undefined,
+    extension: '.d.ts',
+    isExternalLibraryImport: true,
+    packageId: {
+      name: 'zod',
+      subModuleName: 'lib/helpers/parseUtil.d.ts',
+      version: '3.23.8',
+      peerDependencies: undefined
+    },
+    resolvedUsingTsExtension: false
+  }
+}
+{
+  moduleName: './helpers/partialUtil',
+  patternStuff: undefined,
+  resolvedModule: {
+    resolvedFileName: '/home/pkerschbaum/workspace/mfm-online/libs/commons/node_modules/zod/lib/helpers/partialUtil.d.ts',
+    originalPath: undefined,
+    extension: '.d.ts',
+    isExternalLibraryImport: true,
+    packageId: {
+      name: 'zod',
+      subModuleName: 'lib/helpers/partialUtil.d.ts',
+      version: '3.23.8',
+      peerDependencies: undefined
+    },
+    resolvedUsingTsExtension: false
+  }
+}
+{
+  moduleName: './helpers/typeAliases',
+  patternStuff: undefined,
+  resolvedModule: {
+    resolvedFileName: '/home/pkerschbaum/workspace/mfm-online/libs/commons/node_modules/zod/lib/helpers/typeAliases.d.ts',
+    originalPath: undefined,
+    extension: '.d.ts',
+    isExternalLibraryImport: true,
+    packageId: {
+      name: 'zod',
+      subModuleName: 'lib/helpers/typeAliases.d.ts',
+      version: '3.23.8',
+      peerDependencies: undefined
+    },
+    resolvedUsingTsExtension: false
+  }
+}
+{
+  moduleName: './helpers/util',
+  patternStuff: undefined,
+  resolvedModule: {
+    resolvedFileName: '/home/pkerschbaum/workspace/mfm-online/libs/commons/node_modules/zod/lib/helpers/util.d.ts',
+    originalPath: undefined,
+    extension: '.d.ts',
+    isExternalLibraryImport: true,
+    packageId: {
+      name: 'zod',
+      subModuleName: 'lib/helpers/util.d.ts',
+      version: '3.23.8',
+      peerDependencies: undefined
+    },
+    resolvedUsingTsExtension: false
+  }
+}
+{
+  moduleName: './ZodError',
+  patternStuff: undefined,
+  resolvedModule: {
+    resolvedFileName: '/home/pkerschbaum/workspace/mfm-online/libs/commons/node_modules/zod/lib/ZodError.d.ts',
+    originalPath: undefined,
+    extension: '.d.ts',
+    isExternalLibraryImport: true,
+    packageId: {
+      name: 'zod',
+      subModuleName: 'lib/ZodError.d.ts',
+      version: '3.23.8',
+      peerDependencies: undefined
+    },
+    resolvedUsingTsExtension: false
+  }
+}
+{
+  moduleNames: [ '../index' ],
+  containingFile: '/home/pkerschbaum/workspace/mfm-online/libs/commons/node_modules/zod/lib/helpers/partialUtil.d.ts'
+}
+{
+  moduleName: '../index',
+  patternStuff: undefined,
+  resolvedModule: {
+    resolvedFileName: '/home/pkerschbaum/workspace/mfm-online/libs/commons/node_modules/zod/lib/index.d.ts',
+    originalPath: undefined,
+    extension: '.d.ts',
+    isExternalLibraryImport: true,
+    packageId: {
+      name: 'zod',
+      subModuleName: 'lib/index.d.ts',
+      version: '3.23.8',
+      peerDependencies: undefined
+    },
+    resolvedUsingTsExtension: false
+  }
+}
+{
+  moduleNames: [
+    'react/jsx-runtime',
+    'react',
+    '#pkg/domain/i18n',
+    '#pkg/util/objects.util',
+    '#pkg/util/types.util'
+  ],
+  containingFile: '/home/pkerschbaum/workspace/mfm-online/libs/commons/src/domain/translations.tsx'
+}
+{
+  moduleName: 'react/jsx-runtime',
+  patternStuff: undefined,
+  resolvedModule: {
+    resolvedFileName: '/home/pkerschbaum/workspace/mfm-online/libs/commons/node_modules/@types/react/jsx-runtime.d.ts',
+    originalPath: undefined,
+    extension: '.d.ts',
+    isExternalLibraryImport: true,
+    packageId: {
+      name: '@types/react',
+      subModuleName: 'jsx-runtime.d.ts',
+      version: '18.3.5',
+      peerDependencies: undefined
+    },
+    resolvedUsingTsExtension: false
+  }
+}
+{
+  moduleName: 'react',
+  patternStuff: undefined,
+  resolvedModule: {
+    resolvedFileName: '/home/pkerschbaum/workspace/mfm-online/libs/commons/node_modules/@types/react/index.d.ts',
+    originalPath: undefined,
+    extension: '.d.ts',
+    isExternalLibraryImport: true,
+    packageId: {
+      name: '@types/react',
+      subModuleName: 'index.d.ts',
+      version: '18.3.5',
+      peerDependencies: undefined
+    },
+    resolvedUsingTsExtension: false
+  }
+}
+{
+  moduleName: '#pkg/domain/i18n',
+  patternStuff: {
+    patternMatched: { prefix: '#pkg/', suffix: '' },
+    patternText: '#pkg/*'
+  },
+  resolvedModule: {
+    resolvedFileName: '/home/pkerschbaum/workspace/mfm-online/libs/commons/src/domain/i18n.ts',
+    originalPath: undefined,
+    extension: '.ts',
+    isExternalLibraryImport: false,
+    packageId: undefined,
+    resolvedUsingTsExtension: false
+  }
+}
+{
+  moduleName: '#pkg/util/objects.util',
+  patternStuff: {
+    patternMatched: { prefix: '#pkg/', suffix: '' },
+    patternText: '#pkg/*'
+  },
+  resolvedModule: {
+    resolvedFileName: '/home/pkerschbaum/workspace/mfm-online/libs/commons/src/util/objects.util.ts',
+    originalPath: undefined,
+    extension: '.ts',
+    isExternalLibraryImport: false,
+    packageId: undefined,
+    resolvedUsingTsExtension: false
+  }
+}
+{
+  moduleName: '#pkg/util/types.util',
+  patternStuff: {
+    patternMatched: { prefix: '#pkg/', suffix: '' },
+    patternText: '#pkg/*'
+  },
+  resolvedModule: {
+    resolvedFileName: '/home/pkerschbaum/workspace/mfm-online/libs/commons/src/util/types.util.ts',
+    originalPath: undefined,
+    extension: '.ts',
+    isExternalLibraryImport: false,
+    packageId: undefined,
+    resolvedUsingTsExtension: false
+  }
+}
+{
+  moduleNames: [ 'react/jsx-runtime', '#pkg/util/types.util' ],
+  containingFile: '/home/pkerschbaum/workspace/mfm-online/libs/commons/src/util/objects.util.ts'
+}
+{
+  moduleName: 'react/jsx-runtime',
+  patternStuff: undefined,
+  resolvedModule: {
+    resolvedFileName: '/home/pkerschbaum/workspace/mfm-online/libs/commons/node_modules/@types/react/jsx-runtime.d.ts',
+    originalPath: undefined,
+    extension: '.d.ts',
+    isExternalLibraryImport: true,
+    packageId: {
+      name: '@types/react',
+      subModuleName: 'jsx-runtime.d.ts',
+      version: '18.3.5',
+      peerDependencies: undefined
+    },
+    resolvedUsingTsExtension: false
+  }
+}
+{
+  moduleName: '#pkg/util/types.util',
+  patternStuff: {
+    patternMatched: { prefix: '#pkg/', suffix: '' },
+    patternText: '#pkg/*'
+  },
+  resolvedModule: {
+    resolvedFileName: '/home/pkerschbaum/workspace/mfm-online/libs/commons/src/util/types.util.ts',
+    originalPath: undefined,
+    extension: '.ts',
+    isExternalLibraryImport: false,
+    packageId: undefined,
+    resolvedUsingTsExtension: false
+  }
+}
+{
+  moduleNames: [ 'react/jsx-runtime' ],
+  containingFile: '/home/pkerschbaum/workspace/mfm-online/libs/commons/src/util/types.util.ts'
+}
+{
+  moduleName: 'react/jsx-runtime',
+  patternStuff: undefined,
+  resolvedModule: {
+    resolvedFileName: '/home/pkerschbaum/workspace/mfm-online/libs/commons/node_modules/@types/react/jsx-runtime.d.ts',
+    originalPath: undefined,
+    extension: '.d.ts',
+    isExternalLibraryImport: true,
+    packageId: {
+      name: '@types/react',
+      subModuleName: 'jsx-runtime.d.ts',
+      version: '18.3.5',
+      peerDependencies: undefined
+    },
+    resolvedUsingTsExtension: false
+  }
+}
+{
+  moduleNames: [ 'react/jsx-runtime' ],
+  containingFile: '/home/pkerschbaum/workspace/mfm-online/libs/commons/src/domain/http.ts'
+}
+{
+  moduleName: 'react/jsx-runtime',
+  patternStuff: undefined,
+  resolvedModule: {
+    resolvedFileName: '/home/pkerschbaum/workspace/mfm-online/libs/commons/node_modules/@types/react/jsx-runtime.d.ts',
+    originalPath: undefined,
+    extension: '.d.ts',
+    isExternalLibraryImport: true,
+    packageId: {
+      name: '@types/react',
+      subModuleName: 'jsx-runtime.d.ts',
+      version: '18.3.5',
+      peerDependencies: undefined
+    },
+    resolvedUsingTsExtension: false
+  }
+}
+{
+  moduleNames: [ 'react/jsx-runtime', 'jwt-decode' ],
+  containingFile: '/home/pkerschbaum/workspace/mfm-online/libs/commons/src/domain/jwt.ts'
+}
+{
+  moduleName: 'react/jsx-runtime',
+  patternStuff: undefined,
+  resolvedModule: {
+    resolvedFileName: '/home/pkerschbaum/workspace/mfm-online/libs/commons/node_modules/@types/react/jsx-runtime.d.ts',
+    originalPath: undefined,
+    extension: '.d.ts',
+    isExternalLibraryImport: true,
+    packageId: {
+      name: '@types/react',
+      subModuleName: 'jsx-runtime.d.ts',
+      version: '18.3.5',
+      peerDependencies: undefined
+    },
+    resolvedUsingTsExtension: false
+  }
+}
+{
+  moduleName: 'jwt-decode',
+  patternStuff: undefined,
+  resolvedModule: {
+    resolvedFileName: '/home/pkerschbaum/workspace/mfm-online/libs/commons/node_modules/jwt-decode/index.d.ts',
+    originalPath: undefined,
+    extension: '.d.ts',
+    isExternalLibraryImport: true,
+    packageId: {
+      name: 'jwt-decode',
+      subModuleName: 'index.d.ts',
+      version: '3.1.2',
+      peerDependencies: undefined
+    },
+    resolvedUsingTsExtension: false
+  }
+}
+{
+  moduleNames: [ 'react/jsx-runtime' ],
+  containingFile: '/home/pkerschbaum/workspace/mfm-online/libs/commons/src/domain/routes.ts'
+}
+{
+  moduleName: 'react/jsx-runtime',
+  patternStuff: undefined,
+  resolvedModule: {
+    resolvedFileName: '/home/pkerschbaum/workspace/mfm-online/libs/commons/node_modules/@types/react/jsx-runtime.d.ts',
+    originalPath: undefined,
+    extension: '.d.ts',
+    isExternalLibraryImport: true,
+    packageId: {
+      name: '@types/react',
+      subModuleName: 'jsx-runtime.d.ts',
+      version: '18.3.5',
+      peerDependencies: undefined
+    },
+    resolvedUsingTsExtension: false
+  }
+}
+{
+  moduleNames: [ 'react/jsx-runtime' ],
+  containingFile: '/home/pkerschbaum/workspace/mfm-online/libs/commons/src/domain/constants.ts'
+}
+{
+  moduleName: 'react/jsx-runtime',
+  patternStuff: undefined,
+  resolvedModule: {
+    resolvedFileName: '/home/pkerschbaum/workspace/mfm-online/libs/commons/node_modules/@types/react/jsx-runtime.d.ts',
+    originalPath: undefined,
+    extension: '.d.ts',
+    isExternalLibraryImport: true,
+    packageId: {
+      name: '@types/react',
+      subModuleName: 'jsx-runtime.d.ts',
+      version: '18.3.5',
+      peerDependencies: undefined
+    },
+    resolvedUsingTsExtension: false
+  }
+}
+{
+  moduleNames: [ 'react/jsx-runtime' ],
+  containingFile: '/home/pkerschbaum/workspace/mfm-online/libs/commons/src/domain/game-events-helper.ts'
+}
+{
+  moduleName: 'react/jsx-runtime',
+  patternStuff: undefined,
+  resolvedModule: {
+    resolvedFileName: '/home/pkerschbaum/workspace/mfm-online/libs/commons/node_modules/@types/react/jsx-runtime.d.ts',
+    originalPath: undefined,
+    extension: '.d.ts',
+    isExternalLibraryImport: true,
+    packageId: {
+      name: '@types/react',
+      subModuleName: 'jsx-runtime.d.ts',
+      version: '18.3.5',
+      peerDependencies: undefined
+    },
+    resolvedUsingTsExtension: false
+  }
+}
+{
+  moduleNames: [ 'react/jsx-runtime' ],
+  containingFile: '/home/pkerschbaum/workspace/mfm-online/libs/commons/src/util/arrays.util.ts'
+}
+{
+  moduleName: 'react/jsx-runtime',
+  patternStuff: undefined,
+  resolvedModule: {
+    resolvedFileName: '/home/pkerschbaum/workspace/mfm-online/libs/commons/node_modules/@types/react/jsx-runtime.d.ts',
+    originalPath: undefined,
+    extension: '.d.ts',
+    isExternalLibraryImport: true,
+    packageId: {
+      name: '@types/react',
+      subModuleName: 'jsx-runtime.d.ts',
+      version: '18.3.5',
+      peerDependencies: undefined
+    },
+    resolvedUsingTsExtension: false
+  }
+}
+{
+  moduleNames: [ 'react/jsx-runtime' ],
+  containingFile: '/home/pkerschbaum/workspace/mfm-online/libs/commons/src/util/errors.util.ts'
+}
+{
+  moduleName: 'react/jsx-runtime',
+  patternStuff: undefined,
+  resolvedModule: {
+    resolvedFileName: '/home/pkerschbaum/workspace/mfm-online/libs/commons/node_modules/@types/react/jsx-runtime.d.ts',
+    originalPath: undefined,
+    extension: '.d.ts',
+    isExternalLibraryImport: true,
+    packageId: {
+      name: '@types/react',
+      subModuleName: 'jsx-runtime.d.ts',
+      version: '18.3.5',
+      peerDependencies: undefined
+    },
+    resolvedUsingTsExtension: false
+  }
+}
+{
+  moduleNames: [ 'react/jsx-runtime' ],
+  containingFile: '/home/pkerschbaum/workspace/mfm-online/libs/commons/src/util/http.util.ts'
+}
+{
+  moduleName: 'react/jsx-runtime',
+  patternStuff: undefined,
+  resolvedModule: {
+    resolvedFileName: '/home/pkerschbaum/workspace/mfm-online/libs/commons/node_modules/@types/react/jsx-runtime.d.ts',
+    originalPath: undefined,
+    extension: '.d.ts',
+    isExternalLibraryImport: true,
+    packageId: {
+      name: '@types/react',
+      subModuleName: 'jsx-runtime.d.ts',
+      version: '18.3.5',
+      peerDependencies: undefined
+    },
+    resolvedUsingTsExtension: false
+  }
+}
+{
+  moduleNames: [ 'react/jsx-runtime', '#pkg/domain/i18n', '#pkg/util/types.util' ],
+  containingFile: '/home/pkerschbaum/workspace/mfm-online/libs/commons/src/util/numbers.util.ts'
+}
+{
+  moduleName: 'react/jsx-runtime',
+  patternStuff: undefined,
+  resolvedModule: {
+    resolvedFileName: '/home/pkerschbaum/workspace/mfm-online/libs/commons/node_modules/@types/react/jsx-runtime.d.ts',
+    originalPath: undefined,
+    extension: '.d.ts',
+    isExternalLibraryImport: true,
+    packageId: {
+      name: '@types/react',
+      subModuleName: 'jsx-runtime.d.ts',
+      version: '18.3.5',
+      peerDependencies: undefined
+    },
+    resolvedUsingTsExtension: false
+  }
+}
+{
+  moduleName: '#pkg/domain/i18n',
+  patternStuff: {
+    patternMatched: { prefix: '#pkg/', suffix: '' },
+    patternText: '#pkg/*'
+  },
+  resolvedModule: {
+    resolvedFileName: '/home/pkerschbaum/workspace/mfm-online/libs/commons/src/domain/i18n.ts',
+    originalPath: undefined,
+    extension: '.ts',
+    isExternalLibraryImport: false,
+    packageId: undefined,
+    resolvedUsingTsExtension: false
+  }
+}
+{
+  moduleName: '#pkg/util/types.util',
+  patternStuff: {
+    patternMatched: { prefix: '#pkg/', suffix: '' },
+    patternText: '#pkg/*'
+  },
+  resolvedModule: {
+    resolvedFileName: '/home/pkerschbaum/workspace/mfm-online/libs/commons/src/util/types.util.ts',
+    originalPath: undefined,
+    extension: '.ts',
+    isExternalLibraryImport: false,
+    packageId: undefined,
+    resolvedUsingTsExtension: false
+  }
+}
+{
+  moduleNames: [ 'react/jsx-runtime' ],
+  containingFile: '/home/pkerschbaum/workspace/mfm-online/libs/commons/src/util/strings.util.ts'
+}
+{
+  moduleName: 'react/jsx-runtime',
+  patternStuff: undefined,
+  resolvedModule: {
+    resolvedFileName: '/home/pkerschbaum/workspace/mfm-online/libs/commons/node_modules/@types/react/jsx-runtime.d.ts',
+    originalPath: undefined,
+    extension: '.d.ts',
+    isExternalLibraryImport: true,
+    packageId: {
+      name: '@types/react',
+      subModuleName: 'jsx-runtime.d.ts',
+      version: '18.3.5',
+      peerDependencies: undefined
+    },
+    resolvedUsingTsExtension: false
+  }
+}
+{
+  moduleNames: [ 'react/jsx-runtime', '#pkg/util/objects.util' ],
+  containingFile: '/home/pkerschbaum/workspace/mfm-online/libs/commons/src/util/regex.util.ts'
+}
+{
+  moduleName: 'react/jsx-runtime',
+  patternStuff: undefined,
+  resolvedModule: {
+    resolvedFileName: '/home/pkerschbaum/workspace/mfm-online/libs/commons/node_modules/@types/react/jsx-runtime.d.ts',
+    originalPath: undefined,
+    extension: '.d.ts',
+    isExternalLibraryImport: true,
+    packageId: {
+      name: '@types/react',
+      subModuleName: 'jsx-runtime.d.ts',
+      version: '18.3.5',
+      peerDependencies: undefined
+    },
+    resolvedUsingTsExtension: false
+  }
+}
+{
+  moduleName: '#pkg/util/objects.util',
+  patternStuff: {
+    patternMatched: { prefix: '#pkg/', suffix: '' },
+    patternText: '#pkg/*'
+  },
+  resolvedModule: {
+    resolvedFileName: '/home/pkerschbaum/workspace/mfm-online/libs/commons/src/util/objects.util.ts',
+    originalPath: undefined,
+    extension: '.ts',
+    isExternalLibraryImport: false,
+    packageId: undefined,
+    resolvedUsingTsExtension: false
+  }
+}
+{
+  moduleNames: [ 'react/jsx-runtime', 'axios', '#pkg/util/objects.util' ],
+  containingFile: '/home/pkerschbaum/workspace/mfm-online/libs/commons/src/util/axios.util.ts'
+}
+{
+  moduleName: 'react/jsx-runtime',
+  patternStuff: undefined,
+  resolvedModule: {
+    resolvedFileName: '/home/pkerschbaum/workspace/mfm-online/libs/commons/node_modules/@types/react/jsx-runtime.d.ts',
+    originalPath: undefined,
+    extension: '.d.ts',
+    isExternalLibraryImport: true,
+    packageId: {
+      name: '@types/react',
+      subModuleName: 'jsx-runtime.d.ts',
+      version: '18.3.5',
+      peerDependencies: undefined
+    },
+    resolvedUsingTsExtension: false
+  }
+}
+{
+  moduleName: 'axios',
+  patternStuff: undefined,
+  resolvedModule: {
+    resolvedFileName: '/home/pkerschbaum/workspace/mfm-online/libs/commons/node_modules/axios/index.d.ts',
+    originalPath: undefined,
+    extension: '.d.ts',
+    isExternalLibraryImport: true,
+    packageId: {
+      name: 'axios',
+      subModuleName: 'index.d.ts',
+      version: '0.26.1',
+      peerDependencies: undefined
+    },
+    resolvedUsingTsExtension: false
+  }
+}
+{
+  moduleName: '#pkg/util/objects.util',
+  patternStuff: {
+    patternMatched: { prefix: '#pkg/', suffix: '' },
+    patternText: '#pkg/*'
+  },
+  resolvedModule: {
+    resolvedFileName: '/home/pkerschbaum/workspace/mfm-online/libs/commons/src/util/objects.util.ts',
+    originalPath: undefined,
+    extension: '.ts',
+    isExternalLibraryImport: false,
+    packageId: undefined,
+    resolvedUsingTsExtension: false
+  }
+}
+{
+  moduleNames: [ 'react/jsx-runtime' ],
+  containingFile: '/home/pkerschbaum/workspace/mfm-online/libs/commons/src/util/boolean.util.ts'
+}
+{
+  moduleName: 'react/jsx-runtime',
+  patternStuff: undefined,
+  resolvedModule: {
+    resolvedFileName: '/home/pkerschbaum/workspace/mfm-online/libs/commons/node_modules/@types/react/jsx-runtime.d.ts',
+    originalPath: undefined,
+    extension: '.d.ts',
+    isExternalLibraryImport: true,
+    packageId: {
+      name: '@types/react',
+      subModuleName: 'jsx-runtime.d.ts',
+      version: '18.3.5',
+      peerDependencies: undefined
+    },
+    resolvedUsingTsExtension: false
+  }
+}
+{
+  moduleNames: [
+    'react/jsx-runtime',
+    '#pkg/util/json.util',
+    '#pkg/util/objects.util'
+  ],
+  containingFile: '/home/pkerschbaum/workspace/mfm-online/libs/commons/src/util/custom-error.ts'
+}
+{
+  moduleName: 'react/jsx-runtime',
+  patternStuff: undefined,
+  resolvedModule: {
+    resolvedFileName: '/home/pkerschbaum/workspace/mfm-online/libs/commons/node_modules/@types/react/jsx-runtime.d.ts',
+    originalPath: undefined,
+    extension: '.d.ts',
+    isExternalLibraryImport: true,
+    packageId: {
+      name: '@types/react',
+      subModuleName: 'jsx-runtime.d.ts',
+      version: '18.3.5',
+      peerDependencies: undefined
+    },
+    resolvedUsingTsExtension: false
+  }
+}
+{
+  moduleName: '#pkg/util/json.util',
+  patternStuff: {
+    patternMatched: { prefix: '#pkg/', suffix: '' },
+    patternText: '#pkg/*'
+  },
+  resolvedModule: {
+    resolvedFileName: '/home/pkerschbaum/workspace/mfm-online/libs/commons/src/util/json.util.ts',
+    originalPath: undefined,
+    extension: '.ts',
+    isExternalLibraryImport: false,
+    packageId: undefined,
+    resolvedUsingTsExtension: false
+  }
+}
+{
+  moduleName: '#pkg/util/objects.util',
+  patternStuff: {
+    patternMatched: { prefix: '#pkg/', suffix: '' },
+    patternText: '#pkg/*'
+  },
+  resolvedModule: {
+    resolvedFileName: '/home/pkerschbaum/workspace/mfm-online/libs/commons/src/util/objects.util.ts',
+    originalPath: undefined,
+    extension: '.ts',
+    isExternalLibraryImport: false,
+    packageId: undefined,
+    resolvedUsingTsExtension: false
+  }
+}
+{
+  moduleNames: [ 'react/jsx-runtime', 'safe-stable-stringify' ],
+  containingFile: '/home/pkerschbaum/workspace/mfm-online/libs/commons/src/util/json.util.ts'
+}
+{
+  moduleName: 'react/jsx-runtime',
+  patternStuff: undefined,
+  resolvedModule: {
+    resolvedFileName: '/home/pkerschbaum/workspace/mfm-online/libs/commons/node_modules/@types/react/jsx-runtime.d.ts',
+    originalPath: undefined,
+    extension: '.d.ts',
+    isExternalLibraryImport: true,
+    packageId: {
+      name: '@types/react',
+      subModuleName: 'jsx-runtime.d.ts',
+      version: '18.3.5',
+      peerDependencies: undefined
+    },
+    resolvedUsingTsExtension: false
+  }
+}
+{
+  moduleName: 'safe-stable-stringify',
+  patternStuff: undefined,
+  resolvedModule: {
+    resolvedFileName: '/home/pkerschbaum/workspace/mfm-online/libs/commons/node_modules/safe-stable-stringify/index.d.ts',
+    originalPath: undefined,
+    extension: '.d.ts',
+    isExternalLibraryImport: true,
+    packageId: {
+      name: 'safe-stable-stringify',
+      subModuleName: 'index.d.ts',
+      version: '2.5.0',
+      peerDependencies: undefined
+    },
+    resolvedUsingTsExtension: false
+  }
+}
+{
+  moduleNames: [ 'react/jsx-runtime', '#pkg/util/strings.util' ],
+  containingFile: '/home/pkerschbaum/workspace/mfm-online/libs/commons/src/util/env.util.ts'
+}
+{
+  moduleName: 'react/jsx-runtime',
+  patternStuff: undefined,
+  resolvedModule: {
+    resolvedFileName: '/home/pkerschbaum/workspace/mfm-online/libs/commons/node_modules/@types/react/jsx-runtime.d.ts',
+    originalPath: undefined,
+    extension: '.d.ts',
+    isExternalLibraryImport: true,
+    packageId: {
+      name: '@types/react',
+      subModuleName: 'jsx-runtime.d.ts',
+      version: '18.3.5',
+      peerDependencies: undefined
+    },
+    resolvedUsingTsExtension: false
+  }
+}
+{
+  moduleName: '#pkg/util/strings.util',
+  patternStuff: {
+    patternMatched: { prefix: '#pkg/', suffix: '' },
+    patternText: '#pkg/*'
+  },
+  resolvedModule: {
+    resolvedFileName: '/home/pkerschbaum/workspace/mfm-online/libs/commons/src/util/strings.util.ts',
+    originalPath: undefined,
+    extension: '.ts',
+    isExternalLibraryImport: false,
+    packageId: undefined,
+    resolvedUsingTsExtension: false
+  }
+}
+{
+  moduleNames: [ 'react/jsx-runtime' ],
+  containingFile: '/home/pkerschbaum/workspace/mfm-online/libs/commons/src/util/functions.util.ts'
+}
+{
+  moduleName: 'react/jsx-runtime',
+  patternStuff: undefined,
+  resolvedModule: {
+    resolvedFileName: '/home/pkerschbaum/workspace/mfm-online/libs/commons/node_modules/@types/react/jsx-runtime.d.ts',
+    originalPath: undefined,
+    extension: '.d.ts',
+    isExternalLibraryImport: true,
+    packageId: {
+      name: '@types/react',
+      subModuleName: 'jsx-runtime.d.ts',
+      version: '18.3.5',
+      peerDependencies: undefined
+    },
+    resolvedUsingTsExtension: false
+  }
+}
+{
+  moduleNames: [ 'react/jsx-runtime', 'nanoid' ],
+  containingFile: '/home/pkerschbaum/workspace/mfm-online/libs/commons/src/util/id-generator.util.ts'
+}
+{
+  moduleName: 'react/jsx-runtime',
+  patternStuff: undefined,
+  resolvedModule: {
+    resolvedFileName: '/home/pkerschbaum/workspace/mfm-online/libs/commons/node_modules/@types/react/jsx-runtime.d.ts',
+    originalPath: undefined,
+    extension: '.d.ts',
+    isExternalLibraryImport: true,
+    packageId: {
+      name: '@types/react',
+      subModuleName: 'jsx-runtime.d.ts',
+      version: '18.3.5',
+      peerDependencies: undefined
+    },
+    resolvedUsingTsExtension: false
+  }
+}
+{
+  moduleName: 'nanoid',
+  patternStuff: undefined,
+  resolvedModule: {
+    resolvedFileName: '/home/pkerschbaum/workspace/mfm-online/libs/commons/node_modules/nanoid/index.d.ts',
+    originalPath: undefined,
+    extension: '.d.ts',
+    isExternalLibraryImport: true,
+    packageId: {
+      name: 'nanoid',
+      subModuleName: 'index.d.ts',
+      version: '3.3.7',
+      peerDependencies: undefined
+    },
+    resolvedUsingTsExtension: false
+  }
+}
+{
+  moduleNames: [ 'react/jsx-runtime', 'tiny-invariant' ],
+  containingFile: '/home/pkerschbaum/workspace/mfm-online/libs/commons/src/util/promises.util.ts'
+}
+{
+  moduleName: 'react/jsx-runtime',
+  patternStuff: undefined,
+  resolvedModule: {
+    resolvedFileName: '/home/pkerschbaum/workspace/mfm-online/libs/commons/node_modules/@types/react/jsx-runtime.d.ts',
+    originalPath: undefined,
+    extension: '.d.ts',
+    isExternalLibraryImport: true,
+    packageId: {
+      name: '@types/react',
+      subModuleName: 'jsx-runtime.d.ts',
+      version: '18.3.5',
+      peerDependencies: undefined
+    },
+    resolvedUsingTsExtension: false
+  }
+}
+{
+  moduleName: 'tiny-invariant',
+  patternStuff: undefined,
+  resolvedModule: {
+    resolvedFileName: '/home/pkerschbaum/workspace/mfm-online/libs/commons/node_modules/tiny-invariant/dist/tiny-invariant.d.ts',
+    originalPath: undefined,
+    extension: '.d.ts',
+    isExternalLibraryImport: true,
+    packageId: {
+      name: 'tiny-invariant',
+      subModuleName: 'dist/tiny-invariant.d.ts',
+      version: '1.3.3',
+      peerDependencies: undefined
+    },
+    resolvedUsingTsExtension: false
+  }
+}
+{
+  moduleNames: [ 'react/jsx-runtime' ],
+  containingFile: '/home/pkerschbaum/workspace/mfm-online/libs/commons/src/util/pubsub.util.ts'
+}
+{
+  moduleName: 'react/jsx-runtime',
+  patternStuff: undefined,
+  resolvedModule: {
+    resolvedFileName: '/home/pkerschbaum/workspace/mfm-online/libs/commons/node_modules/@types/react/jsx-runtime.d.ts',
+    originalPath: undefined,
+    extension: '.d.ts',
+    isExternalLibraryImport: true,
+    packageId: {
+      name: '@types/react',
+      subModuleName: 'jsx-runtime.d.ts',
+      version: '18.3.5',
+      peerDependencies: undefined
+    },
+    resolvedUsingTsExtension: false
+  }
+}
+{
+  moduleNames: [ 'react/jsx-runtime', '#pkg/index' ],
+  containingFile: '/home/pkerschbaum/workspace/mfm-online/libs/commons/src/util/datastructure/blocking-queue.ts'
+}
+{
+  moduleName: 'react/jsx-runtime',
+  patternStuff: undefined,
+  resolvedModule: {
+    resolvedFileName: '/home/pkerschbaum/workspace/mfm-online/libs/commons/node_modules/@types/react/jsx-runtime.d.ts',
+    originalPath: undefined,
+    extension: '.d.ts',
+    isExternalLibraryImport: true,
+    packageId: {
+      name: '@types/react',
+      subModuleName: 'jsx-runtime.d.ts',
+      version: '18.3.5',
+      peerDependencies: undefined
+    },
+    resolvedUsingTsExtension: false
+  }
+}
+{
+  moduleName: '#pkg/index',
+  patternStuff: {
+    patternMatched: { prefix: '#pkg/', suffix: '' },
+    patternText: '#pkg/*'
+  },
+  resolvedModule: {
+    resolvedFileName: '/home/pkerschbaum/workspace/mfm-online/libs/commons/src/index.ts',
+    originalPath: undefined,
+    extension: '.ts',
+    isExternalLibraryImport: false,
+    packageId: undefined,
+    resolvedUsingTsExtension: false
+  }
+}
+{
+  moduleNames: [ 'react/jsx-runtime', '#pkg/index' ],
+  containingFile: '/home/pkerschbaum/workspace/mfm-online/libs/commons/src/util/expect.util.ts'
+}
+{
+  moduleName: 'react/jsx-runtime',
+  patternStuff: undefined,
+  resolvedModule: {
+    resolvedFileName: '/home/pkerschbaum/workspace/mfm-online/libs/commons/node_modules/@types/react/jsx-runtime.d.ts',
+    originalPath: undefined,
+    extension: '.d.ts',
+    isExternalLibraryImport: true,
+    packageId: {
+      name: '@types/react',
+      subModuleName: 'jsx-runtime.d.ts',
+      version: '18.3.5',
+      peerDependencies: undefined
+    },
+    resolvedUsingTsExtension: false
+  }
+}
+{
+  moduleName: '#pkg/index',
+  patternStuff: {
+    patternMatched: { prefix: '#pkg/', suffix: '' },
+    patternText: '#pkg/*'
+  },
+  resolvedModule: {
+    resolvedFileName: '/home/pkerschbaum/workspace/mfm-online/libs/commons/src/index.ts',
+    originalPath: undefined,
+    extension: '.ts',
+    isExternalLibraryImport: false,
+    packageId: undefined,
+    resolvedUsingTsExtension: false
+  }
+}
+Process exiting with code '0'.

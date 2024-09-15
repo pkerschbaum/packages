@@ -1,0 +1,10 @@
+{
+  "compilerOptions": {
+    /* Modules */
+    "paths": {
+      "#pkg/*": ["./src/*"]
+    },
+    "types": []
+  },
+  "include": ["src/**/*"]
+}

@@ -1,0 +1,20 @@
+{
+  "extends": "@pkerschbaum/config-typescript/tsconfig.json",
+  "compilerOptions": {
+    /* Modules */
+    "module": "commonjs",
+    "paths": {
+      "#pkg/*": ["./src/*"]
+    },
+    "rootDir": "./src",
+
+    /* Emit */
+    "outDir": "./dist",
+
+    /* Interop Constraints */
+    /* disable "verbatimModuleSyntax" because it is annoying for CJS packages */
+    "verbatimModuleSyntax": false
+  },
+  "include": ["src/**/*"],
+  "exclude": ["**/node_modules", "**/*.spec.ts"]
+}
