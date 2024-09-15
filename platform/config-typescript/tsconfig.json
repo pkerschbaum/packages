@@ -22,7 +22,6 @@
 
     /* Type Checking */
     "allowUnreachableCode": false,
-    "exactOptionalPropertyTypes": true,
     "noFallthroughCasesInSwitch": true,
     "noImplicitOverride": true,
     "noPropertyAccessFromIndexSignature": true,

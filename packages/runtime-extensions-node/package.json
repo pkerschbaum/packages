@@ -1,0 +1,50 @@
+{
+  "name": "@pkerschbaum/runtime-extensions-node",
+  "version": "0.0.1",
+  "homepage": "https://github.com/pkerschbaum/packages/tree/main/packages/runtime-extensions-node",
+  "bugs": {
+    "url": "https://github.com/pkerschbaum/packages/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/pkerschbaum/packages",
+    "directory": "packages/runtime-extensions-node"
+  },
+  "license": "MIT",
+  "author": "Patrick Kerschbaum <patrick.kerschbaum@gmail.com>",
+  "exports": {
+    ".": "./dist/index.js",
+    "./*": null
+  },
+  "typesVersions": {
+    "*": {
+      "*": [
+        "./dist/*"
+      ]
+    }
+  },
+  "files": [
+    "dist/**",
+    "!dist/**/*.d.ts.map"
+  ],
+  "scripts": {
+    "build": "pnpm run internal:compile",
+    "dev": "pnpm run build --watch --preserveWatchOutput",
+    "internal:compile": "tsc -p ./tsconfig.project.json",
+    "lint": "pnpm run lint:file .",
+    "lint:file": "eslint --max-warnings 0",
+    "lint:fix": "pnpm run lint --fix",
+    "nuke": "pnpm run nuke:artifacts && del-cli node_modules",
+    "nuke:artifacts": "del-cli dist \"*.tsbuildinfo\""
+  },
+  "dependencies": {
+    "source-map-support": "^0.5.21"
+  },
+  "devDependencies": {
+    "@types/node": "^20",
+    "@types/source-map-support": "^0.5.10"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

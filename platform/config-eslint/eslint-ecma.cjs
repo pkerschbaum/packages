@@ -38,6 +38,7 @@ module.exports = {
     'multiline-comment-style': ['error', 'starred-block'],
     'no-console': 'error',
     'no-constant-condition': ['error', { checkLoops: false }],
+    'no-empty-pattern': 'off',
     'no-promise-executor-return': 'error',
     'no-restricted-syntax': [
       'error',
