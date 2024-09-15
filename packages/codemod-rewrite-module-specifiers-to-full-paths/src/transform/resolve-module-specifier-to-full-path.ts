@@ -4,20 +4,31 @@ import ts from 'typescript';
 
 import { VisitorContext } from '#pkg/transform/types';
 
-const tsExtensionToJsExtensionMap = new Map([
-  ['.ts', '.js'],
-  ['.tsx', '.js'],
-  ['.mts', '.mjs'],
-  ['.mtsx', '.mjs'],
-  ['.cts', '.cjs'],
-  ['.ctsx', '.cjs'],
-  ['.js', '.js'],
-  ['.jsx', '.jsx'],
-  ['.mjs', '.mjs'],
-  ['.mjsx', '.mjsx'],
-  ['.cjs', '.cjs'],
-  ['.cjsx', '.cjsx'],
-]);
+const tsExtensionToJsExtensionMap = {
+  /* map .d.ts and its variants to just .js */
+  '.d.ts': '.js',
+  '.d.tsx': '.js',
+  '.d.mts': '.mjs',
+  '.d.mtsx': '.mjs',
+  '.d.cts': '.cjs',
+  '.d.ctsx': '.cjs',
+
+  /* map .ts and its variants to .js */
+  '.ts': '.js',
+  '.tsx': '.js',
+  '.mts': '.mjs',
+  '.mtsx': '.mjs',
+  '.cts': '.cjs',
+  '.ctsx': '.cjs',
+
+  /* keep js extensions */
+  '.js': '.js',
+  '.jsx': '.jsx',
+  '.mjs': '.mjs',
+  '.mjsx': '.mjsx',
+  '.cjs': '.cjs',
+  '.cjsx': '.cjsx',
+} as const;
 
 export function resolveModuleSpecifierToFullPath(
   opts: VisitorContext & {
@@ -114,7 +125,13 @@ export function resolveToExactModuleSpecifier(
       const matchingDestinationPattern = parsedDestinationPatterns.find((destinationPattern) => {
         return resolvedModule.resolvedFileName.startsWith(destinationPattern.fullPrefix);
       });
-      invariant(matchingDestinationPattern);
+      invariant(
+        matchingDestinationPattern,
+        `could not resolve the destination pattern although the module specifier matched a "paths" pattern! ` +
+          `opts.originalModuleSpecifier=${opts.originalModuleSpecifier}, matchedPathsPattern.prefix=${matchedPathsPattern.prefix}, ` +
+          `opts.paths.absoluteBasePath=${opts.paths.absoluteBasePath}` +
+          `parsedDestinationPatterns=${JSON.stringify(parsedDestinationPatterns)}, resolvedModule.resolvedFileName=${resolvedModule.resolvedFileName}`,
+      );
 
       // e.g. "#pkg/internal/transformer" -> "internal/transformer"
       const origModuleNameWithoutPattern = opts.originalModuleSpecifier.slice(
@@ -147,17 +164,19 @@ export function resolveToExactModuleSpecifier(
     newModuleSpecifier = `${opts.originalModuleSpecifier}${slugToAdd}`;
   }
 
-  const extname = path.extname(newModuleSpecifier);
-  const moduleNameWithoutExt = newModuleSpecifier.slice(
-    0,
-    newModuleSpecifier.length - extname.length,
-  );
-
   // map "ts" to "js", "tsx" to "jsx", "mts" to "mjs", etc.
-  const mappedExtname = tsExtensionToJsExtensionMap.get(extname);
-  invariant(mappedExtname, `could not map extension! extname=${extname}`);
+  let newExtName;
+  let moduleNameWithoutExt;
+  for (const [fromExtname, toExtname] of Object.entries(tsExtensionToJsExtensionMap)) {
+    if (newModuleSpecifier.endsWith(fromExtname)) {
+      newExtName = toExtname;
+      moduleNameWithoutExt = newModuleSpecifier.slice(0, -fromExtname.length);
+      break;
+    }
+  }
+  invariant(newExtName, `could not map extension! moduleSpecifier=${newModuleSpecifier}`);
 
-  const finalNewModuleName = `${moduleNameWithoutExt}${mappedExtname}`;
+  const finalNewModuleName = `${moduleNameWithoutExt}${newExtName}`;
 
   return finalNewModuleName;
 }
