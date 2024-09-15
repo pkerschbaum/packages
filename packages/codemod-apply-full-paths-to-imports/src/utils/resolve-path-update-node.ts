@@ -10,22 +10,21 @@ export function resolvePathAndUpdateNode(
   moduleName: string,
   updaterFn: (newPath: ts.StringLiteral) => ts.Node | undefined,
 ): ts.Node | undefined {
+  let pathsPatternMatched = false;
+  if (context.paths) {
+    pathsPatternMatched = !!ts.matchPatternOrExact(context.paths.patterns, moduleName);
+  }
+  // ignore `moduleName`s which are not absolute paths, relative paths, or "paths" pattern
+  if (!moduleName.startsWith('/') && !moduleName.startsWith('.') && !pathsPatternMatched) {
+    return node;
+  }
+
   const res = resolveModuleName(context, moduleName);
   if (!res) {
     return node;
   }
 
-  const { resolvedPath, newModuleName } = res;
-
-  /* Skip if matches exclusion */
-  if (context.excludeMatchers) {
-    for (const matcher of context.excludeMatchers) {
-      // eslint-disable-next-line unicorn/prefer-regexp-test -- false positive
-      if (resolvedPath && matcher.match(resolvedPath)) {
-        return node;
-      }
-    }
-  }
+  const { newModuleName } = res;
 
   return updaterFn(ts.factory.createStringLiteral(newModuleName));
 }

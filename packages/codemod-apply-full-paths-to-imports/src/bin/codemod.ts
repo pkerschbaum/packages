@@ -18,4 +18,10 @@ const commanderProgram = new commander.Command()
 commanderProgram.parse();
 const options = commanderProgram.opts();
 
-transform({ project: options.project, basepath: options.basepath });
+transform({
+  project: options.project,
+  basepath: options.basepath,
+  writeFile(absolutePath, text) {
+    console.dir({ absolutePath, text });
+  },
+});

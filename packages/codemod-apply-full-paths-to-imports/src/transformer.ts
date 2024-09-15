@@ -2,6 +2,9 @@ import path from 'node:path';
 import invariant from 'tiny-invariant';
 import ts from 'typescript';
 
+import type { VisitorContext } from '#pkg/types';
+import { createNodeVisitor } from '#pkg/visitor';
+
 export function transform(opts: {
   project: string;
   basepath?: string | undefined;
@@ -12,17 +15,21 @@ export function transform(opts: {
 
   const configFile = ts.readConfigFile(projectAbsolutePath, ts.sys.readFile.bind(ts.sys));
   invariant(configFile.config, 'expected to find config, but did not');
-  const { options, fileNames } = ts.parseJsonConfigFileContent(configFile.config, ts.sys, basepath);
+  const { options: compilerOptions, fileNames } = ts.parseJsonConfigFileContent(
+    configFile.config,
+    ts.sys,
+    basepath,
+  );
 
-  let patterns = options.configFile?.configFileSpecs?.pathPatterns;
-  if (options.paths) {
-    patterns = ts.tryParsePatterns(options.paths);
+  let pathsPatterns = compilerOptions.configFile?.configFileSpecs?.pathPatterns;
+  if (compilerOptions.paths) {
+    pathsPatterns = ts.tryParsePatterns(compilerOptions.paths);
   }
 
   // based on https://github.com/microsoft/TypeScript/wiki/Using-the-Compiler-API#customizing-module-resolution
   const program = ts.createProgram(
     fileNames,
-    { ...options, incremental: false },
+    { ...compilerOptions, incremental: false },
     {
       ...ts.sys,
       getSourceFile: (fileName: string, languageVersion: ts.ScriptTarget) => {
@@ -33,10 +40,29 @@ export function transform(opts: {
 
         const sourceFile = ts.createSourceFile(fileName, sourceText, languageVersion);
 
-        // implement visitor
-        ts.visitEachChild(sourceFile);
+        const visitorContext: VisitorContext = {
+          compilerOptions,
+          paths: !pathsPatterns
+            ? undefined
+            : {
+                absoluteBasePath: compilerOptions.baseUrl
+                  ? path.join(compilerOptions.pathsBasePath!, compilerOptions.baseUrl)
+                  : compilerOptions.pathsBasePath!,
+                patterns: pathsPatterns,
+              },
+          sourceFile,
+        };
 
-        // call opts.writeFile callback with `fileName` and SourceFile transformed to text
+        const newSourceFile = ts.visitNode(sourceFile, createNodeVisitor(visitorContext));
+        invariant(newSourceFile);
+
+        opts.writeFile(
+          fileName,
+          ts
+            .createPrinter()
+            .printNode(ts.EmitHint.Unspecified, newSourceFile, newSourceFile as ts.SourceFile),
+        );
+
         return sourceFile;
       },
       useCaseSensitiveFileNames: () => ts.sys.useCaseSensitiveFileNames,
@@ -44,35 +70,6 @@ export function transform(opts: {
       getCanonicalFileName: (fileName) =>
         ts.sys.useCaseSensitiveFileNames ? fileName : fileName.toLowerCase(),
       getNewLine: () => ts.sys.newLine,
-      resolveModuleNames: (moduleNames: string[], containingFile: string) => {
-        const resolvedModules: Array<ts.ResolvedModule | undefined> = [];
-        for (const moduleName of moduleNames) {
-          let patternStuff:
-            | { patternMatched: string | ts.Pattern; patternText: string | undefined }
-            | undefined;
-          if (patterns) {
-            const patternMatched = ts.matchPatternOrExact(patterns, moduleName);
-            if (patternMatched) {
-              patternStuff = {
-                patternMatched,
-                patternText:
-                  typeof patternMatched === 'string' ? undefined : ts.patternText(patternMatched),
-              };
-            }
-          }
-          // try to use standard resolution
-          const result = ts.resolveModuleName(moduleName, containingFile, options, {
-            fileExists: ts.sys.fileExists.bind(ts.sys),
-            readFile: ts.sys.readFile.bind(ts.sys),
-          });
-          if (result.resolvedModule) {
-            resolvedModules.push(result.resolvedModule);
-          } else {
-            resolvedModules.push(undefined);
-          }
-        }
-        return resolvedModules;
-      },
     },
   );
 

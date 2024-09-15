@@ -1,86 +1,23 @@
 import path from 'node:path';
+import invariant from 'tiny-invariant';
 import ts from 'typescript';
 
 import { VisitorContext } from '#pkg/types';
 
 export type ResolvedModule = {
-  /** Absolute path to resolved module */
-  resolvedPath: string | undefined;
   /**  New module name */
   newModuleName: string;
 };
 
-enum IndexType {
-  NonIndex,
-  Explicit,
-  Implicit,
-  ImplicitPackage,
-}
-
-function getPathDetail(moduleName: string, resolvedModule: ts.ResolvedModuleFull) {
-  const resolvedFileName = resolvedModule.originalPath ?? resolvedModule.resolvedFileName;
-  const implicitPackageIndex = resolvedModule.packageId?.subModuleName;
-
-  const resolvedDir = implicitPackageIndex
-    ? ts.removeSuffix(resolvedFileName, `/${implicitPackageIndex}`)
-    : path.dirname(resolvedFileName);
-  const resolvedBaseName = implicitPackageIndex ? void 0 : path.basename(resolvedFileName);
-  const resolvedBaseNameNoExtension = resolvedBaseName && ts.removeFileExtension(resolvedBaseName);
-  const resolvedExtName = resolvedBaseName && path.extname(resolvedFileName);
-
-  let baseName = implicitPackageIndex ? void 0 : path.basename(moduleName);
-  let baseNameNoExtension = baseName && ts.removeFileExtension(baseName);
-  let extName = baseName && path.extname(moduleName);
-
-  /*
-   * Account for possible false extensions. Example scenario:
-   *   moduleName = './file.accounting'
-   *   resolvedBaseName = 'file.accounting.ts'
-   * ('accounting' would be considered the extension)
-   */
-  if (resolvedBaseNameNoExtension && baseName && resolvedBaseNameNoExtension === baseName) {
-    baseNameNoExtension = baseName;
-    extName = void 0;
-  }
-
-  // prettier-ignore
-  const indexType =
-    implicitPackageIndex ? IndexType.ImplicitPackage :
-      baseNameNoExtension === 'index' && resolvedBaseNameNoExtension === 'index' ? IndexType.Explicit :
-        baseNameNoExtension !== 'index' && resolvedBaseNameNoExtension === 'index' ? IndexType.Implicit :
-          IndexType.NonIndex;
-
-  if (indexType === IndexType.Implicit) {
-    baseName = void 0;
-    baseNameNoExtension = void 0;
-    extName = void 0;
-  }
-
-  return {
-    baseName,
-    baseNameNoExtension,
-    extName,
-    resolvedBaseName,
-    resolvedBaseNameNoExtension,
-    resolvedExtName,
-    resolvedDir,
-    indexType,
-    implicitPackageIndex,
-    resolvedFileName,
-  };
-}
-
 /** Resolve a module name */
 export function resolveModuleName(
   context: VisitorContext,
-  moduleName: string,
+  origModuleName: string,
 ): ResolvedModule | undefined {
-  const { compilerOptions, sourceFile, pathsPatterns } = context;
-
   const { resolvedModule } = ts.resolveModuleName(
-    moduleName,
-    sourceFile.fileName,
-    compilerOptions,
+    origModuleName,
+    context.sourceFile.fileName,
+    context.compilerOptions,
     ts.sys,
   );
 
@@ -88,7 +25,64 @@ export function resolveModuleName(
     return undefined;
   }
 
-  const { resolvedFileName } = getPathDetail(moduleName, resolvedModule);
+  let newModuleName;
+  if (context.paths) {
+    const matchedPathsPattern = ts.matchPatternOrExact(context.paths.patterns, origModuleName);
+    if (
+      matchedPathsPattern &&
+      // ignore patterns which do not have a star in them and thus, resolve to concrete file(s) anyways
+      typeof matchedPathsPattern !== 'string'
+    ) {
+      if (matchedPathsPattern.suffix !== '') {
+        throw new TypeError(`patterns with suffixes are not supported`);
+      }
+      invariant(context.compilerOptions.paths);
+      const pathsArray = context.compilerOptions.paths[ts.patternText(matchedPathsPattern)];
+      invariant(pathsArray);
 
-  return { resolvedPath: resolvedFileName, newModuleName };
+      const absolutePathPrefixesToTry = pathsArray
+        .map((pathsElem) => {
+          const parsedPattern = ts.tryParsePattern(pathsElem);
+          if (!parsedPattern) {
+            // invalid pattern
+            return undefined;
+          }
+          const prefix = typeof parsedPattern === 'string' ? parsedPattern : parsedPattern.prefix;
+          const suffix = typeof parsedPattern === 'string' ? '' : parsedPattern.suffix;
+          if (suffix !== '') {
+            throw new TypeError(`patterns with suffixes are not supported`);
+          }
+          invariant(context.paths);
+          return path.join(context.paths.absoluteBasePath, prefix);
+        })
+        .filter((elem) => elem !== undefined);
+
+      const matchingAbsolutePrefix = absolutePathPrefixesToTry.find((absolutePrefix) => {
+        invariant(context.paths);
+        return resolvedModule.resolvedFileName.startsWith(absolutePrefix);
+      });
+      invariant(matchingAbsolutePrefix);
+
+      const origModuleNameWithoutPattern = origModuleName.slice(matchedPathsPattern.prefix.length);
+
+      const resolvedModuleName = resolvedModule.resolvedFileName.slice(
+        matchingAbsolutePrefix.length,
+      );
+
+      const slugToAdd = resolvedModuleName.slice(origModuleNameWithoutPattern.length);
+
+      newModuleName = `${matchedPathsPattern.prefix}${origModuleNameWithoutPattern}${slugToAdd}`;
+    }
+  }
+
+  if (newModuleName === undefined) {
+    invariant(origModuleName.startsWith('/') || origModuleName.startsWith('.'));
+    const absolutePath = origModuleName.startsWith('/')
+      ? origModuleName
+      : path.join(context.sourceFile.fileName, origModuleName);
+    const slugToAdd = resolvedModule.resolvedFileName.slice(absolutePath.length);
+    newModuleName = `${origModuleName}${slugToAdd}`;
+  }
+
+  return { newModuleName };
 }
