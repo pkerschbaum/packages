@@ -4,6 +4,15 @@ import ts from 'typescript';
 
 import { VisitorContext } from '#pkg/transform/types';
 
+const tsExtensionToJsExtensionMap = new Map([
+  ['.ts', '.js'],
+  ['.tsx', '.js'],
+  ['.mts', '.mjs'],
+  ['.mtsx', '.mjs'],
+  ['.cjs', '.cjs'],
+  ['.cjsx', '.cjs'],
+]);
+
 export function resolveModuleSpecifierToFullPath(
   opts: VisitorContext & {
     originalModuleSpecifier: string;
@@ -137,8 +146,10 @@ export function resolveToExactModuleSpecifier(
     0,
     newModuleSpecifier.length - extname.length,
   );
+
   // map "ts" to "js", "tsx" to "jsx", "mts" to "mjs", etc.
-  const mappedExtname = extname.replace('t', 'j');
+  const mappedExtname = tsExtensionToJsExtensionMap.get(extname);
+  invariant(mappedExtname);
 
   const finalNewModuleName = `${moduleNameWithoutExt}${mappedExtname}`;
 
