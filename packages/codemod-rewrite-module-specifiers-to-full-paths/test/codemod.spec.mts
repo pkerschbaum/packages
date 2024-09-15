@@ -5,10 +5,11 @@ import { test, expect } from 'vitest';
 import { loadTypeScriptProgram } from '#pkg/load-typescript-program.js';
 import { rewriteModuleSpecifiersOfTypeScriptProject } from '#pkg/transform/index.js';
 
-const PATH_TO_TRANSFORMER_INPUTS = path.join(__dirname, 'transformer-inputs');
+const PATH_TO_CODEMOD_INPUTS = path.join(__dirname, 'codemod-inputs');
+const PATH_TO_CODEMOD_OUTPUTS = path.join(__dirname, 'codemod-outputs');
 
 test('project-1', async () => {
-  const projectAbsolutePath = path.join(PATH_TO_TRANSFORMER_INPUTS, 'project-1', 'tsconfig.json');
+  const projectAbsolutePath = path.join(PATH_TO_CODEMOD_INPUTS, 'project-1', 'tsconfig.json');
   const basepath = path.dirname(projectAbsolutePath);
 
   const typeScriptProgram = await loadTypeScriptProgram({ project: projectAbsolutePath, basepath });
@@ -23,14 +24,14 @@ test('project-1', async () => {
       );
       const relativePathFromRootDir = path.relative(basepath, absolutePathSourceFile);
       await expect(newText).toMatchFileSnapshot(
-        `./transformer-outputs/project-1/${relativePathFromRootDir}`,
+        path.join(PATH_TO_CODEMOD_OUTPUTS, 'project-1', relativePathFromRootDir),
       );
     }),
   );
 });
 
 test('project-2', async () => {
-  const projectAbsolutePath = path.join(PATH_TO_TRANSFORMER_INPUTS, 'project-2', 'tsconfig.json');
+  const projectAbsolutePath = path.join(PATH_TO_CODEMOD_INPUTS, 'project-2', 'tsconfig.json');
   const basepath = path.dirname(projectAbsolutePath);
 
   const typeScriptProgram = await loadTypeScriptProgram({ project: projectAbsolutePath, basepath });
@@ -45,7 +46,7 @@ test('project-2', async () => {
       );
       const relativePathFromRootDir = path.relative(basepath, absolutePathSourceFile);
       await expect(newText).toMatchFileSnapshot(
-        `./transformer-outputs/project-2/${relativePathFromRootDir}`,
+        path.join(PATH_TO_CODEMOD_OUTPUTS, 'project-2', relativePathFromRootDir),
       );
     }),
   );

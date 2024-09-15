@@ -296,9 +296,6 @@ importers:
 
   packages/runtime-extensions-node:
     dependencies:
-      '@pkerschbaum/commons-node':
-        specifier: workspace:^
-        version: link:../commons-node
       source-map-support:
         specifier: ^0.5.21
         version: 0.5.21

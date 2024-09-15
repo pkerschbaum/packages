@@ -38,7 +38,6 @@
     "nuke:artifacts": "del-cli dist \"*.tsbuildinfo\""
   },
   "dependencies": {
-    "@pkerschbaum/commons-node": "workspace:^",
     "source-map-support": "^0.5.21"
   },
   "devDependencies": {

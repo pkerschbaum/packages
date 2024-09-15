@@ -32,14 +32,7 @@ module.exports = {
     'plugin:eslint-comments/recommended',
     'prettier',
   ],
-  ignorePatterns: [
-    '.eslintrc.cjs',
-    'babel.config.mjs',
-    'dist/**/*',
-    'nyc.config.cjs',
-    '**/transformer-inputs/**',
-    '**/transformer-outputs/**',
-  ],
+  ignorePatterns: ['.eslintrc.cjs', 'babel.config.mjs', 'dist/**/*'],
   rules: {
     curly: 'error',
     'multiline-comment-style': ['error', 'starred-block'],
