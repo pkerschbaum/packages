@@ -1,6 +1,6 @@
 {
   "name": "@pkerschbaum/codemod-rewrite-module-specifiers-to-full-paths",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "homepage": "https://github.com/pkerschbaum/packages/tree/main/packages/codemod-rewrite-module-specifiers-to-full-paths",
   "bugs": {
     "url": "https://github.com/pkerschbaum/packages/issues"
