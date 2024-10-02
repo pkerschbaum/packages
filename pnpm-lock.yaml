@@ -97,9 +97,6 @@ importers:
       '@pkerschbaum/commons-node':
         specifier: workspace:*
         version: link:../commons-node
-      '@pkerschbaum/runtime-extensions-node':
-        specifier: workspace:*
-        version: link:../runtime-extensions-node
       commander:
         specifier: ^12.1.0
         version: 12.1.0
@@ -116,6 +113,9 @@ importers:
         specifier: ^5.5.4
         version: 5.5.4(patch_hash=2p3xli523a6eamsvr4sphsy4ki)
     devDependencies:
+      '@pkerschbaum/runtime-extensions-node':
+        specifier: workspace:*
+        version: link:../runtime-extensions-node
       '@types/jscodeshift':
         specifier: ^0.11.11
         version: 0.11.11
