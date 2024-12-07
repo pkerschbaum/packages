@@ -27,6 +27,7 @@ spawn('turbo', commandLineArguments, {
   shell: process.platform === 'win32',
 }).on('exit', (code) => {
   if (code !== null) {
-    process.exitCode = code;
+    // eslint-disable-next-line n/no-process-exit
+    process.exit(code);
   }
 });
