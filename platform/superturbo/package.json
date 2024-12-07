@@ -2,8 +2,11 @@
   "name": "@pkerschbaum/superturbo",
   "private": true,
   "type": "module",
+  "imports": {
+    "#pkg/*": "./src/*"
+  },
   "bin": {
-    "superturbo": "./src/turbo-wrapper.mjs"
+    "superturbo": "./src/bin/turbo-wrapper.mjs"
   },
   "scripts": {
     "build": "pnpm run internal:build:compile",
@@ -16,10 +19,14 @@
     "nuke": "pnpm run nuke:artifacts && del-cli --dot=true node_modules",
     "nuke:artifacts": "del-cli --dot=true *.tsbuildinfo"
   },
+  "dependencies": {
+    "@pkerschbaum/garden-snail": "1.3.0-pkerschbaum.1",
+    "close-with-grace": "^1.3.0"
+  },
   "devDependencies": {
     "@types/node": "^20"
   },
   "peerDependencies": {
-    "turbo": "^1.10.16"
+    "turbo": "^2"
   }
 }
