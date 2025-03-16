@@ -19,8 +19,8 @@
     "@pkerschbaum/config-eslint": "workspace:*",
     "@pkerschbaum/config-typescript": "workspace:*",
     "@pkerschbaum/superturbo": "workspace:*",
-    "@typescript-eslint/eslint-plugin": "^8.4.0",
-    "@typescript-eslint/parser": "^8.4.0",
+    "@typescript-eslint/eslint-plugin": "^8.26.1",
+    "@typescript-eslint/parser": "^8.26.1",
     "del-cli": "^5.1.0",
     "eslint": "^8.57.0",
     "eslint-config-prettier": "^9.1.0",
@@ -36,8 +36,8 @@
     "prettier": "^3.3.3",
     "prettier-plugin-packagejson": "^2.5.2",
     "turbo": "^2.1.1",
-    "typescript": "^5.7.3",
-    "typescript-transform-paths": "^3.5.3",
+    "typescript": "~5.8.2",
+    "typescript-transform-paths": "^3.5.5",
     "zx": "^8.1.5"
   },
   "packageManager": "pnpm@9.9.0",
@@ -52,7 +52,7 @@
       ]
     },
     "patchedDependencies": {
-      "typescript@5.7.3": "patches/typescript@5.7.3.patch"
+      "typescript@5.8.2": "patches/typescript@5.8.2.patch"
     }
   }
 }

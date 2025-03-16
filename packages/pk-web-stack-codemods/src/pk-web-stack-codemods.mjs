@@ -34,4 +34,5 @@ const codemodToExecute = /** @type {unknown} */ (
   await import(path.join(PATHS.CODEMODS_DIR, codemodToApply, `codemod.mjs`))
 );
 assert(check.isNotNullish(codemodToExecute) && typeof codemodToExecute['run'] === 'function');
+// eslint-disable-next-line @typescript-eslint/no-unsafe-call
 await codemodToExecute['run']({ monorepoPath: path.resolve(opts.monorepoPath) });

@@ -171,6 +171,7 @@ module.exports = {
     '@typescript-eslint/no-duplicate-enum-values': 'error',
     '@typescript-eslint/no-extraneous-class': 'off',
     '@typescript-eslint/no-floating-promises': 'error',
+    '@typescript-eslint/no-base-to-string': ['error', { ignoredTypeNames: ['RegExp'] }],
     '@typescript-eslint/no-invalid-void-type': 'off',
     '@typescript-eslint/no-meaningless-void-operator': 'error',
     '@typescript-eslint/no-misused-promises': [

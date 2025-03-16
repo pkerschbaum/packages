@@ -49,7 +49,6 @@ export async function loadTypeScriptProgram(opts: {
 
 function computePathsContext(compilerOptions: ts.CompilerOptions) {
   let pathsPatterns = compilerOptions.configFile?.configFileSpecs?.pathPatterns;
-  let absoluteBasePath = undefined;
   if (!compilerOptions.paths) {
     return undefined;
   }
@@ -57,7 +56,7 @@ function computePathsContext(compilerOptions: ts.CompilerOptions) {
   pathsPatterns = ts.tryParsePatterns(compilerOptions.paths);
 
   invariant(compilerOptions.pathsBasePath);
-  absoluteBasePath = compilerOptions.baseUrl ?? compilerOptions.pathsBasePath;
+  const absoluteBasePath = compilerOptions.baseUrl ?? compilerOptions.pathsBasePath;
 
   return { absoluteBasePath, patterns: pathsPatterns };
 }
