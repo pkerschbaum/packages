@@ -12,12 +12,13 @@
     "nuke:artifacts": "pnpm --parallel run nuke:artifacts",
     "nuke:compute-cache": "del-cli \"*/**/.turbo\"",
     "nuke:node-modules": "del-cli \"**/node_modules\"",
-    "prepare": "node --eval \"process.exit(process.env.CI === 'true' ? 0 : -1)\" || husky"
+    "prepare": "node --eval \"process.exit(process.env.CI === 'true' ? 0 : -1)\" || (husky && pnpm exec add-all-tsconfigs-as-project-references --monorepo-path=. --tsconfig-filename=\"tsconfig.project.json\")"
   },
   "devDependencies": {
     "@changesets/cli": "^2.27.8",
     "@pkerschbaum/config-eslint": "workspace:*",
     "@pkerschbaum/config-typescript": "workspace:*",
+    "@pkerschbaum/pkg-management": "^2.1.0",
     "@pkerschbaum/superturbo": "workspace:*",
     "@typescript-eslint/eslint-plugin": "^8.26.1",
     "@typescript-eslint/parser": "^8.26.1",
