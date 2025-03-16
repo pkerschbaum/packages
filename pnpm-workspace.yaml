@@ -1,4 +1,7 @@
 packages:
-  - 'packages/*'
-  - 'platform/*'
-  - 'test/*'
+  - packages/*
+  - platform/*
+  - test/*
+onlyBuiltDependencies:
+  - core-js
+  - esbuild
