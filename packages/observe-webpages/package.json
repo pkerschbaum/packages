@@ -1,0 +1,22 @@
+{
+  "name": "@pkerschbaum/observe-webpages",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "pnpm run internal:compile",
+    "dev": "pnpm run build --watch --preserveWatchOutput",
+    "internal:compile": "tsc -p ./tsconfig.project.json",
+    "lint": "pnpm run lint:file .",
+    "lint:file": "eslint --max-warnings 0",
+    "lint:fix": "pnpm run lint --fix",
+    "nuke": "pnpm run nuke:artifacts && del-cli node_modules",
+    "nuke:artifacts": "del-cli dist \"*.tsbuildinfo\"",
+    "start": "docker pull mcr.microsoft.com/playwright:v1.52.0-noble && playwright test --config ./src/playwright.config.ts"
+  },
+  "dependencies": {
+    "@playwright/test": "1.52.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20"
+  }
+}

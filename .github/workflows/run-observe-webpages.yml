@@ -1,0 +1,21 @@
+name: '🌐 Observe web pages'
+
+on:
+  workflow_dispatch:
+
+  schedule:
+    # every day at 20:00 GMT+2
+    - cron: '0 18 * * *'
+
+jobs:
+  e2e-tests:
+    name: Run E2E tests
+    runs-on: ubuntu-22.04
+    timeout-minutes: 60
+
+    steps:
+      - uses: actions/checkout@v4.2.1
+      - name: 'Bootstrap monorepo'
+        uses: ./.github/actions/bootstrap-monorepo
+      - name: 'Run E2E tests'
+        uses: ./.github/actions/run-e2e-tests

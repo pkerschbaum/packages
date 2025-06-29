@@ -1,0 +1,16 @@
+name: 'run-e2e-tests'
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Run E2E tests
+      shell: bash
+      run: |
+        pnpm --filter='@pkerschbaum/observe-webpages' run start
+    - name: 'Upload HTML report to GitHub Actions artifacts'
+      if: ${{ !cancelled() }}
+      uses: actions/upload-artifact@v4
+      with:
+        name: playwright-report
+        path: ./packages/observe-webpages/playwright-html-report/
+        retention-days: 30
