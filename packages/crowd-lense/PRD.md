@@ -182,7 +182,6 @@ A three-tier system comprising:
 - **Hosting**: Vercel (crowd-lense.pkerschbaum.dev)
 - **CDN**: Vercel
 - **Monitoring**: Sentry with all features
-- **Analytics**: Plausible
 
 ## 7. Data Model
 

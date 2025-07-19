@@ -158,7 +158,6 @@ The blob storage automatically handles two subfolders:
 - **Database**: PostgreSQL
 - **File Storage**: Vercel Blob
 - **Monitoring**: Sentry
-- **Analytics**: Plausible
 - **Authentication**: HTTP Basic Auth with bcrypt
 
 ## Security Features
