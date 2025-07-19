@@ -10,7 +10,7 @@
         "package.json",
         "tsconfig.project.json"
       ],
-      "outputs": ["dist/**", "*.tsbuildinfo"]
+      "outputs": ["dist/**", ".next/**", "*.tsbuildinfo"]
     },
     "lint": {
       "cache": true,

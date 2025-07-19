@@ -104,7 +104,7 @@ A three-tier system comprising:
 
 - FR-014: Fullscreen image presentation
 - FR-015: Chronological display order
-- FR-016: Insert promotional image every 5th position from GCP Cloud Storage bucket
+- FR-016: Insert promotional image every 5th position
 - FR-017: Bottom-right preview (next 5 images)
 - FR-018: Bottom-left QR code for upload URL (crowd-lense.pkerschbaum.dev)
 - FR-019: Smooth image transitions
