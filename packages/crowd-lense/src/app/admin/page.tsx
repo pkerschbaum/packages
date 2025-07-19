@@ -93,24 +93,6 @@ export default function AdminPage() {
     setCredentials(loginForm);
   };
 
-  const handleKeyPress = (e: KeyboardEvent) => {
-    if (!images.length) return;
-
-    if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
-      setCurrentImageIndex((prev) => Math.min(prev + 1, images.length - 1));
-    } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
-      setCurrentImageIndex((prev) => Math.max(prev - 1, 0));
-    } else if (e.key === 'a' || e.key === 'A') {
-      handleReview('APPROVED');
-    } else if (e.key === 'r' || e.key === 'R') {
-      handleReview('REJECTED');
-    }
-  };
-
-  useEffect(() => {
-    window.addEventListener('keydown', handleKeyPress);
-    return () => window.removeEventListener('keydown', handleKeyPress);
-  }, [images.length, currentImageIndex]);
 
   const handleReview = (status: 'APPROVED' | 'REJECTED') => {
     const currentImage = images[currentImageIndex];
@@ -238,7 +220,7 @@ export default function AdminPage() {
             disabled={reviewMutation.isPending}
           >
             <XCircle className="w-5 h-5 mr-2" />
-            Reject (R)
+            Reject
           </Button>
           <Button
             onClick={() => handleReview('APPROVED')}
@@ -246,7 +228,7 @@ export default function AdminPage() {
             disabled={reviewMutation.isPending}
           >
             <CheckCircle className="w-5 h-5 mr-2" />
-            Approve (A)
+            Approve
           </Button>
         </div>
 
@@ -279,10 +261,6 @@ export default function AdminPage() {
           </Button>
         </div>
 
-        {/* Keyboard Shortcuts */}
-        <div className="text-xs text-gray-400 text-center mt-4">
-          Use arrow keys to navigate • A to approve • R to reject
-        </div>
       </div>
     </div>
   );

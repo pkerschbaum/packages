@@ -8,7 +8,7 @@ Anonymous image upload and display system with admin moderation and automated ca
 - 🔐 Admin authentication and moderation dashboard
 - 🎠 Automated image carousel with promotional content
 - 📊 QR code generation for easy upload access
-- 🔧 Built with Next.js, Prisma, and Vercel
+- 🔧 Built with Next.js, Prisma, Vercel, and Neon
 
 ## Setup Instructions
 

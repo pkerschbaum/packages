@@ -28,13 +28,13 @@ export async function uploadPromotionalImage(
   };
 }
 
-export async function getPromotionalImages(): Promise<string[]> {
+export async function getPromotionalImages() {
   try {
     const { blobs } = await list({
       prefix: 'promotional-images/',
     });
 
-    return blobs.map((blob) => blob.url);
+    return blobs;
   } catch (error) {
     console.error('Failed to fetch promotional images:', error);
     return [];

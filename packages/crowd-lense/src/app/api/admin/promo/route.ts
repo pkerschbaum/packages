@@ -27,7 +27,7 @@ export async function GET(request: NextRequest) {
 
   try {
     const promoImages = await getPromotionalImages();
-    return NextResponse.json({ images: promoImages });
+    return NextResponse.json({ images: promoImages.map((blob) => blob.url) });
   } catch (error) {
     console.error('Failed to fetch promotional images:', error);
     return NextResponse.json({ error: 'Failed to fetch promotional images' }, { status: 500 });

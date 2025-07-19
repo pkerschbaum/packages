@@ -28,8 +28,8 @@ export async function GET(request: NextRequest) {
         result.push({
           id: `promo-${promoIndex}`,
           filename: `promo-${promoIndex}`,
-          blobUrl: promoImages[promoIndex],
-          uploadTimestamp: new Date(),
+          blobUrl: promoImages[promoIndex].url,
+          uploadTimestamp: promoImages[promoIndex].uploadedAt,
           isPromo: true,
         });
       }

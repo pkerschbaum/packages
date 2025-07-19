@@ -172,7 +172,7 @@ A three-tier system comprising:
 
 - **Runtime**: Node.js 22+
 - **Framework**: Next.js API Routes
-- **Database**: Prisma Postgres
+- **Database**: Neon Postgres
 - **File Storage**: Vercel Blob
 - **Image Processing**: Vercel Image Optimization
 - **Authentication**: HTTP Basic Auth with bcrypt
