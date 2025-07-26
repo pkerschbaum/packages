@@ -8,8 +8,16 @@ export async function authenticateRequest(request: NextRequest) {
   }
 
   const base64Credentials = authHeader.split(' ')[1];
+  if (!base64Credentials) {
+    return false;
+  }
+
   const credentials = Buffer.from(base64Credentials, 'base64').toString('utf-8');
   const [username, password] = credentials.split(':');
+
+  if (!username || !password) {
+    return false;
+  }
 
   return verifyCredentials(username, password);
 }

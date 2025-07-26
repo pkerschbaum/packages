@@ -18,13 +18,14 @@ export async function uploadToBlob(file: File): Promise<{ url: string; filename:
   };
 }
 
-export async function getPromotionalImages() {
+export async function getPromotionalImages(opts: { limit?: number }) {
   assert(process.env.BLOB_READ_WRITE_TOKEN, 'BLOB_READ_WRITE_TOKEN must be set');
 
   try {
     let { blobs } = await list({
       prefix: 'promotional-images/',
       mode: 'folded',
+      limit: opts.limit,
     });
 
     // returns the folder itself for whatever reason --> filter out all 0 size blobs

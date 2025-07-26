@@ -123,7 +123,7 @@ export function ImageUpload() {
   const removeFile = (index: number) => {
     setFiles((prev) => {
       const newFiles = [...prev];
-      URL.revokeObjectURL(newFiles[index].preview);
+      URL.revokeObjectURL(newFiles[index]!.preview);
       newFiles.splice(index, 1);
       return newFiles;
     });

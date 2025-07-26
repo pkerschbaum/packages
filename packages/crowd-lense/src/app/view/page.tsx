@@ -1,7 +1,6 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { useQuery } from '@tanstack/react-query';
 import Image from 'next/image';
 import QRCode from 'qrcode';
 
@@ -9,23 +8,61 @@ type CarouselImage = {
   id: string;
   filename: string;
   blobUrl: string;
-  uploadTimestamp: string;
   isPromo?: boolean;
 };
 
 export default function CarouselPage() {
-  const [currentIndex, setCurrentIndex] = useState(0);
+  const [images, setImages] = useState<CarouselImage[]>([]);
   const [qrCodeUrl, setQrCodeUrl] = useState('');
 
-  const { data: images = [], isLoading } = useQuery({
-    queryKey: ['carousel-images'],
-    queryFn: async () => {
-      const response = await fetch('/api/carousel');
-      if (!response.ok) throw new Error('Failed to fetch images');
-      return response.json();
-    },
-    refetchInterval: 10000, // Refresh every 10 seconds
-  });
+  useEffect(() => {
+    async function dropFirstImageAndLoadNext() {
+      setImages((currentImages) => {
+        if (currentImages.length === 0) return currentImages;
+        // Remove the first image and return the rest
+        const imagesWithFirstRemoved = currentImages.slice(1);
+        return imagesWithFirstRemoved;
+      });
+
+      const [currentTopXImagesResponse, promotionalImagesResponse] = await Promise.all([
+        fetch('/api/images?type=user&limit=7'),
+        fetch('/api/images?type=promo'),
+      ]);
+      if (!currentTopXImagesResponse.ok) throw new Error('Failed to fetch images');
+      if (!promotionalImagesResponse.ok) throw new Error('Failed to fetch promotional images');
+
+      const [currentTopXImages, promotionalImages] = await Promise.all([
+        currentTopXImagesResponse.json() as Promise<CarouselImage[]>,
+        promotionalImagesResponse.json() as Promise<CarouselImage[]>,
+      ]);
+
+      /**
+       * Set images again; keep the first 6 images we have already, then take the next top X images until we have 7 in total.
+       * Only take "other" images, i.e. images with IDs we don't have in the current state.
+       */
+      setImages((currentImages) => {
+        const existingIds = new Set(currentImages.map((img) => img.id));
+        const newTopXImages = currentTopXImages.filter((img) => !existingIds.has(img.id));
+        const whatToKeep = [...currentImages.slice(0, 6)];
+        if (whatToKeep.filter((img) => img.isPromo).length === 0 && promotionalImages.length > 0) {
+          const randomIndex = Math.floor(Math.random() * promotionalImages.length);
+          whatToKeep.push(promotionalImages[randomIndex]!);
+        }
+        whatToKeep.push(...newTopXImages);
+
+        const newImages = whatToKeep.slice(0, 7);
+        return newImages;
+      });
+    }
+
+    void dropFirstImageAndLoadNext();
+
+    const interval = setInterval(() => {
+      void dropFirstImageAndLoadNext();
+    }, 10_000);
+
+    return () => clearInterval(interval);
+  }, []);
 
   // Generate QR code for upload URL
   useEffect(() => {
@@ -43,16 +80,7 @@ export default function CarouselPage() {
     void generateQrCode();
   }, []);
 
-  // Auto-advance carousel
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentIndex((prev) => (prev + 1) % images.length);
-    }, 10_000); // Change image every 5 seconds
-
-    return () => clearInterval(interval);
-  }, [images.length]);
-
-  if (isLoading) {
+  if (images.length === 0) {
     return (
       <div className="min-h-screen bg-black flex items-center justify-center">
         <div className="text-white text-center">
@@ -63,22 +91,11 @@ export default function CarouselPage() {
     );
   }
 
-  if (images.length === 0) {
-    return (
-      <div className="min-h-screen bg-black flex items-center justify-center">
-        <div className="text-white text-center">
-          <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-white mx-auto mb-4"></div>
-          <p className="text-xl">No images found</p>
-        </div>
-      </div>
-    );
-  }
-
-  const currentImage = images[currentIndex];
+  const currentImage = images[0]!;
   const nextImages = [];
   const maxPreviewImages = Math.min(6, images.length - 1); // Don't show more than available unique images
   for (let i = 1; i <= maxPreviewImages; i++) {
-    const nextIndex = (currentIndex + i) % images.length;
+    const nextIndex = i % images.length;
     nextImages.push(images[nextIndex]);
   }
 
@@ -95,17 +112,19 @@ export default function CarouselPage() {
         <div className="relative w-full basis-full">
           <Image
             src={currentImage.blobUrl}
-            alt={`Image ${currentIndex + 1}`}
+            alt={`Current Image`}
             fill
             className="object-contain"
             priority
             onLoad={() => {
-              // Track image load
-              fetch(`/api/images/${currentImage.id}/view`, {
-                method: 'POST',
-              }).catch((error) => {
-                console.error('Failed to track load:', error);
-              });
+              if (!currentImageIsPromo) {
+                // Track image load
+                fetch(`/api/images/${currentImage.id}/view`, {
+                  method: 'POST',
+                }).catch((error) => {
+                  console.error('Failed to track load:', error);
+                });
+              }
             }}
           />
         </div>
@@ -113,7 +132,7 @@ export default function CarouselPage() {
 
       {/* QR Code - Bottom Left */}
       {qrCodeUrl && (
-        <div className={`absolute bottom-6 left-6 z-10 ${currentImageIsPromo ? 'invisible' : ''}`}>
+        <div className={`absolute bottom-6 left-6 z-10`}>
           <div className="bg-white p-3 rounded-lg shadow-lg flex flex-col items-center">
             <div className="relative w-32 h-32">
               <Image
@@ -136,14 +155,18 @@ export default function CarouselPage() {
         >
           {nextImages
             .slice()
-            .map((image: CarouselImage, index: number) => {
+            .map((image, index) => {
+              if (!image) {
+                console.error('Image is undefined at index:', index);
+                return null;
+              }
               const isFirst = index === 0;
-              const isLast = index === nextImages.length - 1;
+              const shouldBeHidden = index > 4;
 
               return (
                 <div
                   key={image.id}
-                  className={`relative w-36 h-36 flex flex-col items-center rounded overflow-hidden border-2 border-white ${isFirst ? 'border-yellow-500' : ''} ${isLast ? 'invisible' : ''}`}
+                  className={`relative w-36 h-36 flex flex-col items-center rounded overflow-hidden border-2 border-white ${isFirst ? 'border-yellow-500' : ''} ${shouldBeHidden ? 'invisible' : ''}`}
                 >
                   <Image
                     src={image.blobUrl}
