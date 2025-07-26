@@ -67,7 +67,7 @@ export default function CarouselPage() {
   // Generate QR code for upload URL
   useEffect(() => {
     async function generateQrCode() {
-      const qrCode = await QRCode.toDataURL('https://crowd-lense.pkerschbaum.dev/upload', {
+      const qrCode = await QRCode.toDataURL('https://ballermann.vercel.app/upload', {
         width: 150,
         margin: 2,
         color: {
