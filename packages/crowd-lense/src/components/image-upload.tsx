@@ -6,7 +6,7 @@ import { Progress } from '@/components/ui/progress';
 import { validateImageFile } from '@/lib/utils';
 import { Image as ImageIcon, CheckCircle, AlertCircle } from 'lucide-react';
 import Image from 'next/image';
-import heic2any from 'heic2any';
+import { heicTo } from 'heic-to';
 
 type UploadedFile = {
   file: File;
@@ -21,9 +21,9 @@ export function ImageUpload() {
 
   const convertHeicFile = async (file: File): Promise<File> => {
     try {
-      const convertedBlob = await heic2any({
+      const convertedBlob = await heicTo({
         blob: file,
-        toType: 'image/jpeg',
+        type: 'image/jpeg',
         quality: 0.9,
       });
 
