@@ -154,15 +154,17 @@ export function ImageUpload() {
         </Button>
       </div>
 
-      <div className="flex justify-center">
-        <Button
-          onClick={uploadFiles}
-          disabled={!files.some((f) => f.status === 'pending')}
-          className="min-w-32"
-        >
-          {files.filter((f) => f.status === 'pending').length} Bilder hochladen
-        </Button>
-      </div>
+      {files.filter((f) => f.status === 'pending').length > 0 && (
+        <div className="flex justify-center">
+          <Button
+            onClick={uploadFiles}
+            disabled={!files.some((f) => f.status === 'pending')}
+            className="min-w-32"
+          >
+            {files.filter((f) => f.status === 'pending').length} Bilder hochladen
+          </Button>
+        </div>
+      )}
 
       <input
         id="file-input"

@@ -6,7 +6,7 @@ import { Providers } from '@/components/providers';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: 'CrowdLense',
+  title: 'Ballermannparty 2025 - Fotos hochladen',
 };
 
 export const viewport: Viewport = {
