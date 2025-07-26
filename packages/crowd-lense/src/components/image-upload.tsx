@@ -6,6 +6,7 @@ import { Progress } from '@/components/ui/progress';
 import { validateImageFile } from '@/lib/utils';
 import { Image as ImageIcon, CheckCircle, AlertCircle } from 'lucide-react';
 import Image from 'next/image';
+import heic2any from 'heic2any';
 
 type UploadedFile = {
   file: File;
@@ -18,8 +19,28 @@ type UploadedFile = {
 export function ImageUpload() {
   const [files, setFiles] = useState<UploadedFile[]>([]);
 
+  const convertHeicFile = async (file: File): Promise<File> => {
+    try {
+      const convertedBlob = await heic2any({
+        blob: file,
+        toType: 'image/jpeg',
+        quality: 0.9,
+      });
+
+      const blob = Array.isArray(convertedBlob) ? convertedBlob[0] : convertedBlob;
+      const convertedFile = new File([blob!], file.name.replace(/\.heic$/i, '.jpg'), {
+        type: 'image/jpeg',
+      });
+
+      return convertedFile;
+    } catch (error) {
+      console.error('HEIC conversion failed:', error);
+      throw new Error('HEIC conversion failed');
+    }
+  };
+
   const handleFiles = useCallback(
-    (newFiles: FileList | null) => {
+    async (newFiles: FileList | null) => {
       if (!newFiles) return;
 
       const fileArray = Array.from(newFiles);
@@ -29,16 +50,31 @@ export function ImageUpload() {
         return;
       }
 
-      const processedFiles = fileArray.map((file) => {
-        const validation = validateImageFile(file);
-        return {
-          file,
-          preview: URL.createObjectURL(file),
-          status: validation.valid ? ('pending' as const) : ('error' as const),
-          progress: 0,
-          error: validation.error,
-        };
-      });
+      const processedFiles = await Promise.all(
+        fileArray.map(async (file) => {
+          let processedFile = file;
+          let error: string | undefined;
+
+          // Convert HEIC files
+          if (file.type === 'image/heic' || file.name.toLowerCase().endsWith('.heic')) {
+            try {
+              processedFile = await convertHeicFile(file);
+            } catch (conversionError) {
+              error = 'HEIC conversion failed';
+            }
+          }
+
+          const validation = validateImageFile(processedFile);
+
+          return {
+            file: processedFile,
+            preview: URL.createObjectURL(processedFile),
+            status: validation.valid && !error ? ('pending' as const) : ('error' as const),
+            progress: 0,
+            error: error || validation.error,
+          };
+        }),
+      );
 
       setFiles((prev) => [...prev, ...processedFiles]);
     },
@@ -46,8 +82,8 @@ export function ImageUpload() {
   );
 
   const handleFileInput = useCallback(
-    (e: React.ChangeEvent<HTMLInputElement>) => {
-      handleFiles(e.target.files);
+    async (e: React.ChangeEvent<HTMLInputElement>) => {
+      await handleFiles(e.target.files);
       e.target.value = '';
     },
     [handleFiles],
@@ -135,10 +171,9 @@ export function ImageUpload() {
     });
   };
 
-  const clearAll = () => {
-    files.forEach((f) => URL.revokeObjectURL(f.preview));
-    setFiles([]);
-  };
+  if (typeof window === 'undefined') {
+    return null; // Ensure this component only runs on the client side
+  }
 
   return (
     <div className="w-full max-w-2xl mx-auto space-y-6">
@@ -170,7 +205,7 @@ export function ImageUpload() {
         id="file-input"
         type="file"
         multiple
-        accept="image/jpeg,image/png,image/gif,image/webp"
+        accept="image/jpeg,image/png,image/gif,image/webp,image/heic,.heic"
         onChange={handleFileInput}
         className="hidden"
       />
