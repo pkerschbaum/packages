@@ -11,15 +11,16 @@ datasource db {
 }
 
 model Image {
-  id                String    @id @default(cuid())
-  filename          String    @unique
-  originalFilename  String
-  uploadTimestamp   DateTime  @default(now())
-  status            ImageStatus @default(PENDING)
-  mimeType          String
-  fileSize          Int
-  reviewTimestamp   DateTime?
-  blobUrl           String
+  id               String      @id @default(cuid())
+  filename         String      @unique
+  originalFilename String
+  uploadTimestamp  DateTime    @default(now())
+  status           ImageStatus @default(PENDING)
+  mimeType         String
+  fileSize         Int
+  reviewTimestamp  DateTime?
+  blobUrl          String
+  viewCount        Int         @default(0)
 
   @@map("images")
 }

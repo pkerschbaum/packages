@@ -6,7 +6,7 @@ export async function GET(_request: NextRequest) {
   try {
     const images = await prisma.image.findMany({
       where: { status: 'APPROVED' },
-      orderBy: { uploadTimestamp: 'asc' },
+      orderBy: [{ uploadTimestamp: 'asc' }],
       select: {
         id: true,
         filename: true,
