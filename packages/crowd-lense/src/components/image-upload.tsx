@@ -123,7 +123,7 @@ export function ImageUpload() {
   const removeFile = (index: number) => {
     setFiles((prev) => {
       const newFiles = [...prev];
-      URL.revokeObjectURL(newFiles[index].preview);
+      URL.revokeObjectURL(newFiles[index]!.preview);
       newFiles.splice(index, 1);
       return newFiles;
     });
@@ -136,22 +136,26 @@ export function ImageUpload() {
 
   return (
     <div className="w-full max-w-2xl mx-auto space-y-6">
-      {/* Upload Zone */}
-      <div
-        className={`
-          border-2 border-dashed rounded-lg p-8 text-center transition-colors cursor-pointer border-gray-300 hover:border-gray-400
-        `}
-        onClick={() => document.getElementById('file-input')?.click()}
-      >
-        <div className="space-y-4">
-          <div className="flex justify-center">
-            <Upload className="w-12 h-12 text-gray-400" />
-          </div>
-          <Button variant="outline" size="sm">
-            <ImageIcon className="w-4 h-4 mr-2" />
-            Hochladen
-          </Button>
-        </div>
+      {/* Upload Button */}
+      <div className="flex justify-center">
+        <Button
+          variant="outline"
+          size="sm"
+          onClick={() => document.getElementById('file-input')?.click()}
+        >
+          <ImageIcon className="w-4 h-4 mr-2" />
+          Bilder auswählen (maximal 10)
+        </Button>
+      </div>
+
+      <div className="flex justify-center">
+        <Button
+          onClick={uploadFiles}
+          disabled={!files.some((f) => f.status === 'pending')}
+          className="min-w-32"
+        >
+          {files.filter((f) => f.status === 'pending').length} Bilder hochladen
+        </Button>
       </div>
 
       <input
@@ -166,13 +170,6 @@ export function ImageUpload() {
       {/* File List */}
       {files.length > 0 && (
         <div className="space-y-4">
-          <div className="flex justify-between items-center">
-            <h3 className="text-lg font-medium">Ausgewählte Fotos ({files.length}/10)</h3>
-            <Button variant="outline" size="sm" onClick={clearAll}>
-              Alle entfernen
-            </Button>
-          </div>
-
           <div className="space-y-3">
             {files.map((file, index) => (
               <div key={index} className="flex items-center space-x-4 p-4 border rounded-lg">
@@ -198,22 +195,14 @@ export function ImageUpload() {
                 <div className="flex items-center space-x-2">
                   {file.status === 'success' && <CheckCircle className="w-5 h-5 text-green-500" />}
                   {file.status === 'error' && <AlertCircle className="w-5 h-5 text-red-500" />}
-                  <Button variant="outline" size="sm" onClick={() => removeFile(index)}>
-                    Entfernen
-                  </Button>
+                  {file.status === 'pending' && (
+                    <Button variant="outline" size="sm" onClick={() => removeFile(index)}>
+                      Entfernen
+                    </Button>
+                  )}
                 </div>
               </div>
             ))}
-          </div>
-
-          <div className="flex justify-center">
-            <Button
-              onClick={uploadFiles}
-              disabled={!files.some((f) => f.status === 'pending')}
-              className="min-w-32"
-            >
-              {files.filter((f) => f.status === 'pending').length} Bilder hochladen
-            </Button>
           </div>
         </div>
       )}

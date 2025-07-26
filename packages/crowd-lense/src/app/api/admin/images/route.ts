@@ -54,7 +54,7 @@ export async function PATCH(request: NextRequest) {
       },
     });
 
-    return NextResponse.json({ success: true, image });
+    return NextResponse.json({ image });
   } catch (error) {
     console.error('Failed to update image:', error);
     return NextResponse.json({ error: 'Failed to update image' }, { status: 500 });
