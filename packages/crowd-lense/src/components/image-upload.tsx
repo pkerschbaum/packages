@@ -4,7 +4,7 @@ import { useState, useCallback } from 'react';
 import { Button } from '@/components/ui/button';
 import { Progress } from '@/components/ui/progress';
 import { validateImageFile } from '@/lib/utils';
-import { Upload, Camera, Image as ImageIcon, CheckCircle, AlertCircle } from 'lucide-react';
+import { Image as ImageIcon, CheckCircle, AlertCircle } from 'lucide-react';
 import Image from 'next/image';
 
 type UploadedFile = {
@@ -25,9 +25,7 @@ export function ImageUpload() {
       const fileArray = Array.from(newFiles);
 
       if (files.length + fileArray.length > 10) {
-        alert(
-          '10 Bilder sind das Maximum. Bitte entferne einige Bilder, bevor du neue hinzufügst.',
-        );
+        alert('10 Bilder sind das Maximum.');
         return;
       }
 
@@ -59,64 +57,72 @@ export function ImageUpload() {
     const pendingFiles = files.filter((f) => f.status === 'pending');
     if (pendingFiles.length === 0) return;
 
-    const formData = new FormData();
-    pendingFiles.forEach(({ file }) => {
-      formData.append('files', file);
-    });
-
-    // Update status to uploading
+    // Set all pending files to uploading state immediately
     setFiles((prev) =>
       prev.map((f) =>
         f.status === 'pending' ? { ...f, status: 'uploading' as const, progress: 0 } : f,
       ),
     );
 
-    try {
-      const xhr = new XMLHttpRequest();
+    for (let i = 0; i < pendingFiles.length; i++) {
+      const fileToUpload = pendingFiles[i]!;
+      const fileIndex = files.findIndex((f) => f === fileToUpload);
 
-      xhr.upload.onprogress = (e) => {
-        if (e.lengthComputable) {
-          const progress = (e.loaded / e.total) * 100;
-          setFiles((prev) => prev.map((f) => (f.status === 'uploading' ? { ...f, progress } : f)));
-        }
-      };
+      try {
+        await new Promise<void>((resolve, reject) => {
+          const formData = new FormData();
+          formData.append('files', fileToUpload.file);
 
-      xhr.onload = () => {
-        if (xhr.status === 200) {
-          setFiles((prev) =>
-            prev.map((f) =>
-              f.status === 'uploading' ? { ...f, status: 'success' as const, progress: 100 } : f,
-            ),
-          );
-        } else {
-          setFiles((prev) =>
-            prev.map((f) =>
-              f.status === 'uploading'
-                ? { ...f, status: 'error' as const, error: 'Upload failed' }
-                : f,
-            ),
-          );
-        }
-      };
+          const xhr = new XMLHttpRequest();
 
-      xhr.onerror = () => {
-        setFiles((prev) =>
-          prev.map((f) =>
-            f.status === 'uploading'
-              ? { ...f, status: 'error' as const, error: 'Upload failed' }
-              : f,
-          ),
-        );
-      };
+          xhr.upload.onprogress = (e) => {
+            if (e.lengthComputable) {
+              const progress = (e.loaded / e.total) * 100;
+              setFiles((prev) =>
+                prev.map((f, index) => (index === fileIndex ? { ...f, progress } : f)),
+              );
+            }
+          };
 
-      xhr.open('POST', '/api/upload');
-      xhr.send(formData);
-    } catch (error) {
-      setFiles((prev) =>
-        prev.map((f) =>
-          f.status === 'uploading' ? { ...f, status: 'error' as const, error: 'Upload failed' } : f,
-        ),
-      );
+          xhr.onload = () => {
+            if (xhr.status === 200) {
+              setFiles((prev) =>
+                prev.map((f, index) =>
+                  index === fileIndex ? { ...f, status: 'success' as const, progress: 100 } : f,
+                ),
+              );
+              resolve();
+            } else {
+              setFiles((prev) =>
+                prev.map((f, index) =>
+                  index === fileIndex
+                    ? { ...f, status: 'error' as const, error: 'Upload failed' }
+                    : f,
+                ),
+              );
+              reject(new Error('Upload failed'));
+            }
+          };
+
+          xhr.onerror = () => {
+            setFiles((prev) =>
+              prev.map((f, index) =>
+                index === fileIndex
+                  ? { ...f, status: 'error' as const, error: 'Upload failed' }
+                  : f,
+              ),
+            );
+            reject(new Error('Upload failed'));
+          };
+
+          xhr.open('POST', '/api/upload');
+          xhr.send(formData);
+        });
+      } catch (error) {
+        // Error already handled in xhr.onerror
+        console.error('Upload failed for file:', fileToUpload.file.name);
+        // Continue with next file even if current one fails
+      }
     }
   };
 
@@ -195,7 +201,7 @@ export function ImageUpload() {
                 <div className="flex items-center space-x-2">
                   {file.status === 'success' && <CheckCircle className="w-5 h-5 text-green-500" />}
                   {file.status === 'error' && <AlertCircle className="w-5 h-5 text-red-500" />}
-                  {file.status === 'pending' && (
+                  {(file.status === 'pending' || file.status === 'error') && (
                     <Button variant="outline" size="sm" onClick={() => removeFile(index)}>
                       Entfernen
                     </Button>

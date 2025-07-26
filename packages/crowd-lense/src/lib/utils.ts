@@ -6,7 +6,7 @@ export function cn(...inputs: ClassValue[]) {
 }
 
 export function validateImageFile(file: File): { valid: boolean; error?: string } {
-  const maxSize = 30 * 1024 * 1024; // 30MB
+  const maxSize = 10 * 1024 * 1024; // 10MB
   const allowedTypes = ['image/jpeg', 'image/png', 'image/gif', 'image/webp'];
 
   if (!allowedTypes.includes(file.type)) {
@@ -17,7 +17,7 @@ export function validateImageFile(file: File): { valid: boolean; error?: string 
   }
 
   if (file.size > maxSize) {
-    return { valid: false, error: 'File too large. Maximum size is 30MB.' };
+    return { valid: false, error: 'File too large. Maximum size is 10MB.' };
   }
 
   return { valid: true };
